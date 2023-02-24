@@ -1,0 +1,22 @@
+.header {
+    padding: 20px;
+    text-align: center;
+    font-size: 30px;
+  }
+
+  .filters {
+    padding: 10px;
+    text-align: center;
+    background-color: lightcyan;
+    align-items: center;
+    border: 50pt;
+}
+
+.example-container {
+    height: 400px;
+    overflow: auto;
+  }
+  
+  table {
+    width: 100%;
+  }

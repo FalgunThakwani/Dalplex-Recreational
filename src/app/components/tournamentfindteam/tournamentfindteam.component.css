@@ -1,0 +1,33 @@
+.header {
+    padding: 20px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.filters {
+    padding: 10px;
+    text-align: center;
+    background-color: lightcyan;
+    align-items: center;
+    border: 50pt;
+}
+
+/* 6 */
+mat-grid-tile {
+    background: lightblue;
+  }
+
+/* 6 */
+mat-grid-list {
+    padding: 2px;
+    align-items: center;
+}
+
+/* 7 */
+.example-card {
+    max-width: 400px;
+  }
+
+.grid-container {
+    padding: 20px;
+}

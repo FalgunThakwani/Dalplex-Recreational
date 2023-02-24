@@ -14,7 +14,7 @@ let facilities = [
   {    "title":"Pool 4", "subtitle":"Leagues Pool", "id":"4", "occ":"25", "state" : 'hours', "desc" : 'hours',   
       "foot": "150", "w1":"", "w2":"10:00 to 15:00", "w3":"10:00 to 15:00", "w4":"10:00 to 15:00"
       , "w5":"10:00 to 15:00", "w6":"10:00 to 15:00", "w7":"10:00 to 15:00"},
-      {    "title":"Pool 1", "subtitle":"Kids Pool", "id":"1", "occ":"10", "state" : 'hours', "desc" : 'hours',   
+  {    "title":"Pool 1", "subtitle":"Kids Pool", "id":"1", "occ":"10", "state" : 'hours', "desc" : 'hours',   
       "foot": "100", "w1":"", "w2":"10:00 to 15:00", "w3":"10:00 to 15:00", "w4":"10:00 to 15:00"
       , "w5":"10:00 to 15:00", "w6":"10:00 to 15:00", "w7":"10:00 to 15:00"},
   {    "title":"Pool 2", "subtitle":"Adults Pool", "id":"2", "occ":"20", "state" : 'hours', "desc" : 'hours',   
