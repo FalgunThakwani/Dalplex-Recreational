@@ -1,6 +1,7 @@
 mat-sidenav-container{
     background-color: black;
     height: 150px;
+    position: fixed;
 }
 table{
     border-collapse: collapse;
