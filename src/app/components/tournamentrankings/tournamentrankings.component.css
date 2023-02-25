@@ -5,11 +5,11 @@
   }
 
 .filters {
-    padding: 10px;
-    text-align: center;
-    background-color: lightcyan;
-    align-items: center;
-    border: 50pt;
+  padding: 10px;
+  text-align: center;
+  background-color: lightcyan;
+  border: 1pt solid;
+  margin:0 20px 0 20px;
 }
 
 .filter {
@@ -20,7 +20,10 @@
 
 /* table css */
 table {
-    width: 100%;
+    width: 80%;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   tr.example-detail-row {

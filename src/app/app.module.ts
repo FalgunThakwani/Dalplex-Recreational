@@ -28,6 +28,11 @@ import { TournamentmatchesComponent } from './components/tournamentmatches/tourn
 import { TournamentleaguesComponent } from './components/tournamentleagues/tournamentleagues.component';
 import { TournamentfindteamComponent } from './components/tournamentfindteam/tournamentfindteam.component';
 import { TournamentsComponent } from './components/tournaments/tournaments.component';
+import { FacilitycalendarComponent } from './components/facilitycalendar/facilitycalendar.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+// import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
 @NgModule({
   declarations: [
@@ -39,7 +44,8 @@ import { TournamentsComponent } from './components/tournaments/tournaments.compo
     TournamentmatchesComponent,
     TournamentleaguesComponent,
     TournamentfindteamComponent,
-    TournamentsComponent
+    TournamentsComponent,
+    FacilitycalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +66,11 @@ import { TournamentsComponent } from './components/tournaments/tournaments.compo
     FormsModule,
     MatTableModule,
     MatTabsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatNativeDateModule, 
+    MatInputModule,
+    // MatMomentDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -21,30 +21,29 @@ export class TournamentleaguesComponent implements OnInit {
   ];
 
   // 5 s
-  displayedColumns = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns = ['id', 'league', 'slots', 'match', 'register'];
+  dataSource = LEAGUE_DATA 
   // 5 e
+
+  toggle(index:number): void {  
+    LEAGUE_DATA.find(item => item.id == index)!.register = 
+    LEAGUE_DATA.find(item => item.id == index)!.register === 'Register' ? 'Cancel' : 'Register';
+  }
     
 }
 
 // 5 s
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+const LEAGUE_DATA = [
+  {id: 1, league: 'League 1', slots: 5, match: 'Match Starts on 10 March', register: 'Register'},
+  {id: 2, league: 'League 2', slots: 4, match: 'Match Starts on 20 March', register: 'Register'},
+  {id: 3, league: 'League 3', slots: 6, match: 'Match Starts on 30 March', register: 'Register'},
+  {id: 4, league: 'League 4', slots: 9, match: 'Match Starts on 10 March', register: 'Register'},
+  {id: 5, league: 'League 5', slots: 10, match: 'Match Starts on 20 March', register: 'Register'},
+  {id: 6, league: 'League 6', slots: 12, match: 'Match Starts on 13 March', register: 'Register'},
+  {id: 7, league: 'League 7', slots: 14, match: 'Match Starts on 14 March', register: 'Register'},
+  {id: 8, league: 'League 8', slots: 15, match: 'Match Starts on 17 March', register: 'Register'},
+  {id: 9, league: 'League 9', slots: 18, match: 'Match Starts on 18 March', register: 'Register'},
+  {id: 10, league: 'League 10', slots: 5, match: 'Match Starts on 01 March', register: 'Register'},
 ];
 // 5 e

@@ -9,7 +9,7 @@
     <p>Tournament 1 is going to happen today at dalplex</p>
 </div>
 <!-- 6 -->
-<mat-grid-list cols="2" gutterSize="50px" rowHeight="200">
+<mat-grid-list #grid [cols]="cols" gutterSize="50px" rowHeight="200">
     <mat-grid-tile routerLink="/trank">Rankings</mat-grid-tile>
     <mat-grid-tile routerLink="/tfiteam">Find a Team</mat-grid-tile>
     <mat-grid-tile routerLink="/tleague">Leagues</mat-grid-tile>

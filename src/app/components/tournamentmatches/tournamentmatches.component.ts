@@ -31,27 +31,27 @@ export class TournamentmatchesComponent implements OnInit {
   // 5
   columns = [
     {
-      columnDef: 'position',
-      header: 'No.',
-      cell: (element: PeriodicElement) => `${element.position}`,
+      columnDef: 'id',
+      header: 'Id.',
+      cell: (element: Match) => `${element.id}`,
     },
     {
-      columnDef: 'name',
-      header: 'Name',
-      cell: (element: PeriodicElement) => `${element.name}`,
+      columnDef: 'match',
+      header: 'Match name',
+      cell: (element: Match) => `${element.match}`,
     },
     {
-      columnDef: 'weight',
-      header: 'Weight',
-      cell: (element: PeriodicElement) => `${element.weight}`,
+      columnDef: 'matchinfo',
+      header: 'Match Info',
+      cell: (element: Match) => `${element.matchinfo}`,
     },
     {
-      columnDef: 'symbol',
-      header: 'Symbol',
-      cell: (element: PeriodicElement) => `${element.symbol}`,
-    },
+      columnDef: 'datetime',
+      header: 'Date and Time',
+      cell: (element: Match) => `${element.datetime}`,
+    }
   ];
-  dataSource = ELEMENT_DATA;
+  dataSource = MATCH_DATA;
   displayedColumns = this.columns.map(c => c.columnDef);
 
   // 5
@@ -66,23 +66,23 @@ export interface ExampleTab {
 // 4 e
 
 // 5 s
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+export interface Match {
+  match: string;
+  id: number;
+  datetime: string;
+  matchinfo: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+const MATCH_DATA: Match[] = [
+  {id: 1, match: 'Match 1', datetime: '5-04-2023', matchinfo: 'Team X vs Team Y'},
+  {id: 2, match: 'Match 2', datetime: '4-04-2023', matchinfo: 'Team A vs Team Y'},
+  {id: 3, match: 'Match 3', datetime: '6-04-2023', matchinfo: 'Team B vs Team X'},
+  {id: 4, match: 'Match 4', datetime: '9-04-2023', matchinfo: 'Team X vs Team Z'},
+  {id: 5, match: 'Match 5', datetime: '10-04-2023', matchinfo: 'Team X vs Team A'},
+  {id: 6, match: 'Match 6', datetime: '12-04-2023', matchinfo: 'Team C vs Team B'},
+  {id: 7, match: 'Match 7', datetime: '14-04-2023', matchinfo: 'Team D vs Team E'},
+  {id: 8, match: 'Match 8', datetime: '15-04-2023', matchinfo: 'Team X vs Team F'},
+  {id: 9, match: 'Match 9', datetime: '18-04-2023', matchinfo: 'Team Z vs Team Y'},
+  {id: 10, match: 'Match 10', datetime: '5-04-2023', matchinfo: 'Team C vs Team Y'},
 ];
 // 5 e

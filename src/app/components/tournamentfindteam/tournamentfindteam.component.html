@@ -13,7 +13,7 @@
 
     <!-- 6 -->
     <div class="grid-container">
-    <mat-grid-list cols="3" gutterSize="20px" rowHeight="300">
+    <mat-grid-list #grid [cols]="cols" gutterSize="20px" rowHeight="200">
         <mat-grid-tile class="tile" *ngFor="let card of cards">
             <!-- 7 -->
             <mat-card class="example-card">
@@ -25,7 +25,7 @@
                   <p>{{card.desc}}</p>
                 </mat-card-content>
                 <mat-card-actions>
-                  <button mat-button
+                  <button mat-stroked-button
                     matTooltip="Monday 10PM, Tuesday 7PM, Wednesday 6PM, Thursday 4PM, Friday 5PM"
                     aria-label="Button that displays a tooltip when focused or hovered over">    
                     Game Slots</button>
