@@ -5,9 +5,9 @@
     </a>
     <a mat-button *ngFor="let item of menuItems" [routerLink]="item.route">{{item.displayName}}</a>
     <span class="fill-space"></span>
-    <button mat-icon-button routerLink="/cart" aria-label="Cart">
+    <button mat-icon-button routerLink="/cart-page" aria-label="Cart">
       <mat-icon>shopping_cart</mat-icon>
-      <mat-badge [matBadge]="0" matBadgeSize="small" matBadgeColor="accent"></mat-badge>
+      <mat-badge [matBadge]="2" matBadgeSize="small" matBadgeColor="accent"></mat-badge>
     </button>
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Profile menu">
       <mat-icon>account_circle</mat-icon>
