@@ -1,0 +1,36 @@
+<body class="bg">
+    <mat-card>
+        <mat-card-content>
+            <div class="header">
+                <h2>LOGIN</h2>
+            </div>
+            <form (ngSubmit)="onLogin()" name="loginForm" [formGroup]="loginForm">
+                <div class="email-input">
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input formControlName="email" matInput required/>
+                        <mat-error *ngIf="'loginForm.get(email).errors?.required'">
+                            Required Email Address
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <span class="aLink"><a href="">Forgot Password</a></span>
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input type="password" formControlName="password" matInput [type]= "'hide ? password: text'" required/>
+                        <button mat-icon-button matSuffix (click)="'hide=!hide'"[attr.aria-label]="'Hide Password'" [attr.aira-pressed]="'hide'">
+                            <mat-icon>{{ 'hide' ? 'visibility-off': 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="'loginForm.get(password).errors?.required'">
+                            Required password
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <button type="submit" mat-flat-button color="primary" ng-disabled="loginForm.email.$invalid || loginForm.password.$invalid">Login</button><br>
+            </form>
+        </mat-card-content>
+        <span>Demo Account email-user123@dal.ca password-user@123</span>
+    </mat-card>
+    </body>
+    
