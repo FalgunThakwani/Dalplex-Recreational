@@ -37,6 +37,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -52,6 +53,8 @@ import { MembershipComponent } from './pages/membership/membership.component';
 import { BookingHistoryComponent } from './pages/booking-history/booking-history.component';
 import { InvoicesComponent } from './pages/invoices/invoices.component';
 import { PaymentMethodsComponent } from './pages/payment-methods/payment-methods.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { AddPaymentDialogComponent } from './pages/add-payment-dialog/add-payment-dialog.component';
 import { SportsCategoryComponent } from './pages/sports-category/sports-category.component';
 import { SportsCategoryDetailComponent } from './pages/sports-category-detail/sports-category-detail.component';
@@ -62,17 +65,20 @@ import { UserLoginComponent } from './pages/user-login/user-login.component';
 import { UserRegistrationComponent } from './pages/user-registration/user-registration.component';
 import { UpcomingBookingsComponent } from './pages/upcoming-bookings/upcoming-bookings.component';
 import { UserLandingPageComponent } from './pages/user-landing-page/user-landing-page.component';
-
 import { FacilitiesComponent } from './components/facilities/facilities.component';
 import { TournamentrankingsComponent } from './components/tournamentrankings/tournamentrankings.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TournamentmatchesComponent } from './components/tournamentmatches/tournamentmatches.component';
 import { TournamentleaguesComponent } from './components/tournamentleagues/tournamentleagues.component';
 import { TournamentfindteamComponent } from './components/tournamentfindteam/tournamentfindteam.component';
 import { TournamentsComponent } from './components/tournaments/tournaments.component';
 import { FacilitycalendarComponent } from './components/facilitycalendar/facilitycalendar.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatInputModule } from '@angular/material/input';
+import { CartPageComponent } from './pages/cart/cart-page/cart-page.component';
+import { ListViewComponent } from './pages/cart/components/list-view/list-view.component';
+import { CartTotalComponent } from './pages/cart/components/cart-total/cart-total.component';
+import { PaymentPageComponent } from './pages/payment-page/payment-page.component';
+import { PaymentCompleteComponent } from './pages/payment-complete/payment-complete.component';
+
 
 @NgModule({
   declarations: [
@@ -103,7 +109,12 @@ import { MatInputModule } from '@angular/material/input';
     TournamentleaguesComponent,
     TournamentfindteamComponent,
     TournamentsComponent,
-    FacilitycalendarComponent
+    FacilitycalendarComponent,
+    CartPageComponent,
+    ListViewComponent,
+    CartTotalComponent,
+    PaymentPageComponent,
+    PaymentCompleteComponent,
   ],
   imports: [
     BrowserModule,
@@ -167,7 +178,9 @@ import { MatInputModule } from '@angular/material/input';
     MatTooltipModule,
     MatDatepickerModule,
     MatNativeDateModule, 
-    MatInputModule
+    MatInputModule,
+    NgbModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
