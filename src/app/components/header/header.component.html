@@ -1,17 +1,23 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <mat-toolbar>
     <img class="icon" src="https://www.wemakescholars.com/admin/uploads/providers/uQJuTR9lcaqhRKUfTh66iAgiMy1mQWJh.png"/>
     <span>Dalplex</span>
  
      <div class="spacer"></div>
  
-     <a mat-button>Login</a>
-     <a mat-button>Sign up</a>
+     <a mat-button (click)="Login()">Login</a>
+     <a mat-button (click)="Register()">Sign up</a>
      <a mat-button>Events</a>
      <a mat-button>Facilities</a>
      <a mat-button>About Us</a>
-     <mat-select class="profile-dropdown" *ngIf=false>    
+     <!-- <mat-icon>shopping_cart</mat-icon> -->
+     <i class="fa" style="font-size:24px">&#xf07a;</i>
+     <span class='badge badge-warning' id='lblCartCount'> 0</span>
+    <button mat-button *ngIf=true>
+      <mat-icon>account_circle</mat-icon>
+     <mat-select class="profile-dropdown">   
       <mat-option><a mat-button>Profile</a></mat-option>
       <mat-option><a mat-button>Sign Out</a></mat-option> 
      </mat-select>
+    </button>
    </mat-toolbar>

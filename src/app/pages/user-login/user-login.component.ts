@@ -10,6 +10,8 @@ import {Router} from '@angular/router';
 export class UserLoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  email: String;
+  password: String;
 
   constructor(private router: Router) { 
   }
@@ -23,14 +25,7 @@ export class UserLoginComponent implements OnInit {
     )
   }
   onLogin(){
-    var email=this.loginForm.get("email")?.value
-    var password=this.loginForm.get("password")?.value
-    if(email==''|| password==''||email==null||password==null)
-    {
-      alert("enter right credentials")
-    }
-    else
-    {
+    if(this.email=='user123@dal.ca' && this.password=='user@123'){
     this.router.navigateByUrl('/success')
     }
 }

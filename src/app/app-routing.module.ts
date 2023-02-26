@@ -8,7 +8,7 @@ import { UserRegistrationComponent } from './pages/user-registration/user-regist
 const routes: Routes = [
   {path:'',component:UserLandingPageComponent},
   {path:'login',component:UserLoginComponent},
-  {path:'registration',component:UserRegistrationComponent},
+  {path:'register',component:UserRegistrationComponent},
   {path:'upcomingbookings',component:UpcomingBookingsComponent}
 ];
 

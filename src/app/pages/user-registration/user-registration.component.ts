@@ -39,7 +39,7 @@ export class UserRegistrationComponent implements OnInit {
        'email': this.registrationForm.value.email
       }
     )
-    console.log(this.userDetails.value)
+    this.router.navigateByUrl('/login')
   }
 }
 
