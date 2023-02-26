@@ -10,3 +10,11 @@ mat-toolbar{
     width: 50px;
     float: left;
 }
+.profile-icon{
+    height: 50px;
+    width: 50px;
+    float: right;
+}
+mat-select{
+    width: 50px;
+}

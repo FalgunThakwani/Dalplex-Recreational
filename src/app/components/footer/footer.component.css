@@ -1,11 +1,13 @@
 mat-sidenav-container{
     background-color: black;
     height: 150px;
-    position: fixed;
 }
 table{
     border-collapse: collapse;
     width: 100%;
     color: rgb(255,255,255);
     margin-left: 60px;
+}
+.footer{
+    position: relative;
 }
