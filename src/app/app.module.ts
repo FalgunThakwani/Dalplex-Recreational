@@ -65,7 +65,7 @@ import { UserLoginComponent } from './pages/user-login/user-login.component';
 import { UserRegistrationComponent } from './pages/user-registration/user-registration.component';
 import { UpcomingBookingsComponent } from './pages/upcoming-bookings/upcoming-bookings.component';
 import { UserLandingPageComponent } from './pages/user-landing-page/user-landing-page.component';
-import { FacilitiesComponent } from './components/facilities/facilities.component';
+import { FacilitiesComponent } from './pages/facilities/facilities.component';
 import { TournamentrankingsComponent } from './components/tournamentrankings/tournamentrankings.component';
 import { TournamentmatchesComponent } from './components/tournamentmatches/tournamentmatches.component';
 import { TournamentleaguesComponent } from './components/tournamentleagues/tournamentleagues.component';
