@@ -9,17 +9,17 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  menuItems = [
+    {id: 1, name: 'Log In', displayName: 'Log In', route: '/login', show: true},
+    {id: 2, name: 'Sign Up', displayName: 'Sign Up', route: '/register', show: true},
+    {id: 3, name: 'Facilities', displayName: 'Facilities', route: '/facilities', show: true},
+    {id: 4, name: 'Tournament', displayName: 'Tournament', route: '/tournament', show: true},
+    {id: 5, name: 'About us', displayName: 'About us', route: '/about', show: true}
+  ];
+
   constructor(private router:Router, private userService: UserService) { }
 
   ngOnInit(): void {
-  }
-
-  login(){
-    this.router.navigateByUrl('/login')
-  }
-  
-  register(){
-    this.router.navigateByUrl('/register')
   }
 
   logout() {

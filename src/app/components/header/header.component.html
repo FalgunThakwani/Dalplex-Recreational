@@ -1,30 +1,26 @@
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
-<mat-toolbar>
-  <img
-    alt="toolbar image"
-    class="icon"
-    src="https://www.wemakescholars.com/admin/uploads/providers/uQJuTR9lcaqhRKUfTh66iAgiMy1mQWJh.png"
-  />
-  <span>Dalplex</span>
-
-  <div class="spacer"></div>
-
-  <a mat-button (click)="login()">Login</a>
-  <a mat-button (click)="register()">Sign up</a>
-  <a mat-button>Events</a>
-  <a mat-button>Facilities</a>
-  <a mat-button>About Us</a>
-  <!-- mat-icon>shopping_cart</mat-icon-->
-  <i class="fa" style="font-size: 24px">&#xf07a;</i>
-  <span class="badge badge-warning" id="lblCartCount"> 0</span>
-  <button mat-button *ngIf="true">
-    <mat-icon>account_circle</mat-icon>
-    <mat-select class="profile-dropdown">
-      <mat-option><a mat-button>Profile</a></mat-option>
-      <mat-option><a mat-button (click)="logout()">Sign Out</a></mat-option>
-    </mat-select>
-  </button>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <a mat-button routerLink="/" aria-label="Home">
+      <img src="assets/dalplex-logo.png" alt="Brand logo">
+    </a>
+    <a mat-button *ngFor="let item of menuItems" [routerLink]="item.route">{{item.displayName}}</a>
+    <span class="fill-space"></span>
+    <button mat-icon-button routerLink="/cart" aria-label="Cart">
+      <mat-icon>shopping_cart</mat-icon>
+      <mat-badge [matBadge]="0" matBadgeSize="small" matBadgeColor="accent"></mat-badge>
+    </button>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Profile menu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" class="profile-menu">
+      <button mat-menu-item routerLink="/profile" aria-label="Profile">
+        <mat-icon>person</mat-icon>
+        <span>My profile</span>
+      </button>
+      <button mat-menu-item (click)="logout()" aria-label="Logout">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar-row>
 </mat-toolbar>
