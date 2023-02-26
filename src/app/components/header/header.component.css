@@ -1,0 +1,12 @@
+.spacer{
+    flex: 1 1 auto
+}
+
+mat-toolbar{
+    background-color: yellow;
+}
+.icon{
+    height: 50px;
+    width: 50px;
+    float: left;
+}

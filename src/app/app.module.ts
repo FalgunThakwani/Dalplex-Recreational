@@ -6,50 +6,137 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule} from '@angular/material/button';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
+
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { UpdateProfileComponent } from './pages/update-profile/update-profile.component';
+import { MembershipComponent } from './pages/membership/membership.component';
+import { BookingHistoryComponent } from './pages/booking-history/booking-history.component';
+import { InvoicesComponent } from './pages/invoices/invoices.component';
+import { PaymentMethodsComponent } from './pages/payment-methods/payment-methods.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import {MatButtonModule} from '@angular/material/button';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatCardModule} from '@angular/material/card';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatListModule} from '@angular/material/list';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatNativeDateModule, MatOptionModule, MatRippleModule} from '@angular/material/core';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatSortModule} from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatTreeModule} from '@angular/material/tree';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MaskPipe } from './pipes/mask.pipe';
+import { AddPaymentDialogComponent } from './pages/add-payment-dialog/add-payment-dialog.component';
+import { SportsCategoryComponent } from './pages/sports-category/sports-category.component';
+import { SportsCategoryDetailComponent } from './pages/sports-category-detail/sports-category-detail.component';
+import { BookingComponent } from './pages/booking/booking.component';
+import { AddCategoryDialogComponent } from './pages/add-category-dialog/add-category-dialog.component';
+import { AddCourtDialogComponent } from './pages/add-court-dialog/add-court-dialog.component';
+import { CurrencyPipe } from './pipes/currency.pipe';
 import { CartPageComponent } from './pages/cart/cart-page/cart-page.component';
 import { ListViewComponent } from './pages/cart/components/list-view/list-view.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
+
+
 import { CartTotalComponent } from './pages/cart/components/cart-total/cart-total.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
+    ProfileComponent,
+    UpdateProfileComponent,
+    MembershipComponent,
+    BookingHistoryComponent,
+    InvoicesComponent,
+    PaymentMethodsComponent,
+    MaskPipe,
+    AddPaymentDialogComponent,
+    SportsCategoryComponent,
+    SportsCategoryDetailComponent,
+    BookingComponent,
+    AddCategoryDialogComponent,
+    AddCourtDialogComponent,
+    CurrencyPipe,
     CartPageComponent,
     ListViewComponent,
-    CartTotalComponent
+    CartTotalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatListModule,
+    MatAutocompleteModule,
+    MatBadgeModule,
+    MatBottomSheetModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
     MatMenuModule,
-    MatTableModule,
+    MatNativeDateModule,
     MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
     MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatTreeModule,
     MatFormFieldModule,
-    MatInputModule
+    MatOptionModule,
+    NgbModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
