@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { MembershipDetails } from './../../interfaces/MembershipDetails';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,14 +10,14 @@ import { Component, OnInit } from '@angular/core';
 export class MembershipComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'type', 'startDate', 'endDate', 'reNew', 'cardInfo'];
-  dataSource: MembershipDetails[] = [
-    {id: '1', type: 'STUDENT: Dal Full-Time', startDate: 'Sun, Jan 1 2023', endDate: 'Sun, Apr 30 2023', reNew: 'Not Renewable', cardInfo: 'N/A'},
-    {id: '2', type: 'STUDENT: Dal Full-Time', startDate: 'Sun, Jan 1 2023', endDate: 'Sun, Apr 30 2023', reNew: 'Not Renewable', cardInfo: 'N/A'}
-  ];
+  dataSource!: MembershipDetails[];
   
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.userService.getMemberShipDetails().subscribe((data) => {
+      this.dataSource = data;
+    });
   }
 
 }

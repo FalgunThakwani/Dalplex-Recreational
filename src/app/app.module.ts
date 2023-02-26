@@ -56,6 +56,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MaskPipe } from './pipes/mask.pipe';
 import { AddPaymentDialogComponent } from './pages/add-payment-dialog/add-payment-dialog.component';
+import { SportsCategoryComponent } from './pages/sports-category/sports-category.component';
+import { SportsCategoryDetailComponent } from './pages/sports-category-detail/sports-category-detail.component';
+import { BookingComponent } from './pages/booking/booking.component';
+import { AddCategoryDialogComponent } from './pages/add-category-dialog/add-category-dialog.component';
+import { AddCourtDialogComponent } from './pages/add-court-dialog/add-court-dialog.component';
+import { CurrencyPipe } from './pipes/currency.pipe';
 
 @NgModule({
   declarations: [
@@ -69,7 +75,13 @@ import { AddPaymentDialogComponent } from './pages/add-payment-dialog/add-paymen
     InvoicesComponent,
     PaymentMethodsComponent,
     MaskPipe,
-    AddPaymentDialogComponent
+    AddPaymentDialogComponent,
+    SportsCategoryComponent,
+    SportsCategoryDetailComponent,
+    BookingComponent,
+    AddCategoryDialogComponent,
+    AddCourtDialogComponent,
+    CurrencyPipe
   ],
   imports: [
     BrowserModule,
