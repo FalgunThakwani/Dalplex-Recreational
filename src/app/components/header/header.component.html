@@ -12,8 +12,8 @@
 
   <div class="spacer"></div>
 
-  <a mat-button (click)="Login()">Login</a>
-  <a mat-button (click)="Register()">Sign up</a>
+  <a mat-button (click)="login()">Login</a>
+  <a mat-button (click)="register()">Sign up</a>
   <a mat-button>Events</a>
   <a mat-button>Facilities</a>
   <a mat-button>About Us</a>
@@ -24,7 +24,7 @@
     <mat-icon>account_circle</mat-icon>
     <mat-select class="profile-dropdown">
       <mat-option><a mat-button>Profile</a></mat-option>
-      <mat-option><a mat-button>Sign Out</a></mat-option>
+      <mat-option><a mat-button (click)="logout()">Sign Out</a></mat-option>
     </mat-select>
   </button>
 </mat-toolbar>

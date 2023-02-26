@@ -25,4 +25,8 @@ export class UserService {
     }
     return of({message: "Invalid username/password"});
   }
+
+  logout() : Observable<any> {
+    return of({message: 'success'});
+  }
 }
