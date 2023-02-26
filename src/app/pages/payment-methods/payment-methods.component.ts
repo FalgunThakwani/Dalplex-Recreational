@@ -1,3 +1,4 @@
+import { PaymentService } from './../../services/payment.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
@@ -13,14 +14,14 @@ export class PaymentMethodsComponent implements OnInit {
 
   @ViewChild(MatTable) table!: MatTable<any>;
   displayedColumns: string[] = ['id', 'name', 'cardNumber', 'expiryDate', 'securityCode', 'postalCode'];
-  dataSource: PaymentMethodDetails[] = [
-    {id: '1', name: 'test user', cardNumber: '111122223333', expiryDate: 'Sun, Jan 1 2023', securityCode: '123', postalCode: 'B3K 4N1'},
-    {id: '1', name: 'test user', cardNumber: '111122223333', expiryDate: 'Sun, Jan 1 2023', securityCode: '123', postalCode: 'B3K 4N1'},
-  ];
+  dataSource!: PaymentMethodDetails[];
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private paymentService: PaymentService) { }
 
   ngOnInit(): void {
+    this.paymentService.getPaymentMethodDetails().subscribe((data) => {
+      this.dataSource = data;
+    });
   }
 
   showAddPaymentDialog() {
