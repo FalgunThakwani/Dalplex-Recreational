@@ -1,0 +1,50 @@
+<h2 class="header"> Tournament Leagues</h2>
+<form class="filters">
+    <mat-form-field appearance="fill" class="filter">
+      <mat-label>Tournament</mat-label>
+      <mat-select [(ngModel)]="selectedSport" name="sport">
+        <mat-option *ngFor="let sport of sports" [value]="sport.value">
+          {{sport.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button>Search</button>
+    </form>
+    
+<!-- 5 -->
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let league"> {{league.id}} </td>
+      </ng-container>
+  
+      <!-- Leagues Column -->
+      <ng-container matColumnDef="league">
+        <th mat-header-cell *matHeaderCellDef> Leagues </th>
+        <td mat-cell *matCellDef="let league"> {{league.league}} </td>
+      </ng-container>
+  
+      <!-- Slots Column -->
+      <ng-container matColumnDef="slots">
+        <th mat-header-cell *matHeaderCellDef> Available SLots </th>
+        <td mat-cell *matCellDef="let league"> {{league.slots}} </td>
+      </ng-container>
+
+      <!-- Match Info Column -->
+      <ng-container matColumnDef="match">
+        <th mat-header-cell *matHeaderCellDef> Matches Info </th>
+        <td mat-cell *matCellDef="let league"> {{league.match}} </td>
+      </ng-container>
+  
+      <!-- Register Column -->
+      <ng-container matColumnDef="register">
+        <th mat-header-cell *matHeaderCellDef> Register </th>
+        <td mat-cell *matCellDef="let league"> <button mat-raised-button (click)="toggle(league.id)">{{league.register}}</button> </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  <!-- 5 -->

@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -14,13 +13,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatStepperModule } from '@angular/material/stepper';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatNativeDateModule, MatOptionModule, MatRippleModule } from '@angular/material/core';
@@ -66,6 +63,16 @@ import { UserRegistrationComponent } from './pages/user-registration/user-regist
 import { UpcomingBookingsComponent } from './pages/upcoming-bookings/upcoming-bookings.component';
 import { UserLandingPageComponent } from './pages/user-landing-page/user-landing-page.component';
 
+import { FacilitiesComponent } from './components/facilities/facilities.component';
+import { TournamentrankingsComponent } from './components/tournamentrankings/tournamentrankings.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TournamentmatchesComponent } from './components/tournamentmatches/tournamentmatches.component';
+import { TournamentleaguesComponent } from './components/tournamentleagues/tournamentleagues.component';
+import { TournamentfindteamComponent } from './components/tournamentfindteam/tournamentfindteam.component';
+import { TournamentsComponent } from './components/tournaments/tournaments.component';
+import { FacilitycalendarComponent } from './components/facilitycalendar/facilitycalendar.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -89,7 +96,14 @@ import { UserLandingPageComponent } from './pages/user-landing-page/user-landing
     UserLoginComponent,
     UserRegistrationComponent,
     UpcomingBookingsComponent,
-    UserLandingPageComponent
+    UserLandingPageComponent,
+    FacilitiesComponent,
+    TournamentrankingsComponent,
+    TournamentmatchesComponent,
+    TournamentleaguesComponent,
+    TournamentfindteamComponent,
+    TournamentsComponent,
+    FacilitycalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -141,7 +155,19 @@ import { UserLandingPageComponent } from './pages/user-landing-page/user-landing
     MatInputModule,
     MatSelectModule,
     MatTableModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatMenuModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatTableModule,
+    MatTabsModule,
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatNativeDateModule, 
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
