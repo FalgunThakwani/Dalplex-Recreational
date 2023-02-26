@@ -16,4 +16,13 @@ export class UserService {
       {id: '2', type: 'STUDENT: Dal Full-Time', startDate: 'Sun, Jan 1 2023', endDate: 'Sun, Apr 30 2023', reNew: 'Not Renewable', cardInfo: 'N/A'}
     ]);
   }
+
+  login(username: string, password: string) :Observable<any> {
+    if(username == 'user123@dal.ca' && password == 'user@123') {
+      return of({message: "login success", role: 'user'});
+    }else if(username == 'admin@dal.ca' && password == 'admin@123') {
+      return of({message: "login success", role: 'admin'});
+    }
+    return of({message: "Invalid username/password"});
+  }
 }
