@@ -66,6 +66,8 @@ import { ListViewComponent } from './pages/cart/components/list-view/list-view.c
 
 import { CartTotalComponent } from './pages/cart/components/cart-total/cart-total.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PaymentPageComponent } from './pages/payment-page/payment-page.component';
+import { PaymentCompleteComponent } from './pages/payment-complete/payment-complete.component';
 
 
 @NgModule({
@@ -90,6 +92,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CartPageComponent,
     ListViewComponent,
     CartTotalComponent,
+    PaymentPageComponent,
+    PaymentCompleteComponent,
   ],
   imports: [
     BrowserModule,

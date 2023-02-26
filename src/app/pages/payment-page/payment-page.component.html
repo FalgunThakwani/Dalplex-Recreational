@@ -1,0 +1,44 @@
+<app-header></app-header>
+<div class="container">
+  <div class="heading">
+    <h1>Payment</h1>
+    <hr>
+    </div>
+  <div class="mat-elevation-z4">
+    <div class="billing-add">
+      <h2>Billing address</h2>
+      <hr>
+      <h3>{{billingAddress.firstName}} {{billingAddress.lastName}}</h3>
+
+      <h4>{{billingAddress.streetNo}} {{billingAddress.streetName}}</h4>
+      <h4>{{billingAddress.city}} {{billingAddress.province}}</h4>
+      <h4>{{billingAddress.pincode}}</h4>
+    </div>
+    <div class="select-card">
+      <h2>Select card</h2>
+      <div ><button class="add-card" mat-raised-button color="primary" (click)="showAddPaymentDialog()"><mat-icon>add</mat-icon> Add Card</button></div>
+
+    </div>
+    <mat-list>
+      <mat-list-item *ngFor="let payment of availablePayments">
+        <mat-radio-button [value]="payment.id">
+          {{ payment.name }}
+          {{payment.cardNumber}}
+          {{payment.securityCode}}
+
+        </mat-radio-button>
+      </mat-list-item>
+    </mat-list>
+
+    <mat-radio-group>
+    </mat-radio-group>
+    <!-- <p>
+      Options selected: {{pay.selectedOptions.selected.length}}
+    </p> -->
+    <div class="buttons">
+      <button class="pay-button" mat-raised-button routerLink="/payment-complete" color="primary">Pay</button>
+    </div>
+  </div>
+
+</div>
+<app-footer></app-footer>
