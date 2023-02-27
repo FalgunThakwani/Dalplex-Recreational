@@ -1,6 +1,6 @@
 .header {
     padding: 20px 0 0 20px;
-    text-align: left;
+    text-align: center;
     font-size: 30px;
   }
 
@@ -21,17 +21,21 @@
   } */
 
   mat-grid-list {
-    width:50%;
     margin-left: auto;
     margin-right: auto;
+    padding: 10px;
   }
 
   mat-grid-tile {
     font-size: 30px;
-    text-decoration-color: white;
+    border-bottom: 1pt solid black;
   }
 
   mat-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+  }
+
+  mat-divider {
+    width:100%;
   }

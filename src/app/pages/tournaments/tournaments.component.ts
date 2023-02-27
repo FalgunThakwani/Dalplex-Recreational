@@ -10,8 +10,8 @@ export class TournamentsComponent implements OnInit {
   cols: number| undefined;
   
   gridByBreakpoint = {
-    xl: 2,
-    lg: 2,
+    xl: 3,
+    lg: 3,
     md: 2,
     sm: 2,
     xs: 1

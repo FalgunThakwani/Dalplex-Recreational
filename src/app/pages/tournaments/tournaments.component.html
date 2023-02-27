@@ -10,32 +10,33 @@
     <p>Tournament 1 is going to happen today at dalplex</p>
 </div> -->
 <!-- 6 -->
-<mat-grid-list #grid [cols]="2" gutterSize="20px" rowHeight="300">
-    <mat-grid-tile routerLink="/trank">
-        <mat-card [routerLink]="['/trank']">
-            <img src="assets/trophy1.png" alt="Leader Board" class="card-img-top" style="height: 220px; width: 100%; display: block;object-fit: none;">
-            <h2 class="card-title" style="text-align: center;">Leader Board</h2>
+<mat-grid-list #grid [cols]="1" gutterSize="20px" rowHeight="250">
+    <mat-grid-tile>
+        <mat-card routerLink="/trank">
+            <img mat-card-lg-image src="assets/trophy.jpg" alt="Leader Board" >
+            <mat-card-title style="text-align: center;">Leader Board</mat-card-title>
         </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile routerLink="/tfiteam">
-        <mat-card [routerLink]="['/tfiteam']">
-            <img src="assets/team.png" alt="Find a Team" class="card-img-top" style="height: 220px; width: 100%; display: block;object-fit: none;">
-            <h2 class="card-title" style="text-align: center;">Find a Team</h2>
+    <mat-grid-tile >
+        <mat-card routerLink="/tfiteam">
+            <img mat-card-lg-image src="assets/team.png" alt="Find a Team" >
+            <mat-card-title style="text-align: center;">Find a Team</mat-card-title>
         </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile routerLink="/tmatch">
-        <mat-card [routerLink]="['/tleague']">
-            <img src="assets/match1.png" alt="Leagues" class="card-img-top" style="height: 220px; width: 100%; display: block;object-fit: none;">
-            <h2 class="card-title" style="text-align: center;">Match</h2>
+    <mat-grid-tile>
+        <mat-card routerLink="/tmatch">
+            <img mat-card-lg-image src="assets/match1.png" alt="Matches" >
+            <mat-card-title style="text-align: center;">Match</mat-card-title>
         </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile routerLink="/tleague">
-        <mat-card [routerLink]="['/tleague']">
-            <img src="assets/league.png" alt="Leagues" class="card-img-top" style="height: 220px; width: 100%; display: block;object-fit: none;">
-            <h2 class="card-title" style="text-align: center;">League</h2>
+    <mat-grid-tile>
+        <mat-card routerLink="/tleague">
+            <img mat-card-lg-image src="assets/league.png" alt="Leagues" style="padding-bottom: 10px;">
+            <mat-card-title style="text-align: center;">League</mat-card-title>
         </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
+  
 
   <!-- 6 -->
 </div>
