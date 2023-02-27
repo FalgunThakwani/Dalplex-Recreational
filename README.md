@@ -15,6 +15,10 @@
 ## Authors
 
 * [Sumit Kumar](sumit.kumar@dal.ca)
+* [Venkata Vijaya Rama Raju Mandapati](vn520794@dal.ca)
+* [Vinayak Abhinav Rupanagunta](vn958266@dal.ca)
+* [Falgun Jairaj Thakwani](fl700637@dal.ca)
+
 
 ### Prerequisites
 

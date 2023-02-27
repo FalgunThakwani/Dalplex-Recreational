@@ -9,6 +9,7 @@ import { MembershipDetails } from '../interfaces/MembershipDetails';
 export class UserService {
 
   currentUserRole!: string;
+  isLoggedIn!: boolean;
 
   constructor(private http: HttpClient) { }
 
@@ -20,16 +21,23 @@ export class UserService {
   }
 
   login(username: string, password: string) :Observable<any> {
-    if(username == 'user123@dal.ca' && password == 'user@123') {
+    if(username == 'test@dal.ca' && password == 'test@123') {
       this.currentUserRole = 'user';
+      this.isLoggedIn = true;
       return of({message: "login success", role: 'user'});
     }else if(username == 'admin@dal.ca' && password == 'admin@123') {
       this.currentUserRole = 'admin';
+      this.isLoggedIn = true;
       return of({message: "login success", role: 'admin'});
     }else{
       this.currentUserRole = '';
+      this.isLoggedIn = false;
       return of({message: "Invalid username/password"});
     }
+  }
+
+  getIsLoggedIn() : boolean {
+    return this.isLoggedIn;
   }
 
   getCurrentUserRole() : string {
@@ -37,6 +45,8 @@ export class UserService {
   }
 
   logout() : Observable<any> {
+    this.isLoggedIn = false;
+    this.currentUserRole = '';
     return of({message: 'success'});
   }
 }
