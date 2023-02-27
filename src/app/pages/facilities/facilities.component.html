@@ -1,5 +1,9 @@
     <app-header></app-header>
     <h2 class="header"> Facilities</h2>
+    <div class="calendar">
+      <button mat-raised-button [routerLink]="['/facalendar','']" color="primary">Check Availablity for All Facilities</button>
+    </div>
+    
     <mat-grid-list #grid [cols]="cols" rowHeight="370px" gutterSize="10px" class="container1">
       <!-- cols="5"  -->
       <mat-grid-tile *ngFor="let fac of facilities">

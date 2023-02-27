@@ -25,7 +25,7 @@ export class FacilitycalendarComponent implements OnInit {
   selectedFacility!: string ;
   
   facilities = [
-    {value: '', viewValue: 'All Facilities'},
+    {value: 'f', viewValue: 'All Facilities'},
     {value: 'f1', viewValue: 'Cardio 1'},
     {value: 'f2', viewValue: 'Pool 1'},
     {value: 'f3', viewValue: 'Weight Room 1'},
@@ -49,7 +49,7 @@ export class FacilitycalendarComponent implements OnInit {
    // 5 e
 
    applyfilter(){
-    if(this.selectedFacility) {
+    if(this.selectedFacility!="f") {
       this.dataSource = SLOT_DATA.filter(e => e.facility == this.selectedFacility);
     } else {
       this.dataSource = SLOT_DATA;
