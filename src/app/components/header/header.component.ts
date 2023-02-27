@@ -1,3 +1,6 @@
+import { Observable } from 'rxjs';
+import { MenuItems } from './../../interfaces/MenuItems';
+import { CoreService } from './../../services/core.service';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
@@ -9,17 +12,14 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  menuItems = [
-    {id: 1, name: 'Log In', displayName: 'Log In', route: '/login', show: true},
-    {id: 2, name: 'Sign Up', displayName: 'Sign Up', route: '/register', show: true},
-    {id: 3, name: 'Facilities', displayName: 'Facilities', route: '/facilities', show: true},
-    {id: 4, name: 'Tournament', displayName: 'Tournament', route: '/tournament', show: true},
-    {id: 5, name: 'About us', displayName: 'About us', route: '/about', show: true}
-  ];
+  menuItems!: MenuItems;
 
-  constructor(private router:Router, private userService: UserService) { }
+  constructor(private router:Router, private userService: UserService, private coreService: CoreService) { }
 
   ngOnInit(): void {
+    this.coreService.getMenuItems().subscribe((data) => {
+      this.menuItems = data;
+    });
   }
 
   logout() {

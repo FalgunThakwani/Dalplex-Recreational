@@ -1,3 +1,4 @@
+import { CoreService } from './../../services/core.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserLandingPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private coreService: CoreService) { }
 
   ngOnInit(): void {
+    this.coreService.updateMenuItems(["login", "signup", "facilities", "tournament", "aboutus"], false, false);
   }
 
 }

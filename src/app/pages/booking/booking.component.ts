@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { CoreService } from './../../services/core.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -20,7 +21,7 @@ export class BookingComponent implements OnInit {
   minDate: Date = new Date(this.today.getTime() + 24 * 60 * 60 * 1000);
   maxDate: Date = new Date(this.today.getTime() + 3 * 24 * 60 * 60 * 1000);
 
-  constructor(private formBuilder: FormBuilder, private coreService: CoreService, private bookingService: BookingService) { }
+  constructor(private formBuilder: FormBuilder, private coreService: CoreService, private bookingService: BookingService, private route: Router) { }
 
   onTimeIntervalSelected(event: MouseEvent, timeInterval: Slots) {
     if(timeInterval.status == 'booked') return;
@@ -35,6 +36,7 @@ export class BookingComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.coreService.updateMenuItems(["facilities", "tournament", "aboutus"], true);
     this.bookingForm = this.formBuilder.group({
       bookingdate: ['', [Validators.required]]
     });
@@ -42,5 +44,6 @@ export class BookingComponent implements OnInit {
 
   onAddtoCart() {
     this.coreService.showSnackBar("Added to cart", "ok");
+    this.route.navigate(['cart-page']);
   }
 }

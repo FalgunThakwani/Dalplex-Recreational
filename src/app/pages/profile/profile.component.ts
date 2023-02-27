@@ -1,3 +1,4 @@
+import { CoreService } from './../../services/core.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private coreService: CoreService) { }
 
   ngOnInit(): void {
+    this.coreService.updateMenuItems(["facilities", "tournament", "aboutus"], true);
   }
 
 }
