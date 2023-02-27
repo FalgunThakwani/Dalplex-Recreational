@@ -1,14 +1,14 @@
 .header {
-    padding: 20px;
-    text-align: center;
+    padding: 20px 0 0 20px;
+    text-align: left;
     font-size: 30px;
   }
 
-  mat-grid-tile {
+  /* mat-grid-tile {
     background: lightseagreen;
-  }
+  } */
 
-  .headline-header{
+  /* .headline-header{
     margin-left: 10px;
     padding-left:10px;
   }
@@ -18,10 +18,12 @@
     padding:10px;
     overflow: scroll;
     height: 100px;
-  }
+  } */
 
   mat-grid-list {
-    margin: 50px;
+    width:50%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   mat-grid-tile {
@@ -29,7 +31,7 @@
     text-decoration-color: white;
   }
 
-  mat-grid-tile:hover {
+  mat-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
   }

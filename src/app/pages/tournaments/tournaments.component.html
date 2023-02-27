@@ -2,19 +2,39 @@
 <div class="wholepage">
     <h2 class="header"> Tournaments</h2>
 
-<div class="headline-header">
+<!-- <div class="headline-header">
      <h3>Headlines</h3>
 </div>
 
 <div class="headlines">
     <p>Tournament 1 is going to happen today at dalplex</p>
-</div>
+</div> -->
 <!-- 6 -->
-<mat-grid-list #grid [cols]="cols" gutterSize="50px" rowHeight="200">
-    <mat-grid-tile routerLink="/trank">Rankings</mat-grid-tile>
-    <mat-grid-tile routerLink="/tfiteam">Find a Team</mat-grid-tile>
-    <mat-grid-tile routerLink="/tleague">Leagues</mat-grid-tile>
-    <mat-grid-tile routerLink="/tmatch">Upcoming Matches</mat-grid-tile>
+<mat-grid-list #grid [cols]="2" gutterSize="20px" rowHeight="300">
+    <mat-grid-tile routerLink="/trank">
+        <mat-card [routerLink]="['/trank']">
+            <img src="assets/trophy1.png" alt="Leader Board" class="card-img-top" style="height: 220px; width: 100%; display: block;object-fit: none;">
+            <h2 class="card-title" style="text-align: center;">Leader Board</h2>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile routerLink="/tfiteam">
+        <mat-card [routerLink]="['/tfiteam']">
+            <img src="assets/team.png" alt="Find a Team" class="card-img-top" style="height: 220px; width: 100%; display: block;object-fit: none;">
+            <h2 class="card-title" style="text-align: center;">Find a Team</h2>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile routerLink="/tmatch">
+        <mat-card [routerLink]="['/tleague']">
+            <img src="assets/match1.png" alt="Leagues" class="card-img-top" style="height: 220px; width: 100%; display: block;object-fit: none;">
+            <h2 class="card-title" style="text-align: center;">Match</h2>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile routerLink="/tleague">
+        <mat-card [routerLink]="['/tleague']">
+            <img src="assets/league.png" alt="Leagues" class="card-img-top" style="height: 220px; width: 100%; display: block;object-fit: none;">
+            <h2 class="card-title" style="text-align: center;">League</h2>
+        </mat-card>
+    </mat-grid-tile>
   </mat-grid-list>
 
   <!-- 6 -->
