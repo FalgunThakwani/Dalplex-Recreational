@@ -20,6 +20,7 @@ import { TournamentmatchesComponent } from './pages/tournamentmatches/tournament
 import { TournamentleaguesComponent } from './pages/tournamentleagues/tournamentleagues.component';
 import { TournamentfindteamComponent } from './pages/tournamentfindteam/tournamentfindteam.component';
 import { FacilitycalendarComponent } from './pages/facilitycalendar/facilitycalendar.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
@@ -40,7 +41,8 @@ const routes: Routes = [
   { path: 'facalendar/:id', component: FacilitycalendarComponent , canActivate: [AuthGuard]},
   { path: 'cart-page', component: CartPageComponent, canActivate: [AuthGuard] },
   { path: 'payment-page', component: PaymentPageComponent, canActivate: [AuthGuard] },
-  { path: 'payment-complete', component: PaymentCompleteComponent, canActivate: [AuthGuard] }
+  { path: 'payment-complete', component: PaymentCompleteComponent, canActivate: [AuthGuard] },
+  {path:'resetpassword', component:ForgotPasswordComponent}
 ];
 
 @NgModule({

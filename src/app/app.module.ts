@@ -78,6 +78,7 @@ import { ListViewComponent } from './pages/cart/components/list-view/list-view.c
 import { CartTotalComponent } from './pages/cart/components/cart-total/cart-total.component';
 import { PaymentPageComponent } from './pages/payment-page/payment-page.component';
 import { PaymentCompleteComponent } from './pages/payment-complete/payment-complete.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -115,6 +116,7 @@ import { PaymentCompleteComponent } from './pages/payment-complete/payment-compl
     CartTotalComponent,
     PaymentPageComponent,
     PaymentCompleteComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
