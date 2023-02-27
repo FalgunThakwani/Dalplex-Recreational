@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  PasswordResetForm:FormGroup
-  hide=true
-  newPassword:String
-  confirmPassword:String
+  PasswordResetForm!: FormGroup;
+  hide: boolean =true;
+  newPassword!: String;
+  confirmPassword!: String;
 
   constructor(private router:Router,private service:CoreService) { }
 
