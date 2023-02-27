@@ -4,22 +4,22 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 let cards = [
   {"title":"Team 1", "subtitle":"Sport 1", "id":"1", 
   "desc" : 'Team has 8 members in total. We are looking for 4 more memebers. We usually play every day', 
-  "reqState" : 'Request'},
+  "reqState" : 'Request', "sport":"s1"},
   {"title":"Team 2", "subtitle":"Sport 2", "id":"2", 
   "desc" : 'Team has 5 members in total. We are looking for 5 more memebers. We usually play every Sunday', 
-   "reqState" : 'Request'},
+   "reqState" : 'Request', "sport":"s2"},
   {"title":"Team 3", "subtitle":"Sport 3", "id":"3", 
   "desc" : 'Team has 4 members in total. We are looking for 2 more memebers. We usually play every Weekend', 
-   "reqState" : 'Request'},
+   "reqState" : 'Request', "sport":"s3"},
   {"title":"Team 4", "subtitle":"Sport 1", "id":"4", 
-  "desc" : 'Team has 2 members in total. We are looking for 4 more memebers. We are actually new to halifax, so forming a team to play the sport', 
-   "reqState" : 'Request'},
+  "desc" : 'Team has 2 members in total. We are looking for 4 more memebers. We are actually new to halifax', 
+   "reqState" : 'Request', "sport":"s2"},
   {"title":"Team 5", "subtitle":"Sport 4", "id":"5", 
   "desc" : 'Team has 4 members in total. We are looking for 2 more memebers. We usually play every Weekend', 
-   "reqState" : 'Request'},
+   "reqState" : 'Request', "sport":"s1"},
   {"title":"Team 6", "subtitle":"Sport 2", "id":"6", 
   "desc" : 'Team has 4 members in total. We are looking for 2 more memebers. We usually play every Weekend', 
-   "reqState" : 'Request'},];
+   "reqState" : 'Request', "sport":"s3"},];
 
 @Component({
   selector: 'app-tournamentfindteam',
@@ -31,10 +31,10 @@ export class TournamentfindteamComponent implements OnInit {
   cols! : number;
 
   gridByBreakpoint = {
-    xl: 4,
+    xl: 3,
     lg: 3,
-    md: 3,
-    sm: 2,
+    md: 2,
+    sm: 1,
     xs: 1
   }
 
@@ -71,18 +71,27 @@ export class TournamentfindteamComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  selectedSport: string | undefined;
+  selectedSport!: string;
   
   sports = [
-    {value: 's-0', viewValue: 'Sports1'},
-    {value: 's-1', viewValue: 'Sports2'},
-    {value: 's-2', viewValue: 'Sports3'},
+    {value: '', viewValue: 'Select'},
+    {value: 's1', viewValue: 'Sports1'},
+    {value: 's2', viewValue: 'Sports2'},
+    {value: 's3', viewValue: 'Sports3'},
   ];
 
-  cards = cards;
+  dataSource = cards;
 
   toggle(index:string): void {  
     cards.find(item => item.id == index)!.reqState = 
     cards.find(item => item.id == index)!.reqState === 'Request' ? 'Cancel Request' : 'Request';
   }
+
+  applyfilter(){
+    if(this.selectedSport) {
+      this.dataSource = cards.filter(e => e.sport == this.selectedSport);
+    } else {
+      this.dataSource = cards;
+    }
+   }
 }

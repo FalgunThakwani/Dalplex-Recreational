@@ -5,15 +5,12 @@
 }
 
 .filters {
-    padding: 10px;
-  text-align: center;
-  background-color: lightcyan;
-  border: 1pt solid;
-  margin:0 20px 0 20px;
+  text-align: right;
+  margin:0 80px 0 20px;
 }
 
 mat-grid-list {
-    width:80%;
+    width:90%;
     padding: 2px;
     align-items: center;
     margin-left: auto;
@@ -21,12 +18,18 @@ mat-grid-list {
 }
 
 /* 7 */
-.example-card {
+.card {
     max-width: 400px;
-    background: lightblue;
     padding: 30px;
+    border: 1pt solid #3f51b5;
   }
 
-.grid-container {
-    padding: 20px;
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
 }
+
+mat-card-content, mat-card-actions {
+  padding-left: 17px;
+}
+

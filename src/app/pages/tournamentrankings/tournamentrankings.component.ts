@@ -1,5 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { TournamentRanking } from 'src/app/interfaces/TournamentRanking';
 
 @Component({
   selector: 'app-tournamentrankings',
@@ -20,77 +22,113 @@ export class TournamentrankingsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  selectedTournament: string | undefined;
-  selectedSport: string | undefined;
-  selectedMatch: string | undefined;
+  selectedTournament!: string ;
+  selectedSport!: string ;
+  selectedMatch!: string ;
 
   tournaments = [
-    {value: 't-0', viewValue: 'Tournaments1'},
-    {value: 't-1', viewValue: 'Tournaments2'},
-    {value: 't-2', viewValue: 'Tournaments3'},
+    {value: '', viewValue: 'Select'},
+    {value: 't1', viewValue: 'Tournaments1'},
+    {value: 't2', viewValue: 'Tournaments2'},
+    {value: 't3', viewValue: 'Tournaments3'},
   ];
 
   sports = [
-    {value: 's-0', viewValue: 'Sports1'},
-    {value: 's-1', viewValue: 'Sports2'},
-    {value: 's-2', viewValue: 'Sports3'},
+    {value: '', viewValue: 'Select'},
+    {value: 's1', viewValue: 'Sports1'},
+    {value: 's2', viewValue: 'Sports2'},
+    {value: 's3', viewValue: 'Sports3'},
   ];
 
-  matches = [
-    {value: 'm-0', viewValue: 'Match1'},
-    {value: 'm-1', viewValue: 'Match2'},
-    {value: 'm-2', viewValue: 'Match3'},
-  ];
+  // matches = [
+  //   {value: '', viewValue: 'Select'},
+  //   {value: 'm1', viewValue: 'Match1'},
+  //   {value: 'm2', viewValue: 'Match2'},
+  //   {value: 'm3', viewValue: 'Match3'},
+  // ];
   
-  dataSource = ELEMENT_DATA;
-  columnsToDisplay = ['position', 'name', 'winrate', 'score'];
-  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
-  expandedElement: PeriodicElement | null | undefined;
+  // 5
+  columns = [
+    {
+      columnDef: 'position',
+      header: 'Position',
+      cell: (element: TournamentRanking) => `${element.position}`,
+    },
+    {
+      columnDef: 'name',
+      header: 'Team Name',
+      cell: (element: TournamentRanking) => `${element.name}`,
+    },
+    {
+      columnDef: 'winrate',
+      header: 'Win Rate',
+      cell: (element: TournamentRanking) => `${element.winrate}`,
+    },
+    {
+      columnDef: 'score',
+      header: 'Score',
+      cell: (element: TournamentRanking) => `${element.score}`,
+    }
+  ];
+  dataSource = new MatTableDataSource(RANKING_DATA);
+
+  displayedColumns = this.columns.map(c => c.columnDef);
+
+
+  applyfilter() {
+    this.dataSource.filter = this.selectedTournament;
+  }
+  
+  // 5
 
 }
 
-export interface PeriodicElement {
-  position: number;
-  name: string;
-  winrate: number;
-  score: string;
-  description: string;
-}
 
-const ELEMENT_DATA = [
+
+const RANKING_DATA:TournamentRanking[] = [
   {
+    tournament:"t1",
+    sport:"s1",
+    match:"m1",
     position: 1,
     name: 'Team 1',
     winrate: 100,
-    score: '2-0-1-4',
-    description: `Team 1 won continuously for 8 matches and Person A was the best`,
+    score: '2-0-1-4'
   },
   {
+    tournament:"t1",
+    sport:"s1",
+    match:"m2",
     position: 2,
     name: 'Team 2',
-    winrate: 1-0-1-1,
-    score: 'He',
-    description: `Team 2 is in high competetion with Team 1 for the top position`,
+    winrate: 90,
+    score: '0-1-4-4'
   },
   {
+    tournament:"t1",
+    sport:"s3",
+    match:"m1",
     position: 3,
     name: 'Team 5',
     winrate: 85,
-    score: '1-0-0-1',
-    description: `Team 5 lost 2 matches but waiting for a come back`,
+    score: '1-0-0-1'
   },
   {
+    tournament:"t2",
+    sport:"s1",
+    match:"m1",
     position: 4,
     name: 'Team 6',
     winrate: 80,
-    score: '1-0-2-0',
-    description: `Team 6 was the top in the last season, fans are still waiting for its fantastic game`,
+    score: '1-0-2-0'
   },
   {
+    tournament:"t2",
+    sport:"s2",
+    match:"m2",
     position: 5,
     name: 'Team 4',
     winrate: 50,
-    score: '0-0-1-0',
-    description: `Team 4 has 2 of its members injured, so couldn't perform well`,
+    score: '0-0-1-0'
   }
 ];

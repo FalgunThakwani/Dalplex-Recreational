@@ -1,15 +1,12 @@
 .header {
-    padding: 20px;
+    padding: 20px 0 0 0 ;
     text-align: center;
     font-size: 30px;
   }
 
 .filters {
-  padding: 10px;
-  text-align: center;
-  background-color: lightcyan;
-  border: 1pt solid;
-  margin:0 20px 0 20px;
+  text-align: right;
+  margin:0 140px 0 20px;
 }
 
 .filter {
@@ -24,6 +21,7 @@ table {
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 20px;
   }
   
   tr.example-detail-row {

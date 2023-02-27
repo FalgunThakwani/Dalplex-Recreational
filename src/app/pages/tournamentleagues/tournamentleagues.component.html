@@ -3,13 +3,12 @@
 <form class="filters">
     <mat-form-field appearance="fill" class="filter">
       <mat-label>Tournament</mat-label>
-      <mat-select [(ngModel)]="selectedSport" name="sport">
+      <mat-select [(ngModel)]="selectedSport" name="sport" (selectionChange) = "applyfilter()">
         <mat-option *ngFor="let sport of sports" [value]="sport.value">
           {{sport.viewValue}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-raised-button>Search</button>
     </form>
     
 <!-- 5 -->

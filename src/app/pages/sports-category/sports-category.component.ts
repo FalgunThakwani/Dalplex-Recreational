@@ -40,5 +40,6 @@ export class SportsCategoryComponent implements OnInit {
       }
     });
   }
+  
 
 }
