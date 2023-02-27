@@ -1,3 +1,4 @@
+import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -42,7 +43,8 @@ const routes: Routes = [
   { path: 'cart-page', component: CartPageComponent, canActivate: [AuthGuard] },
   { path: 'payment-page', component: PaymentPageComponent, canActivate: [AuthGuard] },
   { path: 'payment-complete', component: PaymentCompleteComponent, canActivate: [AuthGuard] },
-  {path:'resetpassword', component:ForgotPasswordComponent}
+  { path:'resetpassword', component:ForgotPasswordComponent },
+  { path: 'about', component: AboutUsComponent }
 ];
 
 @NgModule({

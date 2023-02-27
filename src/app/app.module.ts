@@ -79,6 +79,7 @@ import { CartTotalComponent } from './pages/cart/components/cart-total/cart-tota
 import { PaymentPageComponent } from './pages/payment-page/payment-page.component';
 import { PaymentCompleteComponent } from './pages/payment-complete/payment-complete.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { AboutUsComponent } from './pages/about-us/about-us.component';
 
 
 @NgModule({
@@ -117,6 +118,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
     PaymentPageComponent,
     PaymentCompleteComponent,
     ForgotPasswordComponent,
+    AboutUsComponent,
   ],
   imports: [
     BrowserModule,
