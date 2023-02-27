@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup,FormControl,Validators,FormBuilder} from '@angular/forms';
 import {Router} from '@angular/router';
+import { CoreService } from 'src/app/services/core.service';
 
 @Component({
   selector: 'app-user-registration',
@@ -13,8 +14,9 @@ export class UserRegistrationComponent implements OnInit {
   public name!:string
   public lastName!:string
   public userDetails: any;
+  hide=true
 
-  constructor(private router: Router,private formBuilder:FormBuilder) { }
+  constructor(private router: Router,private formBuilder:FormBuilder,private snackBar:CoreService) { }
 
   ngOnInit(): void {
     this.registrationForm=new FormGroup(
@@ -32,13 +34,13 @@ export class UserRegistrationComponent implements OnInit {
     if(this.registrationForm.value.password==this.registrationForm.value.confirmpassword)
     {
     this.name=this.registrationForm.value.firstname
-    console.log(this.name)
     this.userDetails=this.formBuilder.group(
       {'firstname': this.registrationForm.value.firstname,
        'lastname': this.registrationForm.value.lastname,
        'email': this.registrationForm.value.email
       }
     )
+    this.snackBar.showSnackBar("registered successfully")
     this.router.navigateByUrl('/login')
   }
 }

@@ -25,6 +25,9 @@ export class ForgotPasswordComponent implements OnInit {
     })
   }
 onResetPassword(){
+  if(this.PasswordResetForm.value.newPassword==this.PasswordResetForm.value.confirmPassword && 
+    this.PasswordResetForm.value.newPassword!='')
   this.service.showSnackBar("password reset successful","password reset successful")
+  this.router.navigateByUrl('/login')
 }
 }
