@@ -13,7 +13,7 @@ export class CoreService {
       {id: 1, name: 'login', displayName: 'Log In', route: '/login', show: true},
       {id: 2, name: 'signup', displayName: 'Sign Up', route: '/register', show: true},
       {id: 3, name: 'facilities', displayName: 'Facilities', route: '/facilities', show: true},
-      {id: 4, name: 'tournament', displayName: 'Tournament', route: '/tournament', show: true},
+      {id: 4, name: 'tournament', displayName: 'Tournament', route: '/tournaments', show: true},
       {id: 5, name: 'aboutus', displayName: 'About us', route: '/about', show: true}
     ],
     showCart: true,
