@@ -8,6 +8,8 @@ import { MembershipDetails } from '../interfaces/MembershipDetails';
 })
 export class UserService {
 
+  currentUserRole!: string;
+
   constructor(private http: HttpClient) { }
 
   getMemberShipDetails(): Observable<MembershipDetails[]> {
@@ -19,11 +21,19 @@ export class UserService {
 
   login(username: string, password: string) :Observable<any> {
     if(username == 'user123@dal.ca' && password == 'user@123') {
+      this.currentUserRole = 'user';
       return of({message: "login success", role: 'user'});
     }else if(username == 'admin@dal.ca' && password == 'admin@123') {
+      this.currentUserRole = 'admin';
       return of({message: "login success", role: 'admin'});
+    }else{
+      this.currentUserRole = '';
+      return of({message: "Invalid username/password"});
     }
-    return of({message: "Invalid username/password"});
+  }
+
+  getCurrentUserRole() : string {
+    return this.currentUserRole;
   }
 
   logout() : Observable<any> {

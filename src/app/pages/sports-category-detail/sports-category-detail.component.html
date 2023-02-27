@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div style="text-align: right; margin: 20px;"><button mat-raised-button color="primary" (click)="showAddCourtDialog()"><mat-icon>add</mat-icon> Add New Court</button></div>
+<div *ngIf="currentUserRole == 'admin'" style="text-align: right; margin: 20px;"><button mat-raised-button color="primary" (click)="showAddCourtDialog()"><mat-icon>add</mat-icon> Add New Court</button></div>
 <mat-card style="margin: 20px 20% 20px 20%" *ngFor="let item of courtDetails">
   <div class="court-card-header">
     <div class="square">
