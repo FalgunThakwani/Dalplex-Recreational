@@ -11,7 +11,7 @@ export class UserLandingPageComponent implements OnInit {
   constructor(private coreService: CoreService) { }
 
   ngOnInit(): void {
-    this.coreService.updateMenuItems(["login", "signup", "facilities", "tournament", "aboutus"], false, false);
+    this.coreService.updateMenuItems(["login", "signup", "aboutus"], false, false);
   }
 
 }
