@@ -2,9 +2,8 @@
 
 * *Date Created*: 29 Jan 2023
 * *Last Modification Date*: 21 Feb 2023
-* *Lab URL*: https://rainbow-semifreddo-746b44.netlify.app/
-* *Gitlab URL*: https://git.cs.dal.ca/sumitk/csci_5709_individual_b00904097.git
-* *Group Project Gitlab URL*: https://git.cs.dal.ca/sumitk/csci-5709-group-13.git
+* *Lab URL*: https://profound-kelpie-1fc5de.netlify.app/
+* *Gitlab URL*: https://git.cs.dal.ca/sumitk/csci-5709-group-13.git
 	Below are branch list for group project:
 	* main
 	* wip_sumit
