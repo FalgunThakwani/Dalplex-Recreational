@@ -353,14 +353,25 @@ all the libraries/packages used are available under package.json
 ## References
 
 * [1] “The W3C Markup Validation Service.” The W3C Markup Validation Service, validator.w3.org. Accessed 3 Feb. 2023.
+
 * [2] “Free Images : Silhouette, Basketball, Activity, Athletic, Ball, Championship, Competition, Cover, Dunk, Game, Hoop, Jump, Man, Match, Practice, Strong, Skill, Slam, Sport, Tournament, Footwear, Joint, Standing, Black and White, Shoe, Knee, Arm, Recreation, Line, Jumping, Hand, Human Behavior, Physical Exercise, Sports 3841x2400 - Mohamed Hassan - 1451117 - Free Stock Photos - PxHere.” Free Images : Silhouette, Basketball, Activity, Athletic, Ball, Championship, Competition, Cover, Dunk, Game, Hoop, Jump, Man, Match, Practice, Strong, Skill, Slam, Sport, Tournament, Footwear, Joint, Standing, Black and White, Shoe, Knee, Arm, Recreation, Line, Jumping, Hand, Human Behavior, Physical Exercise, Sports 3841x2400 - Mohamed Hassan - 1451117 - Free Stock Photos - PxHere, pxhere.com/en/photo/1451117.
+
 * [3] “Free Images : Nfl, National, Football, League, Logo, Icon, Sport, America, Silhouette, Clipart, Classic, Design, Doodle, Editable, Isolated, Official, Style, American, Footwear, Joint, Male, Standing, Shoe, Hand, Line, Black and White, Font, Recreation, Human Behavior, Graphics, Sports Equipment 2287x2287 - Mohamed Hassan - 1447947 - Free Stock Photos - PxHere.” Free Images : Nfl, National, Football, League, Logo, Icon, Sport, America, Silhouette, Clipart, Classic, Design, Doodle, Editable, Isolated, Official, Style, American, Footwear, Joint, Male, Standing, Shoe, Hand, Line, Black and White, Font, Recreation, Human Behavior, Graphics, Sports Equipment 2287x2287 - Mohamed Hassan - 1447947 - Free Stock Photos - PxHere, pxhere.com/en/photo/1447947.
+
 * [4] “File:Team icon.png - Wikimedia Commons.” File:Team icon.png - Wikimedia Commons, 14 Apr. 2020, commons.wikimedia.org/wiki/File:Team_icon.png.
+
 * [5] “Tournament Free Icons Designed by Konkapp.” Flaticon, www.flaticon.com/free-icon/tournament_3363497.
+
 * [6] “Treadmill Free Icons Designed by Maan Icons.” Flaticon, www.flaticon.com/free-icon/treadmill_8965811.
+
 * [7] “Swimming Pool Free Icons Designed by Good Ware.” Flaticon, www.flaticon.com/free-icon/swimming-pool_686943.
+
 * [8] “Weights Free Icons Designed by Kosonicon.” Flaticon, www.flaticon.com/free-icon/weights_2871284.
+
 * [9] “Court Free Icons Designed by Smashicons.” Flaticon, www.flaticon.com/free-icon/court_3136345.
+
 * [10] “Running Track Free Icons Designed by Good Ware.” Flaticon, www.flaticon.com/free-icon/running-track_2151488.
+
 * [11] “Dance Free Icons Designed by Mayor Icons.” Flaticon, www.flaticon.com/free-icon/dance_9169463.
+
 * [12] “Swimming Pool Free Icons Designed by Freepik.” Flaticon, www.flaticon.com/free-icon/swimming-pool_6348605.
