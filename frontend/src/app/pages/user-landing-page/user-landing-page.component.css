@@ -1,0 +1,6 @@
+.bg{
+    background: url('https://cdn.dal.ca/content/dam/dalhousie/images/campus-maps/Dalplex.jpg.lt_46a7b62056535e9b89a5018ccd55b58a.res/Dalplex.jpg') no-repeat center;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+}

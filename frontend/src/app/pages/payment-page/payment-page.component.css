@@ -1,0 +1,27 @@
+.heading{
+  margin-top: 30px;
+}
+.billing-add{
+  margin-left: 20px;
+  padding-top: 10px;
+}
+.select-card{
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  flex: 2;
+  justify-content: space-between;
+}
+.add-card{
+  margin-right: 20px;
+}
+.buttons{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  /* width:150px; */
+}
+.pay-button{
+  width:250px;
+  margin-bottom: 20px;
+}
