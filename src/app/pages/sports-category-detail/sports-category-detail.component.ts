@@ -1,3 +1,5 @@
+import { UserService } from './../../services/user.service';
+import { CoreService } from './../../services/core.service';
 import { CategoryService } from './../../services/category.service';
 import { AddCourtDialogComponent } from '../add-court-dialog/add-court-dialog.component';
 import { Component, OnInit } from '@angular/core';
@@ -13,10 +15,13 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 export class SportsCategoryDetailComponent implements OnInit {
 
   courtDetails!: CourtDetails[];
+  currentUserRole!: string;
 
-  constructor(private dialog: MatDialog, private route: ActivatedRoute, private categoryService: CategoryService) { }
+  constructor(private dialog: MatDialog, private route: ActivatedRoute, private categoryService: CategoryService, private coreService: CoreService, private userService: UserService) { }
 
   ngOnInit(): void {
+    this.currentUserRole = this.userService.getCurrentUserRole();
+    this.coreService.updateMenuItems(["facilities", "tournament", "aboutus"], true);
     this.route.paramMap.subscribe((params: ParamMap) => {
       const name: any = params.get('name');
       this.categoryService.getAllCourtsByName(name).subscribe((data) => {

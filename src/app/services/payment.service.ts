@@ -12,8 +12,8 @@ export class PaymentService {
 
   getPaymentMethodDetails(): Observable<PaymentMethodDetails[]> {
     return of([
-      {id: '1', name: 'test user', cardNumber: '111122223333', expiryDate: 'Sun, Jan 1 2023', securityCode: '123', postalCode: 'B3K 4N1'},
-      {id: '1', name: 'test user', cardNumber: '111122223333', expiryDate: 'Sun, Jan 1 2023', securityCode: '123', postalCode: 'B3K 4N1'},
+      {id: '1', name: 'test user 1', cardNumber: '111122223333', expiryDate: 'Sun, Jan 1 2023', securityCode: '123', postalCode: 'B3K 4N1'},
+      {id: '2', name: 'test user 2', cardNumber: '111122223334', expiryDate: 'Sun, Jan 1 2023', securityCode: '123', postalCode: 'B3K 4N1'},
     ]);
   }
 }

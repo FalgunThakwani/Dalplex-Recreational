@@ -1,3 +1,5 @@
+import { UserService } from './../../services/user.service';
+import { CoreService } from './../../services/core.service';
 import { CategoryService } from './../../services/category.service';
 import { AddCategoryDialogComponent } from './../add-category-dialog/add-category-dialog.component';
 import { Component, OnInit } from '@angular/core';
@@ -12,10 +14,13 @@ import { MatDialog } from '@angular/material/dialog';
 export class SportsCategoryComponent implements OnInit {
 
   sportsCategoryDetails!: SportsCategory[];
+  currentUserRole!: string;
   
-  constructor(private dialog: MatDialog, private categoryService: CategoryService) { }
+  constructor(private dialog: MatDialog, private categoryService: CategoryService, private coreService: CoreService, private userService: UserService) { }
 
   ngOnInit(): void {
+    this.currentUserRole = this.userService.getCurrentUserRole();
+    this.coreService.updateMenuItems(["facilities", "tournament", "aboutus"], true);
     this.categoryService.getAllSportsCategory().subscribe((data) => {
       this.sportsCategoryDetails = data;
     });
@@ -35,5 +40,6 @@ export class SportsCategoryComponent implements OnInit {
       }
     });
   }
+  
 
 }
