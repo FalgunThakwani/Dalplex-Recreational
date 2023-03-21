@@ -1,8 +1,11 @@
 export interface PaymentMethodDetails {
-    id: string;
+    _id: string;
+    userid: string;
     name: string;
-    cardNumber: string;
-    expiryDate: string;
-    securityCode: string;
-    postalCode: string;
+    cardnumber: string;
+    expirydate: string;
+    cvv: string;
+    postalcode: string;
+    updatedat: string;
+    createdat: string;
 }

@@ -1,14 +1,14 @@
-import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PaymentService {
+export class MembershipService {
 
-  paymentApiUrl: string = environment.apiServer + "/paymentmethod";
+  membershipApiUrl: string = environment.apiServer + "/membership";
 
   constructor(private http: HttpClient) { }
 
@@ -21,11 +21,7 @@ export class PaymentService {
     return options;
   }
 
-  addNewPaymentMethod(data: any) : Observable<any> {
-    return this.http.post(this.paymentApiUrl, data, this.getHeader());
-  }
-
-  getPaymentMethodDetails(): Observable<any> {
-    return this.http.get(this.paymentApiUrl, this.getHeader());
+  getMemberShipDetails(): Observable<any> {
+    return this.http.get(this.membershipApiUrl, this.getHeader());
   }
 }

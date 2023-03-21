@@ -20,10 +20,15 @@ export class PaymentPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.coreService.updateMenuItems(["facilities", "tournament", "aboutus"], false);
+    this.getPaymentMethods();
+  }
+
+  getPaymentMethods() {
     this.paymentService.getPaymentMethodDetails().subscribe((data) => {
       this.availablePayments = data;
     });
   }
+
   showAddPaymentDialog() {
     const dialogRef = this.dialog.open(AddPaymentDialogComponent, {
       width: '500px'
@@ -31,8 +36,11 @@ export class PaymentPageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        const newPaymentDetail : PaymentMethodDetails = {id: '1', name: result.name, cardNumber: result.cardNumber, expiryDate: result.expiryDate, securityCode: result.securityCode, postalCode: result.postalCode};
-        this.availablePayments.push(newPaymentDetail);
+        const data = {userid: '', name: result.name, cardnumber: result.cardNumber, expirydate: result.expiryDate, cvv: result.securityCode, postalcode: result.postalCode};
+        this.paymentService.addNewPaymentMethod(data).subscribe((data: any) => {
+          this.coreService.showSnackBar("Payment method added successfully");
+          this.getPaymentMethods();
+        });
       }
     });
   }

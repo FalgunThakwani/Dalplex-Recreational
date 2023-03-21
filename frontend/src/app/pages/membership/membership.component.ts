@@ -1,4 +1,4 @@
-import { UserService } from './../../services/user.service';
+import { MembershipService } from './../../services/membership.service';
 import { MembershipDetails } from './../../interfaces/MembershipDetails';
 import { Component, OnInit } from '@angular/core';
 
@@ -12,10 +12,10 @@ export class MembershipComponent implements OnInit {
   displayedColumns: string[] = ['id', 'type', 'startDate', 'endDate', 'reNew', 'cardInfo'];
   dataSource!: MembershipDetails[];
   
-  constructor(private userService: UserService) { }
+  constructor(private membershipService: MembershipService) { }
 
   ngOnInit(): void {
-    this.userService.getMemberShipDetails().subscribe((data) => {
+    this.membershipService.getMemberShipDetails().subscribe((data) => {
       this.dataSource = data;
     });
   }

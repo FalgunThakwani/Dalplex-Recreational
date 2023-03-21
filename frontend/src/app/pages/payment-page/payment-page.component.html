@@ -21,10 +21,10 @@
     </div>
     <mat-list>
       <mat-list-item *ngFor="let payment of availablePayments">
-        <mat-radio-button [value]="payment.id">
+        <mat-radio-button [value]="payment._id">
           {{ payment.name }}
-          {{payment.cardNumber}}
-          {{payment.securityCode}}
+          {{payment.cardnumber}}
+          {{payment.cvv}}
 
         </mat-radio-button>
       </mat-list-item>

@@ -1,7 +1,6 @@
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MembershipDetails } from '../interfaces/MembershipDetails';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -24,12 +23,5 @@ export class UserService {
 
   register(data: any) : Observable<any> {
     return this.http.post(this.apiUrl, data);
-  }
-
-  getMemberShipDetails(): Observable<MembershipDetails[]> {
-    return of([
-      {id: '1', type: 'STUDENT: Dal Full-Time', startDate: 'Sun, Jan 1 2023', endDate: 'Sun, Apr 30 2023', reNew: 'Not Renewable', cardInfo: 'N/A'},
-      {id: '2', type: 'STUDENT: Dal Full-Time', startDate: 'Sun, Jan 1 2023', endDate: 'Sun, Apr 30 2023', reNew: 'Not Renewable', cardInfo: 'N/A'}
-    ]);
   }
 }

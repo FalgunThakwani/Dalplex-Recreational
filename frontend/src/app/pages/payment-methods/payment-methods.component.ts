@@ -1,3 +1,4 @@
+import { CoreService } from 'src/app/services/core.service';
 import { PaymentService } from './../../services/payment.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,9 +17,13 @@ export class PaymentMethodsComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'cardNumber', 'expiryDate', 'securityCode', 'postalCode'];
   dataSource!: PaymentMethodDetails[];
 
-  constructor(private dialog: MatDialog, private paymentService: PaymentService) { }
+  constructor(private dialog: MatDialog, private paymentService: PaymentService, private coreService: CoreService) { }
 
   ngOnInit(): void {
+    this.getPaymentMethods();
+  }
+
+  getPaymentMethods() {
     this.paymentService.getPaymentMethodDetails().subscribe((data) => {
       this.dataSource = data;
     });
@@ -31,9 +36,11 @@ export class PaymentMethodsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result);
-        const newPaymentDetail : PaymentMethodDetails = {id: '1', name: result.name, cardNumber: result.cardNumber, expiryDate: result.expiryDate, securityCode: result.securityCode, postalCode: result.postalCode};
-        this.dataSource.push(newPaymentDetail);
+        const data = {userid: '', name: result.name, cardnumber: result.cardNumber, expirydate: result.expiryDate, cvv: result.securityCode, postalcode: result.postalCode};
+        this.paymentService.addNewPaymentMethod(data).subscribe((data: any) => {
+          this.coreService.showSnackBar("Payment method added successfully");
+          this.getPaymentMethods();
+        });
         this.table.renderRows();
       }
     });

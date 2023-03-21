@@ -1,8 +1,8 @@
 export interface MembershipDetails {
-    id: string;
+    _id: string;
     type: string;
-    startDate: string;
-    endDate: string;
-    reNew: string;
-    cardInfo: string;
+    startdate: string;
+    enddate: string;
+    renew: string;
+    cardinfo: string;
 }
