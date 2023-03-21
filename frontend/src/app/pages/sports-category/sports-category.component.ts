@@ -19,7 +19,7 @@ export class SportsCategoryComponent implements OnInit {
   constructor(private dialog: MatDialog, private categoryService: CategoryService, private coreService: CoreService, private userService: UserService) { }
 
   ngOnInit(): void {
-    this.currentUserRole = this.userService.getCurrentUserRole();
+    this.currentUserRole = localStorage.getItem('role') || '';
     this.coreService.updateMenuItems(["facilities", "tournament", "aboutus"], true);
     this.categoryService.getAllSportsCategory().subscribe((data) => {
       this.sportsCategoryDetails = data;

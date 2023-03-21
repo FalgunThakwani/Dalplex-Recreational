@@ -1,9 +1,9 @@
-import { Observable } from 'rxjs';
 import { MenuItems } from './../../interfaces/MenuItems';
 import { CoreService } from './../../services/core.service';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-header',
@@ -24,7 +24,10 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.userService.logout().subscribe((data) => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('userid');
+      localStorage.removeItem('role');
       this.router.navigate(['/landing']);
-    });
+    }, (err: HttpErrorResponse) => {console.log(err)});
   }
 }

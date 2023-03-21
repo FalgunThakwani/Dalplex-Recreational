@@ -2,6 +2,7 @@ import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-user-login',
@@ -27,10 +28,13 @@ export class UserLoginComponent implements OnInit {
 
   onLogin() {
     this.userService.login(this.loginForm.get('email')?.value,this.loginForm.get('password')?.value).subscribe((data: any) => {
-      if (data.message == 'login success') {
+      if (data.message == 'OK') {
+        localStorage.setItem('sessiontoken', data.token);
+        localStorage.setItem('userid', data.id);
+        localStorage.setItem('role', data.role);
         this.router.navigate(['/categories']);
       }
-    });
+    }, (err: HttpErrorResponse) => {console.log(err);});
   }
 
 }

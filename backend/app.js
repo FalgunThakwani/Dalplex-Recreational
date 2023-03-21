@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require('cors');
 require("dotenv").config();
 const mongoose = require('mongoose');
 
@@ -16,6 +17,7 @@ db.once('open', function() {
 });
 
 app.use(express.json());
+app.use(cors());
 
 const userRouter = require('./routes/user.route');
 const sessionRouter = require('./routes/session.route');
