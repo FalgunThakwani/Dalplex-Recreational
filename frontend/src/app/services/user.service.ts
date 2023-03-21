@@ -22,6 +22,10 @@ export class UserService {
     return this.http.post(environment.apiServer + '/logout', {});
   }
 
+  register(data: any) : Observable<any> {
+    return this.http.post(this.apiUrl, data);
+  }
+
   getMemberShipDetails(): Observable<MembershipDetails[]> {
     return of([
       {id: '1', type: 'STUDENT: Dal Full-Time', startDate: 'Sun, Jan 1 2023', endDate: 'Sun, Apr 30 2023', reNew: 'Not Renewable', cardInfo: 'N/A'},
