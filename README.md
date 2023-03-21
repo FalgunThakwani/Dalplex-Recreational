@@ -1,8 +1,8 @@
 # Group Project
 
 * *Date Created*: 29 Jan 2023
-* *Last Modification Date*: 21 Feb 2023
-* *Lab URL*: https://profound-kelpie-1fc5de.netlify.app/
+* *Last Modification Date*: 21 Mar 2023
+* *Lab URL*: <TODO>
 * *Gitlab URL*: https://git.cs.dal.ca/sumitk/csci-5709-group-13.git
 	Below are branch list for group project:
 	* main
