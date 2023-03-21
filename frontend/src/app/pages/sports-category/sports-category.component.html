@@ -5,9 +5,9 @@
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col" *ngFor="let item of sportsCategoryDetails;" style="margin-bottom: 20px;">
                 <div class="card">
-                    <mat-card [routerLink]="['/categories', item.name]">
-                        <img src="{{item.thumbnail}}" alt="{{item.name}}" class="card-img-top" style="height: 150px; width: 100%; display: block;object-fit: none;">
-                        <h2 class="card-title" style="text-align: center;">{{item.name | titlecase }}</h2>
+                    <mat-card [routerLink]="['/categories', item._id]">
+                        <img src="{{ 'assets/' + item.categoryname + '.png' }}" alt="{{item.categoryname}}" class="card-img-top" style="height: 150px; width: 100%; display: block;object-fit: none;">
+                        <h2 class="card-title" style="text-align: center;">{{item.categoryname | titlecase }}</h2>
                     </mat-card>
                 </div>
             </div>

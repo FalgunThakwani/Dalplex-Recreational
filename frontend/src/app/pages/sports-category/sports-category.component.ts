@@ -21,6 +21,10 @@ export class SportsCategoryComponent implements OnInit {
   ngOnInit(): void {
     this.currentUserRole = localStorage.getItem('role') || '';
     this.coreService.updateMenuItems(["facilities", "tournament", "aboutus"], true);
+    this.getAllCategoryData();
+  }
+
+  getAllCategoryData() {
     this.categoryService.getAllSportsCategory().subscribe((data) => {
       this.sportsCategoryDetails = data;
     });
@@ -33,10 +37,11 @@ export class SportsCategoryComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result:any) => {
       if (result) {
-        console.log(result);
-        //TODO? add assets for entered category
-        const newCategory : SportsCategory = {id: 7, name: result.categoryname, thumbnail: 'assets/aquatics.png'};
-        this.sportsCategoryDetails.push(newCategory);
+        const data = { categoryname: result.categoryname };
+        this.categoryService.addNewCategory(data).subscribe((data: any) => {
+          this.getAllCategoryData();
+          this.coreService.showSnackBar("Category Added Successfully");
+        });
       }
     });
   }

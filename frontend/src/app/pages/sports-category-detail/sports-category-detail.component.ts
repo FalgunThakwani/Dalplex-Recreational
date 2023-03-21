@@ -16,6 +16,7 @@ export class SportsCategoryDetailComponent implements OnInit {
 
   courtDetails!: CourtDetails[];
   currentUserRole!: string;
+  categoryID!: string;
 
   constructor(private dialog: MatDialog, private route: ActivatedRoute, private categoryService: CategoryService, private coreService: CoreService, private userService: UserService) { }
 
@@ -23,10 +24,16 @@ export class SportsCategoryDetailComponent implements OnInit {
     this.currentUserRole = localStorage.getItem('role') || '';
     this.coreService.updateMenuItems(["facilities", "tournament", "aboutus"], true);
     this.route.paramMap.subscribe((params: ParamMap) => {
-      const name: any = params.get('name');
-      this.categoryService.getAllCourtsByName(name).subscribe((data) => {
-        this.courtDetails = data;
-      })
+      const id: any = params.get('id');
+      this.categoryID = id;
+      this.getCourtDetails();
+    });
+  }
+
+  getCourtDetails() {
+    this.categoryService.getAllCourts().subscribe((data: any) => {
+      const filteredData = data.filter((item: any) => item.categoryid === this.categoryID);
+      this.courtDetails = filteredData;
     });
   }
 
@@ -35,10 +42,14 @@ export class SportsCategoryDetailComponent implements OnInit {
       width: '500px'
     });
 
-    dialogRef.afterClosed().subscribe((result:any) => {
+    dialogRef.afterClosed().subscribe((result: any) => {
       if (result) {
         console.log(result);
-        this.courtDetails.push({id: '4', court: result.courtnumber, name: result.name, description: result.description, price: result.price});
+        const data = { categoryid: this.categoryID, court: result.courtnumber, name: result.name, description: result.description, price: result.price };
+        this.categoryService.addNewCourt(data).subscribe((data: any) => {
+          this.coreService.showSnackBar('New court detail added successfully');
+          this.getCourtDetails();
+        });
       }
     });
   }

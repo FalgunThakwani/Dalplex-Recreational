@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: 'categories', component: SportsCategoryComponent, canActivate: [AuthGuard]},
-  { path: 'categories/:name', component: SportsCategoryDetailComponent, canActivate: [AuthGuard]},
+  { path: 'categories/:id', component: SportsCategoryDetailComponent, canActivate: [AuthGuard]},
   { path: 'booking/:id', component: BookingComponent, canActivate: [AuthGuard] },
   { path: 'login', component: UserLoginComponent },
   { path: 'register', component: UserRegistrationComponent },

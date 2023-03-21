@@ -1,5 +1,6 @@
 export interface SportsCategory {
-    id: number;
-    name: string;
-    thumbnail: string;
+    _id: number;
+    categoryname: string;
+    updatedat: string;
+    createdat: string;
 }
