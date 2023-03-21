@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -80,6 +80,7 @@ import { PaymentPageComponent } from './pages/payment-page/payment-page.componen
 import { PaymentCompleteComponent } from './pages/payment-complete/payment-complete.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { SessionInterceptor } from './guards/SessionInterceptor';
 
 
 @NgModule({
@@ -186,7 +187,13 @@ import { AboutUsComponent } from './pages/about-us/about-us.component';
     NgbModule
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SessionInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
