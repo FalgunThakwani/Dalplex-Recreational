@@ -17,7 +17,12 @@ db.once('open', function() {
 });
 
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+  origin: '*',
+  methods: 'GET, POST, PATCH, PUT, DELETE',
+  optionsSuccessStatus: 204
+}
+app.use(cors(corsOptions));
 
 const userRouter = require('./routes/user.route');
 const sessionRouter = require('./routes/session.route');

@@ -1,11 +1,14 @@
 export interface UserProfile {
-    id: string;
+    _id: string;
+    userid: string;
     firstname: string;
     lastname: string;
     email: string;
     phone: string;
     address: string;
     dob: string;
-    about: string;
     sex: string;
+    about: string;
+    updatedat: string;
+    createdat: string;
 }
