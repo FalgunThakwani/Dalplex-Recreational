@@ -1,8 +1,9 @@
 export interface BookingDetails {
-    id: string;
+    _id: string;
+    userid: string;
     program: string;
-    offering: string;
-    semesters: string;
-    registeredOn: string;
+    interval: string;
+    semester: string;
+    registeredon: string;
     status: string;
 }

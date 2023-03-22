@@ -1,10 +1,11 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { CoreService } from './../../services/core.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Slots } from 'src/app/interfaces/Slots';
 import { BookingService } from 'src/app/services/booking.service';
 import { Observable } from 'rxjs';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-booking',
@@ -20,8 +21,9 @@ export class BookingComponent implements OnInit {
   today: Date = new Date();
   minDate: Date = new Date(this.today.getTime() + 24 * 60 * 60 * 1000);
   maxDate: Date = new Date(this.today.getTime() + 3 * 24 * 60 * 60 * 1000);
+  courtDetails: any;
 
-  constructor(private formBuilder: FormBuilder, private coreService: CoreService, private bookingService: BookingService, private route: Router) { }
+  constructor(private formBuilder: FormBuilder, private coreService: CoreService, private categoryService: CategoryService, private bookingService: BookingService, private route: Router, private activatedRoute: ActivatedRoute) { }
 
   onTimeIntervalSelected(event: MouseEvent, timeInterval: Slots) {
     if(timeInterval.status == 'booked') return;
@@ -36,6 +38,12 @@ export class BookingComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
+      const id: any = params.get('id');
+      this.categoryService.getCourtById(id).subscribe((data: any) => {
+        this.courtDetails = data;
+      });
+    });
     this.coreService.updateMenuItems(["facilities", "tournament", "aboutus"], true);
     this.bookingForm = this.formBuilder.group({
       bookingdate: ['', [Validators.required]]
@@ -43,6 +51,15 @@ export class BookingComponent implements OnInit {
   }
 
   onAddtoCart() {
+    const data = {
+      userid: localStorage.getItem('userid'),
+      program: this.courtDetails.name,
+      interval: this.selectedTimeInterval,
+      semester: 'n/a',
+      registeredon: '',
+      status: 'reserve'
+    };
+    console.log(data);
     this.coreService.showSnackBar("Added to cart", "ok");
     this.route.navigate(['cart-page']);
   }

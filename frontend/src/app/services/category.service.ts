@@ -37,4 +37,8 @@ export class CategoryService {
   addNewCourt(data: any) : Observable<any> {
     return this.http.post(this.categoryCourtApiurl, data, this.getHeader());
   }
+
+  getCourtById(id: string) : Observable<any> {
+    return this.http.get(this.categoryCourtApiurl + '/' + id, this.getHeader());
+  }
 }
