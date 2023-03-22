@@ -15,9 +15,11 @@ export class BookingHistoryComponent implements OnInit {
   constructor(private bookingService: BookingService) { }
 
   ngOnInit(): void {
-    //this.bookingService.getBookingHistoryDetails().subscribe((data: any) => {
-    //  this.dataSource = data;
-    //});
+    this.bookingService.getAllBooking().subscribe((data: any) => {
+      const bookings = data.filter((item: any) => item.userid === localStorage.getItem('userid'));
+      console.log(bookings);
+      this.dataSource = bookings;
+    });
   }
 
 }
