@@ -30,7 +30,7 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   onRegister() {
-    if (this.registrationForm.value.password == this.registrationForm.value.confirmpassword) {
+     if (this.registrationForm.value.password == this.registrationForm.value.confirmpassword) {
       const userDetails = {
         'firstname': this.registrationForm.value.firstname,
         'lastname': this.registrationForm.value.lastname,
@@ -44,7 +44,10 @@ export class UserRegistrationComponent implements OnInit {
         console.log(err);
         this.snackBar.showSnackBar("Registration Failed!!")
       });
-    }
+     }
+     else{
+      this.snackBar.showSnackBar("Passwords does not match!!")
+     }
   }
 
 }
