@@ -9,7 +9,7 @@
     <span class="fill-space"></span>
     <button *ngIf="menuItems.showCart" mat-icon-button routerLink="/cart-page" aria-label="Cart">
       <mat-icon>shopping_cart</mat-icon>
-      <mat-badge [matBadge]="2" matBadgeSize="small" matBadgeColor="accent"></mat-badge>
+      <mat-badge matBadge="{{count}}" matBadgeSize="small" matBadgeColor="accent"></mat-badge>
     </button>
     <button *ngIf="menuItems.showProfile" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Profile menu">
       <mat-icon>account_circle</mat-icon>
