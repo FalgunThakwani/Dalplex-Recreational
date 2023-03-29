@@ -19,7 +19,7 @@ export class PaymentPageComponent implements OnInit {
   { }
 
   ngOnInit(): void {
-    this.coreService.updateMenuItems(["facilities", "tournament", "aboutus"], false);
+    this.coreService.updateMenuItems(["home", "facilities", "tournament", "aboutus"], false);
     this.getPaymentMethods();
   }
 

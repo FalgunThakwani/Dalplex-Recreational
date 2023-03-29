@@ -15,7 +15,7 @@ export class CartPageComponent implements OnInit {
   constructor(private coreService: CoreService,private cartService:CartService) { }
 
   ngOnInit(): void {
-    this.coreService.updateMenuItems(["facilities", "tournament", "aboutus"], false);
+    this.coreService.updateMenuItems(["home", "facilities", "tournament", "aboutus"], false);
     this.cartService.getCart(localStorage.getItem('userid')).subscribe((data)=>{
     this.data=data;
     })

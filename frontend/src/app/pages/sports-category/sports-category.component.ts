@@ -20,7 +20,7 @@ export class SportsCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUserRole = localStorage.getItem('role') || '';
-    this.coreService.updateMenuItems(["facilities", "tournament", "aboutus"], true);
+    this.coreService.updateMenuItems(["home", "facilities", "tournament", "aboutus"], true);
     this.getAllCategoryData();
   }
 

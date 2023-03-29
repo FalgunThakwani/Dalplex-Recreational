@@ -45,7 +45,7 @@ export class BookingComponent implements OnInit {
         this.courtDetails = data;
       });
     });
-    this.coreService.updateMenuItems(["facilities", "tournament", "aboutus"], true);
+    this.coreService.updateMenuItems(["home", "facilities", "tournament", "aboutus"], true);
     this.bookingForm = this.formBuilder.group({
       bookingdate: ['', [Validators.required]]
     });
