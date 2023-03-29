@@ -1,5 +1,7 @@
 const User = require('../models/user.model');
 const jwt = require('jsonwebtoken');
+const Verification=require('../models/otp.model')
+const bcrypt = require('bcryptjs');
 
 const login = async (request, response) => {
     const { email, password } = request.body;
@@ -26,7 +28,26 @@ const logout = async (request, response) => {
     response.status(200).json({message: "OK"});
 };
 
+const forgotpassword=async(request,response)=>{
+    const{ email,password,OTP }=request.body
+    console.log(password)
+    console.log(OTP)
+    const filter = { email: request.body.email};
+    const userVerification=await Verification.findOne(filter)
+    console.log(userVerification.otp)
+    if(userVerification.otp===OTP){
+        const hashedPassword = await bcrypt.hash(request.body.password, 10);
+        User.updateOne(email,hashedPassword)
+        await Verification.deleteOne(filter)
+        return response.status(200).json({message:"OK"})
+    }
+    else{
+        return response.status(500).json({message:"wrong OTP"})
+    }
+};
+
 module.exports = {
     login,
-    logout
+    logout,
+    forgotpassword
 };

@@ -11,7 +11,7 @@ export class ProfileComponent implements OnInit {
   constructor(private coreService: CoreService) { }
 
   ngOnInit(): void {
-    this.coreService.updateMenuItems(["facilities", "tournament", "aboutus"], true);
+    this.coreService.updateMenuItems(["home", "facilities", "tournament", "aboutus"], true);
   }
 
 }

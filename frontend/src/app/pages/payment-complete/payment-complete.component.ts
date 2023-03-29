@@ -15,7 +15,7 @@ export class PaymentCompleteComponent implements OnInit {
   constructor(private coreService: CoreService) { }
 
   ngOnInit(): void {
-    this.coreService.updateMenuItems(["facilities", "tournament", "aboutus"], false);
+    this.coreService.updateMenuItems(["home", "facilities", "tournament", "aboutus"], false);
   }
 
 }

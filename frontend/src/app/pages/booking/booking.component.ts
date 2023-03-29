@@ -45,7 +45,7 @@ export class BookingComponent implements OnInit {
         this.courtDetails = data;
       });
     });
-    this.coreService.updateMenuItems(["facilities", "tournament", "aboutus"], true);
+    this.coreService.updateMenuItems(["home", "facilities", "tournament", "aboutus"], true);
     this.bookingForm = this.formBuilder.group({
       bookingdate: ['', [Validators.required]]
     });
@@ -72,12 +72,3 @@ export class BookingComponent implements OnInit {
   }
 }
 
-// db.cart.insertOne({userid: localStorage.getItem('userid'),
-// program: this.courtDetails.name,
-// interval: this.selectedTimeInterval,
-// semester: 'n/a',
-// registeredon: '',
-// status: 'reserve',
-// created_at:'',
-// update_at:''
-// })
