@@ -35,6 +35,7 @@ const profileRouter = require('./routes/profile.route');
 const bookingRouter = require('./routes/booking.route');
 const cartRouter=require('./routes/cart.route');
 const facilitiesRouter = require('./routes/facilities.route');
+const tournamentRankingsRouter = require('./routes/tournamentrankings.route');
 
 app.use('/api', sessionRouter);
 app.use('/api/users', userRouter);
@@ -47,6 +48,8 @@ app.use('/api/profile', profileRouter);
 app.use('/api/booking', bookingRouter);
 app.use('/api/cart', cartRouter);
 app.use('/api/facilities', facilitiesRouter);
+app.use('/api/trank', tournamentRankingsRouter);
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
