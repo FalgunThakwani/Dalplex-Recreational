@@ -1,18 +1,14 @@
-
-.vertical-divider {
+.container{
   display: flex;
-  flex-direction: row;
-  height: 100%;
-  width: 50%;
-  margin: 0 8px;
 }
 
-.vertical-divider::before {
-  content: "";
-  border-left: 5px solid red;
-  height: 100%;
-  width: 50%;
-  margin-right: 8px;
+
+.vertical-divider {
+  /* display: flex;
+  flex-direction: row; */
+  /* height: 100%; */
+  /* width: 50%; */
+  margin: 0 8px;
 }
 
 .itemImage{
@@ -43,4 +39,28 @@ margin-right: 50px;
 }
 .link{
   justify-content: end;
+}
+.cart-main{
+  margin-left: 30px;
+  margin-top:20px;
+  width:400px;
+}
+
+.buttons{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.link{
+  display: flex;
+  justify-content: center;
+}
+
+.mat-divider{
+  border:1px solid grey;
+}
+
+a{
+color: black;
 }

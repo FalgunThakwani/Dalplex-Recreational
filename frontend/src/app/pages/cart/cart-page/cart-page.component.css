@@ -1,25 +1,86 @@
+mat-list-item{
+  margin-top: 4%;
+  margin-bottom:8%;
+}
 
+mat-list{
+width: 100%;
+}
+
+.cardd{
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-evenly; */
+}
+
+.list-view{
+  display: flex;
+  flex: 2;
+  justify-content: space-between;
+  height: 500px;
+  overflow-y: auto;
+}
+
+.cart-main{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.list{
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+
+}
+.text{
+  align-items: center;
+}
+.empty{
+
+  height: 500px;
+  justify-content: center;
+}
 .container{
-  margin-top:20px;
+  /* margin-top:20px;
   margin-right:30px;
   margin-left:30px;
-  margin-bottom:30px;
+  margin-bottom:30px; */
 }
-.row {
 
+.list{
+  /* height: 500px;
+  overflow-y: auto; */
 }
-.list-view{
-  flex: 1;
-  margin-left: 20px;
+.list-view::-webkit-scrollbar {
+  width: 8px;
+}
 
+.list-view::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
 }
+
+.list-view::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+
+.list-view::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+.bookingDate{
+  width: auto;
+}
+
 .heading{
   font-size: 30px;
 }
 .vertical-divider {
+  /* display: flex;
+  flex-direction: row;
   margin-top: 10px;
   margin-bottom: 10px;
-  border: 1px solid rgb(200, 199, 199);
+  border: 1px solid rgb(200, 199, 199); */
 }
 .horizontal-divider {
   border: 1px solid rgb(200, 199, 199);
@@ -31,11 +92,56 @@ display: flex;
 width:auto;
 }
 .mat-elevation-z4{
-  width:auto;
   display: flex;
   flex-direction: row;
   justify-content:flex-start;
   /* background-position: right; */
+}
+.inner-container{
+  display: flex;
+}
+
+.itemImage{
+  /* height: auto;
+  width: auto;
+  margin-right: 50px;
+  border-radius: 8px; */
+}
+
+.itemTitle{
+margin-right: 50px;
+}
+
+.itemQuantity{
+  margin-left: 50px;
+}
+
+.delete-button{
+  margin-right:20px;
+}
+.update-cart{
+  display: flex;
+}
+
+
+
+.buttons{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.link{
+  display: flex;
+  justify-content: center;
+}
+
+.mat-divider{
+  border:1px solid grey;
+}
+
+a{
+color: black;
 }
 
 

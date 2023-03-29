@@ -1,29 +1,26 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-import { ListViewDataSource, ListViewItem } from './list-view-datasource';
+import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-list-view',
   templateUrl: './list-view.component.html',
   styleUrls: ['./list-view.component.css']
 })
-export class ListViewComponent implements AfterViewInit {
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<ListViewItem>;
-  dataSource: ListViewDataSource;
+export class ListViewComponent implements OnInit {
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-
-  constructor() {
-    this.dataSource = new ListViewDataSource();
+  data!:any;
+  constructor(private cartService:CartService) {}
+  ngOnInit(): void {
+    this.cartService.getCart(localStorage.getItem('userid')).subscribe((data)=>{
+      console.log(data);
+      this.data=data;
+    })
   }
 
-  ngAfterViewInit(): void {
-    // this.dataSource.sort = this.sort;
-    // this.dataSource.paginator = this.paginator;
-    // this.table.dataSource = this.dataSource;
+  deleteItem(id:any): void{
+    this.cartService.deleteFromCart(id).subscribe((data) => {
+      this.data=data;
+    });
   }
+
 }

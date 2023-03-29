@@ -6,6 +6,7 @@ import { Slots } from 'src/app/interfaces/Slots';
 import { BookingService } from 'src/app/services/booking.service';
 import { Observable } from 'rxjs';
 import { CategoryService } from 'src/app/services/category.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-booking',
@@ -23,7 +24,7 @@ export class BookingComponent implements OnInit {
   maxDate: Date = new Date(this.today.getTime() + 3 * 24 * 60 * 60 * 1000);
   courtDetails: any;
 
-  constructor(private formBuilder: FormBuilder, private coreService: CoreService, private categoryService: CategoryService, private bookingService: BookingService, private route: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private formBuilder: FormBuilder, private coreService: CoreService, private categoryService: CategoryService, private bookingService: BookingService, private route: Router, private activatedRoute: ActivatedRoute,private cartService:CartService) { }
 
   onTimeIntervalSelected(event: MouseEvent, timeInterval: Slots) {
     if(timeInterval.status == 'booked') return;
@@ -53,14 +54,30 @@ export class BookingComponent implements OnInit {
   onAddtoCart() {
     const data = {
       userid: localStorage.getItem('userid'),
+      status: 'reserve',
+      court_id:this.courtDetails._id,
       program: this.courtDetails.name,
       interval: this.selectedTimeInterval,
       semester: 'n/a',
       registeredon: '',
-      status: 'reserve'
+      bookingdate:this.bookingForm.get('bookingdate')?.value,
+      price:this.courtDetails.price
     };
-    console.log(data);
+    this.cartService.addToCart(data).subscribe((data:any)=>{
+      this.cartService.updateCount(data.items.length);
+    });
+
     this.coreService.showSnackBar("Added to cart", "ok");
-    this.route.navigate(['cart-page']);
+    // this.route.navigate(['cart-page']);
   }
 }
+
+// db.cart.insertOne({userid: localStorage.getItem('userid'),
+// program: this.courtDetails.name,
+// interval: this.selectedTimeInterval,
+// semester: 'n/a',
+// registeredon: '',
+// status: 'reserve',
+// created_at:'',
+// update_at:''
+// })

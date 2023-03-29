@@ -33,7 +33,7 @@ const membershipRouter = require('./routes/membership.route');
 const paymentMethodsRouter = require('./routes/paymentmethods.route');
 const profileRouter = require('./routes/profile.route');
 const bookingRouter = require('./routes/booking.route');
-const facilitiesRouter = require('./routes/facilities.route');
+const cartRouter=require('./routes/cart.route');
 
 app.use('/api', sessionRouter);
 app.use('/api/users', userRouter);
@@ -44,7 +44,7 @@ app.use('/api/membership', membershipRouter);
 app.use('/api/paymentmethod', paymentMethodsRouter);
 app.use('/api/profile', profileRouter);
 app.use('/api/booking', bookingRouter);
-app.use('/api/facilities', facilitiesRouter);
+app.use('/api/cart', cartRouter);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

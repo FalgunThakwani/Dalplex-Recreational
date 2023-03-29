@@ -4,6 +4,7 @@ import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -13,13 +14,22 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class HeaderComponent implements OnInit {
 
   menuItems!: MenuItems;
+  count!:number;
 
-  constructor(private router:Router, private userService: UserService, private coreService: CoreService) { }
+  constructor(private router:Router, private userService: UserService, private coreService: CoreService,private cartService: CartService) { }
 
   ngOnInit(): void {
     this.coreService.getMenuItems().subscribe((data) => {
       this.menuItems = data;
     });
+    this.cartService.getItemsCount(localStorage.getItem('userid')).subscribe((data)=>{
+      this.cartService.updateCount(data);
+    })
+    this.cartService.count$.subscribe(
+      (count) => {
+        this.count = count;
+      }
+    );
   }
 
   logout() {
