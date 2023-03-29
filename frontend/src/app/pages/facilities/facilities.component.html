@@ -21,18 +21,18 @@
               </div>
               <div [@hours]="fac.state" class="hourscontent">
                   <h2>Working hours</h2>
-                  <p> Monday : {{fac.w1}}  </p> 
-                  <p> Tuesday : {{fac.w2}}  </p>
-                  <p> Wednesday : {{fac.w3}}  </p> 
-                  <p> Thursday : {{fac.w4}}  </p>
-                  <p> Friday : {{fac.w5}}  </p> 
-                  <p> Saturday : {{fac.w6}}  </p>
-                  <p> Sunday : {{fac.w7}}  </p> 
+                  <p> Monday : {{fac.w[0]}}  </p> 
+                  <p> Tuesday : {{fac.w[1]}}  </p>
+                  <p> Wednesday : {{fac.w[2]}}  </p> 
+                  <p> Thursday : {{fac.w[3]}}  </p>
+                  <p> Friday : {{fac.w[4]}}  </p> 
+                  <p> Saturday : {{fac.w[5]}}  </p>
+                  <p> Sunday : {{fac.w[6]}}  </p> 
               </div>
             </mat-card-content>
             <mat-card-actions>
-              <button mat-raised-button [routerLink]="['/facalendar',fac.id]">Check Availablity</button>
-              <button mat-flat-button color="primary" (click)="toggle(fac.id)">Facility {{fac.desc}}</button>
+              <button mat-raised-button [routerLink]="['/facalendar',fac._id]">Check Availablity</button>
+              <button mat-flat-button color="primary" (click)="toggle(fac._id)">Facility {{fac.desc}}</button>
             </mat-card-actions>
            </mat-card> 
       </mat-grid-tile>

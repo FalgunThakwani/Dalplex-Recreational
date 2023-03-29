@@ -4,8 +4,11 @@
     <mat-form-field appearance="fill" class="filter">
       <mat-label>Facilities</mat-label>
       <mat-select [(ngModel)]="selectedFacility" name="sport" (selectionChange) = "applyfilter()">
-        <mat-option *ngFor="let facility of facilities" [value]="facility.value">
-          {{facility.viewValue}}
+        <mat-option value="">
+          All Facilities
+        </mat-option>
+        <mat-option *ngFor="let facility of facilities" [value]="facility._id">
+          {{facility.title}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -24,13 +27,14 @@
 
 <!-- 5 -->
 <section class="example-container mat-elevation-z8" tabindex="0">
-    <table mat-table [dataSource]="dataSource">
-
+  <div *ngFor="let facility of dataSource">
+    <h3 class="tabletitle">{{facility.title}}</h3>
+    <table mat-table [dataSource]="facility.slots">
       <!-- Facility Id Column -->
-      <ng-container matColumnDef="FacilityId">
+      <!-- <ng-container matColumnDef="FacilityId">
         <th mat-header-cell *matHeaderCellDef> Facility </th>
-        <td mat-cell *matCellDef="let element"> {{element.facilityName}} </td>
-      </ng-container>
+        <td mat-cell *matCellDef="let element"> {{facility.title}} </td>
+      </ng-container> -->
   
       <!-- Slots Column -->
       <ng-container matColumnDef="Slots">
@@ -43,10 +47,12 @@
         <th mat-header-cell *matHeaderCellDef> Booking </th>
         <td mat-cell *matCellDef="let element"> {{element.status}} </td>
       </ng-container>
-  
+      
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    
+  </div>
   </section>
   <!-- 5 -->
   <app-footer></app-footer>
