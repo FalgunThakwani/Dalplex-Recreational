@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
     this.coreService.getMenuItems().subscribe((data) => {
       this.menuItems = data;
     });
-    this.cartService.getItemsCount(localStorage.getItem('userid')).subscribe((data)=>{
+    this.cartService.getItemsCount({"userid":localStorage.getItem('userid')}).subscribe((data)=>{
       this.cartService.updateCount(data);
     })
     this.cartService.count$.subscribe(

@@ -72,12 +72,3 @@ export class BookingComponent implements OnInit {
   }
 }
 
-// db.cart.insertOne({userid: localStorage.getItem('userid'),
-// program: this.courtDetails.name,
-// interval: this.selectedTimeInterval,
-// semester: 'n/a',
-// registeredon: '',
-// status: 'reserve',
-// created_at:'',
-// update_at:''
-// })

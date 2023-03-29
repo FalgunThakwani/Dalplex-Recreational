@@ -5,7 +5,8 @@ require("dotenv").config();
 const getCart = async (request,response)=>{
     const {userid} = request.body;
     try{
-        let cart = await Cart.findOne({ user_id: userid});
+        let cart = await Cart.findOne({ userid: userid});
+        console.log(cart);
         response.status(201).json(cart)
     } catch (err) {
         response.status(400).json({ message: err.message });
@@ -16,7 +17,7 @@ const getCart = async (request,response)=>{
 const getItemsCount = async (request,response)=>{
     const {userid} = request.body;
     try{
-        let cart = await Cart.findOne({ user_id: userid});
+        let cart = await Cart.findOne({ userid: userid});
         if(!cart){
             response.status(201).json(0)
         }else{
@@ -34,7 +35,7 @@ const addToCart = async (request, response) => {
     const currentDate = new Date().toISOString()
     const bookingstatus=status;
     try {
-        let user = await User.findOne({_id:userid})
+        let user = await User.findOne({_id: userid})
         let cart = await Cart.findOne({ userid: userid});
         if (!cart) {
             cart = new Cart({
