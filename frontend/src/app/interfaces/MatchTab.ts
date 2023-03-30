@@ -1,6 +1,6 @@
-import { Match } from "./Match";
+import { TournamentMatches } from "./TournamentMatches";
 
 export interface MatchTab {
     label: string;
-    content: Match[];
+    content: TournamentMatches[];
   }

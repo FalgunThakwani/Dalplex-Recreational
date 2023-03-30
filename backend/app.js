@@ -38,6 +38,8 @@ const facilitiesRouter = require('./routes/facilities.route');
 const otpRouter = require('./routes/otp.route');
 const tournamentrankingsRouter = require('./routes/tournamentrankings.route');
 
+const tournamentmatchesRouter = require('./routes/tournamentmatches.route');
+
 app.use('/api', sessionRouter);
 app.use('/api/users', userRouter);
 app.use('/api/categories', categoriesRouter);
@@ -50,7 +52,9 @@ app.use('/api/booking', bookingRouter);
 app.use('/api/cart', cartRouter);
 app.use('/api/facilities', facilitiesRouter);
 app.use('/api/otp', otpRouter);
-app.use('/api/tournamentrankings', tournamentrankingsRouter);
+app.use('/api/trank', tournamentrankingsRouter);
+
+app.use('/api/tmatch', tournamentmatchesRouter);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
