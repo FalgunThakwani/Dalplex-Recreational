@@ -1,4 +1,4 @@
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 export class PaymentService {
 
   paymentApiUrl: string = environment.apiServer + "/paymentmethod";
+  makePaymentApiUrl:string=environment.apiServer+"/payment";
 
   constructor(private http: HttpClient) { }
 
@@ -27,5 +28,9 @@ export class PaymentService {
 
   getPaymentMethodDetails(): Observable<any> {
     return this.http.get(this.paymentApiUrl, this.getHeader());
+  }
+
+  makePayment(data:any) :Observable<any> {
+    return this.http.post(this.makePaymentApiUrl+"/makePayment",data,this.getHeader());
   }
 }

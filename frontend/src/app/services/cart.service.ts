@@ -37,10 +37,10 @@ export class CartService {
   }
 
   deleteFromCart(data:any): Observable<any> {
-    return this.http.delete(this.cartApiUrl+"/deleteFromCart/"+ data, this.getHeader());
+    return this.http.delete(this.cartApiUrl+"/deleteFromCart/"+ data.id+"/"+data.userid, this.getHeader());
   }
 
-  updateCount(newCount: number) { 
+  updateCount(newCount: number) {
     this.count.next(newCount);
   }
 }

@@ -1,6 +1,8 @@
 import { CoreService } from './../../../services/core.service';
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ListViewItem } from '../components/list-view/list-view-datasource';
 
 @Component({
   selector: 'app-cart-page',
@@ -10,23 +12,27 @@ import { CartService } from 'src/app/services/cart.service';
 export class CartPageComponent implements OnInit {
 
 
-  data!:any;
-  columns=['program']
-  constructor(private coreService: CoreService,private cartService:CartService) { }
+  data!:ListViewItem;
+
+  displayedColumns: string[] = ["delete","image","program","bookingDate","price"];
+  constructor(private coreService: CoreService,private cartService:CartService) {
+
+  }
 
   ngOnInit(): void {
     this.coreService.updateMenuItems(["home", "facilities", "tournament", "aboutus"], false);
-
     this.cartService.getCart({"userid":localStorage.getItem('userid')}).subscribe((data)=>{
-      console.log(data);
     this.data=data;
-    })
+    });
+
   }
 
+
+
   deleteItem(id:any): void{
-    this.cartService.deleteFromCart(id).subscribe((data) => {
+    console.log("dele");
+    this.cartService.deleteFromCart({"id":id,"userid":localStorage.getItem('userid')}).subscribe((data) => {
       this.data=data;
     });
   }
-
 }

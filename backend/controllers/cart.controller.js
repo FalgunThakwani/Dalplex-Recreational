@@ -6,7 +6,13 @@ const getCart = async (request,response)=>{
     const {userid} = request.body;
     try{
         let cart = await Cart.findOne({ userid: userid});
-        console.log(cart);
+        let reservedItems =[];
+        cart.items.forEach((item)=>{
+            if(item.bookingstatus!="confirmed"){
+                reservedItems.push(item);
+            }
+        });
+        cart.items=reservedItems;
         response.status(201).json(cart)
     } catch (err) {
         response.status(400).json({ message: err.message });
@@ -21,7 +27,13 @@ const getItemsCount = async (request,response)=>{
         if(!cart){
             response.status(201).json(0)
         }else{
-            response.status(201).json(cart.items.length)
+            let reservedItems =[];
+            cart.items.forEach((item)=>{
+                if(item.bookingstatus!="confirmed"){
+                    reservedItems.push(item);
+                }
+            });
+            response.status(201).json(reservedItems.length)
         }
     } catch (err) {
         response.status(400).json({ message: err.message });
@@ -44,7 +56,7 @@ const addToCart = async (request, response) => {
                 items:[],
                 status: 'pending',
                 price:price,
-                updatedat:  currentDate ,
+                updatedat:currentDate ,
                 createdat:currentDate,
                 subTotal:0,
                 tax:0,
@@ -63,6 +75,7 @@ const addToCart = async (request, response) => {
         }
         cart.tax=item.price*0.15;
         cart.total=cart.tax+item.price;
+        cart.subTotal=item.price;
         await cart.items.push(item);   
         await cart.save();
         response.status(201).json(cart);
@@ -74,8 +87,9 @@ const addToCart = async (request, response) => {
 
 const deleteCart = async (request,response)=>{
     const {id,userid} = request.params;   
+    console.log(request);
     try{
-        let cart = await Cart.findOne({ user_id: userid});
+        let cart = await Cart.findOne({ userid: userid});
         await cart.items.pull(id);
         await cart.save();
         response.status(201).json(cart)
