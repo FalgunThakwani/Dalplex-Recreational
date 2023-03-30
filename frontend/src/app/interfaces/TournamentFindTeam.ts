@@ -4,5 +4,6 @@ export interface TournamentFindTeam {
     subtitle:String;
     desc:String;
     reqState: String;
+    gameslots: String;
     sport: String;
 }

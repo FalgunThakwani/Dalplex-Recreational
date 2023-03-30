@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { TournamentFindTeam } from 'src/app/interfaces/TournamentFindTeam';
+import { TournamentfindteamService } from 'src/app/services/tournamentfindteam.service';
 
-let cards = [
+let cards1 = [
   {"title":"Team 1", "subtitle":"Sport 1", "id":"1", 
   "desc" : 'Team has 8 members in total. We are looking for 4 more memebers. We usually play every day', 
   "reqState" : 'Request', "sport":"s1"},
@@ -28,6 +30,8 @@ let cards = [
 })
 export class TournamentfindteamComponent implements OnInit {
 
+  cards!: TournamentFindTeam[];
+
   cols! : number;
 
   gridByBreakpoint = {
@@ -39,7 +43,8 @@ export class TournamentfindteamComponent implements OnInit {
   }
 
 
-  constructor(private breakpointObserver: BreakpointObserver) {
+  constructor(private breakpointObserver: BreakpointObserver,
+    private tournamentfindteamService: TournamentfindteamService) {
     this.breakpointObserver.observe([
       Breakpoints.XSmall,
       Breakpoints.Small,
@@ -69,6 +74,14 @@ export class TournamentfindteamComponent implements OnInit {
   // 8
 
   ngOnInit(): void {
+    this.getAlltournamentfindteamData();
+  }
+
+  getAlltournamentfindteamData() {
+    this.tournamentfindteamService.getAlltournamentFindTeams().subscribe((data: TournamentFindTeam[]) => {
+      this.cards = data;
+      this.applyfilter();
+    });
   }
 
   selectedSport!: string;
@@ -80,18 +93,18 @@ export class TournamentfindteamComponent implements OnInit {
     {value: 's3', viewValue: 'Sports3'},
   ];
 
-  dataSource = cards;
+  dataSource = this.cards;
 
-  toggle(index:string): void {  
-    cards.find(item => item.id == index)!.reqState = 
-    cards.find(item => item.id == index)!.reqState === 'Request' ? 'Cancel Request' : 'Request';
+  toggle(index:number): void {  
+    this.cards.find(item => item._id == index)!.reqState = 
+    this.cards.find(item => item._id == index)!.reqState === 'Request' ? 'Cancel Request' : 'Request';
   }
 
   applyfilter(){
     if(this.selectedSport) {
-      this.dataSource = cards.filter(e => e.sport == this.selectedSport);
+      this.dataSource = this.cards.filter(e => e.sport == this.selectedSport);
     } else {
-      this.dataSource = cards;
+      this.dataSource = this.cards;
     }
    }
 }

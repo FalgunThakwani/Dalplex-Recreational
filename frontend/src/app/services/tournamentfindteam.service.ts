@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class TournamentfindteamService {
 
-  tournamentFindTeamApiUrl: string = environment.apiServer + "/tfteam";
+  tournamentFindTeamApiUrl: string = environment.apiServer + "/tfiteam";
 
   constructor(private http: HttpClient) { }
 
