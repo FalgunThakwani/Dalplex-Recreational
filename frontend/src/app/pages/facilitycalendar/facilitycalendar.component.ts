@@ -26,6 +26,7 @@ export class FacilitycalendarComponent implements OnInit {
     this.selectedFacility =this.id;
     this.getAllFacilitiesData();  
     console.log("mow1");
+    console.log(new Date().toISOString().split('T')[0])
   }
 
   getAllFacilitiesData() {
@@ -50,23 +51,24 @@ export class FacilitycalendarComponent implements OnInit {
   //   {value: 'f8', viewValue: 'Dance Studio'},
   // ];
 
-  date: String = new Date().toISOString().split('T')[0];
+  // date: String = new Date().toISOString().split('T')[0];
 
-  updateDate() {
-    var today = new Date();
-    this.date=today.toISOString().split('T')[0];
-  }
+  // updateDate() {
+  //   var today = new Date();
+  //   this.date=today.toISOString().split('T')[0];
+  // }
 
    // 5 s
    displayedColumns = [
-    // 'FacilityId',
+    'Date',
     'Slots', 'Booking'];
    dataSource = this.facilities;
    // 5 e
 
    applyfilter(){
     if(this.selectedFacility!="") {
-      this.dataSource = this.facilities.filter(e => e._id.toString() == this.selectedFacility);
+      this.dataSource = this.facilities.filter(e => 
+        e._id.toString() == this.selectedFacility);
     } else {
       this.dataSource = this.facilities;
     }

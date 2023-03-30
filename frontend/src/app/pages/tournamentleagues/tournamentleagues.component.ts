@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { TournamentLeagues } from 'src/app/interfaces/TournamentLeagues';
+import { TournamentleaguesService } from 'src/app/services/tournamentleagues.service';
 
 @Component({
   selector: 'app-tournamentleagues',
@@ -8,9 +10,19 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class TournamentleaguesComponent implements OnInit {
 
-  constructor() { }
+  LEAGUE_DATA!: TournamentLeagues[];
+
+  constructor(private tournamentleaguesService: TournamentleaguesService) { }
 
   ngOnInit(): void {
+    this.getAlltournamentleaguesData();
+  }
+
+  getAlltournamentleaguesData() {
+    this.tournamentleaguesService.getAlltournamentLeagues().subscribe((data: TournamentLeagues[]) => {
+      this.LEAGUE_DATA = data;
+      this.applyfilter();
+    });
   }
 
   selectedSport!: string;
@@ -23,30 +35,36 @@ export class TournamentleaguesComponent implements OnInit {
   ];
 
   // 5 s
-  displayedColumns = ['id', 'league', 'slots', 'match', 'register'];
-  dataSource = new MatTableDataSource(LEAGUE_DATA);
+  displayedColumns = ['league', 'slots', 'match', 'register'];
+  // dataSource = new MatTableDataSource(this.LEAGUE_DATA);
+  dataSource = this.LEAGUE_DATA;
   // 5 e
 
   toggle(index:number): void {  
-    LEAGUE_DATA.find(item => item.id == index)!.register = 
-    LEAGUE_DATA.find(item => item.id == index)!.register === 'Register' ? 'Cancel' : 'Register';
+    this.LEAGUE_DATA.find(item => item._id == index)!.register = 
+    this.LEAGUE_DATA.find(item => item._id == index)!.register === 'Register' ? 'Cancel' : 'Register';
 
-    LEAGUE_DATA.find(item => item.id == index)!.slots = 
-    LEAGUE_DATA.find(item => item.id == index)!.register === 
+    this.LEAGUE_DATA.find(item => item._id == index)!.slots = 
+    this.LEAGUE_DATA.find(item => item._id == index)!.register === 
             'Register' 
-          ? LEAGUE_DATA.find(item => item.id == index)!.slots +1 
-          : LEAGUE_DATA.find(item => item.id == index)!.slots -1;
+          ? this.LEAGUE_DATA.find(item => item._id == index)!.slots +1 
+          : this.LEAGUE_DATA.find(item => item._id == index)!.slots -1;
   }
 
   applyfilter(){
-    this.dataSource.filter = this.selectedSport;
+    // this.dataSource.filter = this.selectedSport;
+    if (this.selectedSport) {
+    this.dataSource = this.LEAGUE_DATA.filter(e => e.sport == this.selectedSport);
+    } else {
+      this.dataSource = this.LEAGUE_DATA
+    }
   }
     
 }
 
 // 5 s
 
-const LEAGUE_DATA = [
+const LEAGUE_DATA1 = [
   {id: 1, league: 'League 1', slots: 5, match: 'Match Starts on 10 March', register: 'Register', sport: 's1'},
   {id: 2, league: 'League 2', slots: 4, match: 'Match Starts on 20 March', register: 'Register', sport: 's2'},
   {id: 3, league: 'League 3', slots: 6, match: 'Match Starts on 30 March', register: 'Register', sport: 's1'},
