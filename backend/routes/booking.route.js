@@ -11,5 +11,6 @@ router.get('/slot', Auth.verifyToken, BookingController.getBookingSlots);
 router.get('/slot/:date', Auth.verifyToken, BookingController.getBookingSlotsByDate);
 router.patch('/:id', Auth.verifyToken, BookingController.updateBooking);
 router.delete('/', Auth.verifyToken, BookingController.deleteBooking);
+router.get('/:id',BookingController.upComingBookings)
 
 module.exports = router;

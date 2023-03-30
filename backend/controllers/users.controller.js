@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user.model');
+const Booking = require('../models/bookings.model');
 
 const createUser = async (request, response) => {
     const { firstname, lastname, role, email, password } = request.body;
@@ -70,7 +71,6 @@ const updateUser = async (request, response) => {
     response.status(400).json({ message: err.message });
   }
 };
-
 module.exports = {
     createUser,
     getUsers,

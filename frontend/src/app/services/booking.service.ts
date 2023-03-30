@@ -36,4 +36,9 @@ export class BookingService {
   getAllSlotsByDate(date: Date) : Observable<any>  {
     return this.http.get(this.bookingApiUrl + '/slot/' + date.toDateString() , this.getHeader());
   }
+
+  getUpcomingBookings(userid:any): Observable<any>{
+    return this.http.get(this.bookingApiUrl+"/"+userid,this.getHeader());
+  }
+
 }

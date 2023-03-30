@@ -162,6 +162,20 @@ const updateBooking = async (request, response) => {
     response.status(400).json({ message: err.message });
   }
 };
+const upComingBookings = async (request, response) => {
+    try {
+        const userid = request.params
+        console.log(userid)
+        const bookings = Booking.find({userid: userid.id})
+        console.log(bookings)
+        const currentDate=new Date()
+        const upComingBookings= (await bookings).filter(item=> new Date(item.registeredon)>=currentDate)
+        console.log(upComingBookings)
+        response.json(upComingBookings);
+    } catch (err) {
+        response.status(500).json({ message: err.message });
+    }
+  }
 
 module.exports = {
     createBooking,
@@ -170,5 +184,6 @@ module.exports = {
     deleteBooking,
     updateBooking,
     getBookingSlots,
-    getBookingSlotsByDate
+    getBookingSlotsByDate,
+    upComingBookings
 };
