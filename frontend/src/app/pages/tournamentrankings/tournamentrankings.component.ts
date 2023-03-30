@@ -1,6 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { TournamentRanking } from 'src/app/interfaces/TournamentRanking';
 import { TournamentRankingsService } from 'src/app/services/tournament-rankings.service';
 
