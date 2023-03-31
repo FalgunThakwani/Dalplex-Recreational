@@ -33,6 +33,7 @@ export class TournamentrankingsComponent implements OnInit {
     this.getAlltournamentRankingsData();
     this.getSports();
     this.getTournaments();
+    this.applyfilter();
   }
 
   getAlltournamentRankingsData() {
@@ -55,14 +56,6 @@ export class TournamentrankingsComponent implements OnInit {
 
   selectedTournament!: string ;
   selectedSport!: string ;
-  // selectedMatch!: string ;
-
-  // tournaments = [
-  //   {value: '', viewValue: 'Select'},
-  //   {value: 't1', viewValue: 'Tournaments1'},
-  //   {value: 't2', viewValue: 'Tournaments2'},
-  //   {value: 't3', viewValue: 'Tournaments3'},
-  // ];
   
   // 5
   columns = [

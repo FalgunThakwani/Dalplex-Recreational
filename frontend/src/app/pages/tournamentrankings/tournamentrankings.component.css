@@ -16,7 +16,7 @@
 }
 
 /* table css */
-table {
+table, .error {
     width: 80%;
     margin-top: 10px;
     margin-left: auto;
