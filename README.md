@@ -1,8 +1,9 @@
-# Group Project
+# Group 13 Project
 
-* *Date Created*: 29 Jan 2023
-* *Last Modification Date*: 21 Mar 2023
-* *Lab URL*: <TODO>
+* *Date Created*: 28 Jan 2023
+* *Last Modification Date*: 31 Mar 2023
+* *Frontend URL*: https://incomparable-cassata-28d849.netlify.app/
+* *Backend URL*: https://dalplex-api.onrender.com/api/
 * *Gitlab URL*: https://git.cs.dal.ca/sumitk/csci-5709-group-13.git
 	Below are branch list for group project:
 	* main
@@ -57,7 +58,7 @@ ng test
 
 ## Deployment
 
-Netlify was used to deploy Angular project.
+The node express application is deployed on Render, mongodb is deployed on https://www.mongodb.com/atlas/database and angular application is deployed on Netlify.
 
 ### facilities.component.ts
 *Lines 69 - 95*
@@ -328,27 +329,233 @@ The code above was created by adapting the code in https://material.angular.io/c
 - [https://material.angular.io/components/table/examples]'s Code was used because it is much related to my application and I am new to angular, so used it as a reference.
 - [https://material.angular.io/components/table/examples]'s Code was modified by VenkataVijaya Mandapati
 
+### app.js
+
+*Lines 7 - 17*
+
+```
+mongoose.connect(process.env.MONGODB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+const db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', function() {
+  console.log('MongoDB connected!');
+});
+```
+
+The code above was created by adapting the code in [Mongodb](https://www.tabnine.com/code/javascript/functions/mongoose/Connection/once) as shown below: 
+
+```
+mongoose.connection
+    .once('open', function () {
+      console.log('MongoDB running');
+    })
+    .on('error', function (err) {
+      console.log(err);
+    });
+```
+
+- The code in [Mongodb](https://www.tabnine.com/code/javascript/functions/mongoose/Connection/once) was implemented by using mongoose wrapper.
+- [Mongodb](https://www.tabnine.com/code/javascript/functions/mongoose/Connection/once) Code was used to implement connect to mongodb database.
+
+### app.js
+
+*Lines 3, 25*
+
+```
+var cors = require('cors')
+app.use(cors())
+```
+
+above code adapted from [cors](https://expressjs.com/en/resources/middleware/cors.html)
+
+- The code in [cors](https://expressjs.com/en/resources/middleware/cors.html) was to avoid cors issue during API calls.
+- Cross-Origin Resource Sharing (CORS) is a mechanism that allows a web application running at one origin to access resources from a different origin in a safe way.
+
+### EmailHelper.js
+
+*Lines 5 - 11, 27 - 33*
+
+```
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.PASSWORD,
+  },
+});
+
+transporter.sendMail(mailOptions, (err, info) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(`Email sent: ${info.response}`);
+  }
+});
+```
+
+The code above was created by adapting the code in [nodemailer](https://nodemailer.com/about/) as shown below:
+
+```
+let transporter = nodemailer.createTransport({
+  host: "smtp.ethereal.email",
+  port: 587,
+  secure: false, // true for 465, false for other ports
+  auth: {
+    user: testAccount.user, // generated ethereal user
+    pass: testAccount.pass, // generated ethereal password
+  },
+});
+
+let info = await transporter.sendMail({
+  from: '"Fred Foo 👻" <foo@example.com>', // sender address
+  to: "bar@example.com, baz@example.com", // list of receivers
+  subject: "Hello ✔", // Subject line
+  text: "Hello world?", // plain text body
+  html: "<b>Hello world?</b>", // html body
+});
+```
+
+- [nodemailer](https://nodemailer.com/about/) Code was used to send email notification to users for OTP and booking confirmation.
+- [nodemailer](https://nodemailer.com/about/) this code was also customized to send email in generic way to send email from a HTML template file.
+
+### session.controller.js
+
+*Lines 18*
+
+```
+const token = jwt.sign({ id: user._id, email: user.email }, process.env.APIKEY, { expiresIn: '30m' });
+```
+
+The code above was created by adapting the code in [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) as shown below:
+
+```
+jwt.sign({
+  data: 'foobar'
+}, 'secret', { expiresIn: 60 * 60 });
+```
+
+- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) code was used for securing user session.
+
+### auth.js
+
+*Lines 10*
+
+```
+const decoded = jwt.verify(token, process.env.APIKEY);
+```
+
+The code above was created by adapting the code in [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) as shown below:
+
+```
+try {
+  var decoded = jwt.verify(token, 'wrong-secret');
+} catch(err) {
+  // err
+}
+```
+
+- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) code was used for securing user session.
+
+
+### bookings.model.js
+
+* Lines 3 - 14 *
+
+```
+const bookingSchema = new mongoose.Schema({
+  userid: { type: String, required: true },
+  categoryid: { type: String, required: true },
+  courtid: { type: String, required: true },
+  program: { type: String, required: true },
+  interval: { type: String, required: true },
+  semester: { type: String, required: true },
+  registeredon: { type: String, required: true },
+  status: { type: String, required: true },
+  updatedat: { type: Date, default: Date.now },
+  createdat: { type: Date, default: Date.now }
+});
+```
+
+The code above was created by adapting the code in [mongoose](https://mongoosejs.com/docs/models.html) as shown below:
+
+```
+const schema = new mongoose.Schema({ name: 'string', size: 'string' });
+const Tank = mongoose.model('Tank', schema);
+```
+
+[mongoose](https://mongoosejs.com/docs/models.html) code reference was used for declaring mongoose models.
+
+### profile.component.html
+
+* Lines 3 - 19 *
+
+```
+<mat-tab-group style="margin: 5%;">
+    <mat-tab label="Update profile">
+      <app-update-profile></app-update-profile>
+    </mat-tab>
+    <mat-tab label="Membership">
+      <app-membership></app-membership>
+    </mat-tab>
+    <mat-tab label="Booking History">
+      <app-booking-history></app-booking-history>
+    </mat-tab>
+    <mat-tab label="Invoices">
+      <app-invoices></app-invoices>
+    </mat-tab>
+    <mat-tab label="Payment methods">
+      <app-payment-methods></app-payment-methods>
+    </mat-tab>
+</mat-tab-group>
+```
+
+The code above was created by adapting the code in [Angular-Material](https://material.angular.io/components/tabs/overview) as shown below:
+
+```
+<mat-tab-group>
+  <mat-tab label="First"> Content 1 </mat-tab>
+  <mat-tab label="Second"> Content 2 </mat-tab>
+  <mat-tab label="Third"> Content 3 </mat-tab>
+</mat-tab-group>
+```
+
+### invoices.component.ts
+
+* Lines 32 - 351 *
+
+```
+content: [
+	invoice template (note: its a big template hence not adding it here.
+]
+```
+
+The code above was created by adapting the code in [Invoice](https://gist.github.com/tusharf5/034d3e0599ae87ec4033c53107965569)
 
 ## Built With
 
-* [Angular](https://angular.io/) - The web framework used
-* [Netlify](https://app.netlify.com/) - Deployment Solution
+* [Node Express](https://expressjs.com/) - The backend framework
+* [Render](https://render.com/) - Backend Deployment Solution
+* [Netlify](https://app.netlify.com/) - Frontend Deployment Solution
+* [MongoDB Atlas](https://www.mongodb.com/atlas/database) - Mongodb deployment solution
 * [Gitlab](https://git.cs.dal.ca/) - Version Control
 * [VSCode](https://code.visualstudio.com/) - Editor
-* [NPM] (https://www.npmjs.com/) - Node Package Manager
-
+* [NPM](https://www.npmjs.com/) - Node Package Manager
 
 ## External Libraries
 
 all the libraries/packages used are available under package.json
-* [Angular Material] (https://material.angular.io/) - Angular Material UI framework
-* [Angular Material Form] (https://material.angular.io/components/form-field/) - Angular Material Forms
-* [Angular Material Card] (https://material.angular.io/components/card/) - Angular Material Cards
-* [Angular Material Table] (https://material.angular.io/components/table/) - Angular Material Tables
-* [Angular Material Datasource] (https://material.angular.io/components/table/overview#1-write-your-mat-table-and-provide-data) - Angular Material Datasource
-* [Angular Material Filtering] (https://material.angular.io/components/table/overview#filtering) - Angular Material Datasource filter
-* [Angular HTTP] (https://angular.io/guide/http) - Angular HTTP
-
+* [Angular Material](https://material.angular.io/) - Angular Material UI framework
+* [Angular Material Form](https://material.angular.io/components/form-field/) - Angular Material Forms
+* [Angular Material Card](https://material.angular.io/components/card/) - Angular Material Cards
+* [Angular Material Table](https://material.angular.io/components/table/) - Angular Material Tables
+* [Angular Material Datasource](https://material.angular.io/components/table/overview#1-write-your-mat-table-and-provide-data) - Angular Material Datasource
+* [Angular Material Filtering](https://material.angular.io/components/table/overview#filtering) - Angular Material Datasource filter
+* [Angular HTTP](https://angular.io/guide/http) - Angular HTTP
 
 ## References
 
