@@ -29,12 +29,12 @@ export class BookingService {
     return this.http.get(this.bookingApiUrl, this.getHeader());
   }
 
-  getAllSlots() : Observable<any> {
-    return this.http.get(this.bookingApiUrl + '/slot', this.getHeader());
+  getAllSlots(id: string, courtid: string) : Observable<any> {
+    return this.http.get(this.bookingApiUrl + '/slot/' + id + '/' + courtid, this.getHeader());
   }
 
-  getAllSlotsByDate(date: Date) : Observable<any>  {
-    return this.http.get(this.bookingApiUrl + '/slot/' + date.toDateString() , this.getHeader());
+  getAllSlotsByDate(id: string, courtid: string, date: Date) : Observable<any>  {
+    return this.http.get(this.bookingApiUrl + '/slot/' + id + '/' + courtid + '/' + date.toDateString() , this.getHeader());
   }
 
   getUpcomingBookings(userid:any): Observable<any>{

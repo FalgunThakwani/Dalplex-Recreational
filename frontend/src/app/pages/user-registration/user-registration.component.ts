@@ -14,6 +14,7 @@ export class UserRegistrationComponent implements OnInit {
 
   public registrationForm!: FormGroup;
   hide = true;
+  userExists=false;
 
   constructor(private router: Router, private formBuilder: FormBuilder, private snackBar: CoreService, private userService: UserService) { }
 
@@ -31,6 +32,7 @@ export class UserRegistrationComponent implements OnInit {
 
   onRegister() {
      if (this.registrationForm.value.password == this.registrationForm.value.confirmpassword) {
+      this.userExists = false;
       const userDetails = {
         'firstname': this.registrationForm.value.firstname,
         'lastname': this.registrationForm.value.lastname,
@@ -42,6 +44,10 @@ export class UserRegistrationComponent implements OnInit {
         this.router.navigateByUrl('/login');
       }, (err: HttpErrorResponse) => {
         console.log(err);
+        if(err.error.message.includes('E11000 duplicate key error'))
+        {
+          this.userExists=true
+        }
         this.snackBar.showSnackBar("Registration Failed!!")
       });
      }

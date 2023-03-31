@@ -1,10 +1,11 @@
-<app-header></app-header>
+<main style="position: relative;padding-bottom: 150px;">
+    <app-header></app-header>
     <form [formGroup]="bookingForm" class="form-container">
-        <h1 style="text-align: center;">Booking Slot</h1>
+        <h1 style="text-align: center;">Booking Slot - {{courtDetails?.name}}</h1>
         <div class="row">
             <div class="col-sm-6">
                 <mat-form-field class="full-width" appearance="outline">
-                    <mat-label>Booking Date</mat-label>
+                    <mat-label>Select Booking Date</mat-label>
                     <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" placeholder="Booking date" formControlName="bookingdate" (dateChange)="onBookingDateChange($event)"> 
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
@@ -30,4 +31,5 @@
             </div>
         </div>
     </form>
-<app-footer></app-footer>
+    <app-footer></app-footer>
+</main>

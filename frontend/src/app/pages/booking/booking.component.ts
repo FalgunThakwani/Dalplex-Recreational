@@ -23,6 +23,7 @@ export class BookingComponent implements OnInit {
   minDate: Date = new Date(this.today.getTime() + 24 * 60 * 60 * 1000);
   maxDate: Date = new Date(this.today.getTime() + 3 * 24 * 60 * 60 * 1000);
   courtDetails: any;
+  categoryDetail: any;
 
   constructor(private formBuilder: FormBuilder, private coreService: CoreService, private categoryService: CategoryService, private bookingService: BookingService, private route: Router, private activatedRoute: ActivatedRoute,private cartService:CartService) { }
 
@@ -32,22 +33,27 @@ export class BookingComponent implements OnInit {
   }
 
   onBookingDateChange(event: any) {
-    console.log(event.value);
     this.selectedDate = event.value;
     this.selectedTimeInterval = '';
-    this.allSlotsByDate$ = this.bookingService.getAllSlotsByDate(this.selectedDate);
+    this.allSlotsByDate$ = this.bookingService.getAllSlotsByDate(this.courtDetails.categoryid, this.courtDetails._id, this.selectedDate);
   }
 
   ngOnInit() {
+    this.coreService.updateMenuItems(["home", "facilities", "tournament", "aboutus"], true);
+    this.bookingForm = this.formBuilder.group({
+      bookingdate: ['', [Validators.required]]
+    });
     this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
       const id: any = params.get('id');
       this.categoryService.getCourtById(id).subscribe((data: any) => {
         this.courtDetails = data;
+        this.categoryService.getCategoryById(this.courtDetails.categoryid).subscribe((cdata: any) => {
+          this.categoryDetail = cdata;
+        });
+        this.selectedDate = this.minDate;
+        this.bookingForm?.get('bookingdate')?.setValue(this.selectedDate);
+        this.allSlotsByDate$ = this.bookingService.getAllSlotsByDate(this.courtDetails.categoryid, this.courtDetails._id, this.selectedDate);
       });
-    });
-    this.coreService.updateMenuItems(["home", "facilities", "tournament", "aboutus"], true);
-    this.bookingForm = this.formBuilder.group({
-      bookingdate: ['', [Validators.required]]
     });
   }
 
@@ -55,7 +61,9 @@ export class BookingComponent implements OnInit {
     const data = {
       userid: localStorage.getItem('userid'),
       status: 'reserve',
-      court_id:this.courtDetails._id,
+      court_img: this.categoryDetail.categoryname,
+      categoryid: this.courtDetails.categoryid,
+      court_id: this.courtDetails._id,
       program: this.courtDetails.name,
       interval: this.selectedTimeInterval,
       semester: 'n/a',
@@ -63,8 +71,8 @@ export class BookingComponent implements OnInit {
       bookingdate:this.bookingForm.get('bookingdate')?.value,
       price:this.courtDetails.price
     };
-    this.cartService.addToCart(data).subscribe((data:any)=>{
-      this.cartService.updateCount(data.items.length);
+    this.cartService.addToCart(data).subscribe((response:any)=>{
+      this.cartService.updateCount(response);
     });
 
     this.coreService.showSnackBar("Added to cart", "ok");

@@ -48,7 +48,6 @@ export class ForgotPasswordComponent implements OnInit {
 
   requestOtp() {
     const email = this.PasswordResetForm.value.email;
-    console.log(email);
     this.otpService.createOTP({email: email}).subscribe((data: any) => {
       this.service.showSnackBar("OTP Emailed Successfully!");
     });

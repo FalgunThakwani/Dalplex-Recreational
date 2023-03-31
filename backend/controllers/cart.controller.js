@@ -3,9 +3,10 @@ const User = require('../models/user.model');
 require("dotenv").config();
 
 const getCart = async (request,response)=>{
-    const {userid} = request.body;
+    const email = request.user.email;
     try{
-        let cart = await Cart.findOne({ userid: userid});
+        const user = await User.findOne({email: email});  
+        let cart = await Cart.findOne({ userid: user._id});
         let reservedItems =[];
         cart.items.forEach((item)=>{
             if(item.bookingstatus!="confirmed"){
@@ -21,9 +22,10 @@ const getCart = async (request,response)=>{
 
 
 const getItemsCount = async (request,response)=>{
-    const {userid} = request.body;
+    const email = request.user.email;
     try{
-        let cart = await Cart.findOne({ userid: userid});
+        const user = await User.findOne({email: email});   
+        let cart = await Cart.findOne({ userid: user._id});
         if(!cart){
             response.status(201).json(0)
         }else{
@@ -42,17 +44,16 @@ const getItemsCount = async (request,response)=>{
 
 
 const addToCart = async (request, response) => {
-    const { userid, program,court_id,price, interval,status,bookingdate } = request.body;
-    const court_img = "/asas";
+    const { userid, program, court_id, court_img, categoryid, price, interval, status, bookingdate } = request.body;
     const currentDate = new Date().toISOString()
-    const bookingstatus=status;
+    const bookingstatus = status;
     try {
         let user = await User.findOne({_id: userid})
         let cart = await Cart.findOne({ userid: userid});
         if (!cart) {
             cart = new Cart({
                 userid: userid,
-                username:user.firstname+user.lastname,
+                username:user.firstname + user.lastname,
                 items:[],
                 status: 'pending',
                 price:price,
@@ -65,8 +66,9 @@ const addToCart = async (request, response) => {
             });
         }
         const item = {
-            court_id:court_id,
-            court_img:court_img,
+            court_id: court_id,
+            court_img: court_img,
+            categoryid: categoryid,
             program:program,
             interval:interval,
             price:price,
@@ -78,7 +80,13 @@ const addToCart = async (request, response) => {
         cart.subTotal=item.price;
         await cart.items.push(item);   
         await cart.save();
-        response.status(201).json(cart);
+        let reservedItems =[];
+        cart.items.forEach((item)=>{
+            if(item.bookingstatus!="confirmed"){
+                reservedItems.push(item);
+            }
+        });
+        response.status(201).json(reservedItems.length)
         } catch (err) {
             console.log(err.message)
         response.status(400).json({ message: err.message });
@@ -86,13 +94,13 @@ const addToCart = async (request, response) => {
 };
 
 const deleteCart = async (request,response)=>{
-    const {id,userid} = request.params;   
-    console.log(request);
+    const {id} =request.params;
     try{
-        let cart = await Cart.findOne({ userid: userid});
+        const user = await User.findOne({email: request.user.email});   
+        let cart = await Cart.findOne({ userid: user._id});
         await cart.items.pull(id);
         await cart.save();
-        response.status(201).json(cart)
+        response.status(201).json(cart);
     } catch (err) {
         response.status(400).json({ message: err.message });
 }

@@ -18,7 +18,6 @@ export class UpcomingBookingsComponent implements OnInit {
 
   ngOnInit(): void {
     const userid=localStorage.getItem('userid')
-    console.log(userid)
     this.bookingService.getUpcomingBookings(userid).subscribe((data: any)=>{
       this.dataSource=data
     })

@@ -1,3 +1,4 @@
+// Author:Falgun Jairaj Thakwani B00932083
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -12,7 +13,6 @@ export class ListViewComponent implements OnInit {
   constructor(private cartService:CartService) {}
   ngOnInit(): void {
     this.cartService.getCart(localStorage.getItem('userid')).subscribe((data)=>{
-      console.log(data);
       this.data=data;
     })
   }

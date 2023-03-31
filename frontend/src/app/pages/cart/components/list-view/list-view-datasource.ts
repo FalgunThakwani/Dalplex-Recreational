@@ -1,3 +1,4 @@
+//Author: Falgun Jairaj Thakwani B009302083
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -31,12 +32,7 @@ export interface ListViewItem {
 }
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: ListViewItem[] = [
-  // {id: 1, name: 'BasketBall',imagePath:'../assets/bas.jpg',userName:'Falgun Jairaj Thakwani',
-  // date:'Sat, Mar 26 2023',timeStart:'7:00 am',timeEnd:'8:00 am',quantity:1,unitPrice:0.0},
-  // {id: 1, name: 'Swimming',imagePath:'../assets/swimlane.jfif',userName:'Falgun Jairaj Thakwani',
-  // date:'Sat, Mar 26 2023',timeStart:'8:30 am',timeEnd:'9:00 am',unitPrice:0.0,quantity:1},
-];
+const EXAMPLE_DATA: ListViewItem[] = [];
 
 /**
  * Data source for the ListView view. This class should
@@ -55,7 +51,6 @@ export class ListViewDataSource extends DataSource<ListViewItem> {
 
   loadDataSource(){
     this.cartService.getCart(localStorage.getItem('userid')).subscribe((data)=>{
-      console.log(data);
       this.data.userid=data.userid;
       this.data.username=data.username;
       this.data.items=data.items;

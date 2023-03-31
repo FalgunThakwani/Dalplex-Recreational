@@ -30,11 +30,8 @@ const logout = async (request, response) => {
 
 const forgotpassword=async(request,response)=>{
     const{ email,password,OTP }=request.body
-    console.log(password)
-    console.log(OTP)
     const filter = { email: request.body.email};
     const userVerification=await Verification.findOne(filter)
-    console.log(userVerification.otp)
     if(userVerification.otp===OTP){
         const hashedPassword = await bcrypt.hash(request.body.password, 10);
         User.updateOne(email,hashedPassword)

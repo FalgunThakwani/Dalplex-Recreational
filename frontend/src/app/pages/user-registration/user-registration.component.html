@@ -57,8 +57,10 @@
                     </mat-form-field>
                 </div>
                 <button type="submit" mat-flat-button color="primary">Register</button><br>
+                <mat-error *ngIf='userExists'>user already exists</mat-error>
             </form>
         </mat-card-content>
     </mat-card>
     <br>
+
     </body>

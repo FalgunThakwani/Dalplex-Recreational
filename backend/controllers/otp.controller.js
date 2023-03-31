@@ -16,7 +16,7 @@ const createVerification = async (request, response) => {
 
             const verification = new Verification({ userid: user._id, email: email, otp: otp, expdate: expiry});
             verification.save().then(data => {
-                Notification.sendEmailNotification(email, "Password Change Request", "Your OTP for password change is : " + otp)
+                Notification.sendEmailNotification(email, "Password Change Request", "otp", {otp: otp, name: user.firstname + ' ' + user.lastname})
                 response.status(201).json({message: "OTP Mailed Successfully"});
             }).catch(err => {
                 response.status(500).send({message: "Server error : " + err});

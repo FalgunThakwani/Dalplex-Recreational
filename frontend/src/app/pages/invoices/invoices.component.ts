@@ -1,9 +1,10 @@
+import { Items } from './../../interfaces/InvoiceDetails';
 import { InvoiceService } from './../../services/invoice.service';
 import { Component, OnInit } from '@angular/core';
 
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
-import { InvoiceDetails } from 'src/app/interfaces/InvoiceDetails';
+import { BillingAddress, InvoiceDetail } from 'src/app/interfaces/InvoiceDetails';
 (<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -14,17 +15,19 @@ import { InvoiceDetails } from 'src/app/interfaces/InvoiceDetails';
 export class InvoicesComponent implements OnInit {
 
   displayedColumns: string[] = ['invoice', 'date', 'total', 'paid', 'owing', 'print', 'download'];
-  dataSource!: InvoiceDetails[];
+  dataSource!: InvoiceDetail[];
 
   constructor(private invoiceService: InvoiceService) { }
 
   ngOnInit(): void {
-    this.invoiceService.getInvoiceDetails().subscribe((data) => {
-      this.dataSource = data;
+    this.invoiceService.getAllInvoices().subscribe((data: any) => {
+      const invoices = data.filter((item: any) => item.userid === localStorage.getItem('userid'));
+      this.dataSource = invoices;
     });
   }
 
-  generatePDF(action: string) {
+  generatePDF(action: string, _id: string) {
+    const invoiceData = this.dataSource.filter((item: InvoiceDetail) => item._id === _id)[0];
     let documentDefinition: any = {
       content: [
         {
@@ -57,7 +60,7 @@ export class InvoicesComponent implements OnInit {
                         alignment: 'right',
                       },
                       {
-                        text: '00001',
+                        text: invoiceData._id.substr(-5).toUpperCase(),
                         bold: true,
                         color: '#333333',
                         fontSize: 12,
@@ -77,7 +80,7 @@ export class InvoicesComponent implements OnInit {
                         alignment: 'right',
                       },
                       {
-                        text: 'June 01, 2016',
+                        text: this.getBookingDate(invoiceData.date),
                         bold: true,
                         color: '#333333',
                         fontSize: 12,
@@ -97,11 +100,11 @@ export class InvoicesComponent implements OnInit {
                         width: '*',
                       },
                       {
-                        text: 'PAID',
+                        text: invoiceData.paid == invoiceData.total ? 'PAID' : 'PENDING',
                         bold: true,
                         fontSize: 14,
                         alignment: 'right',
-                        color: 'green',
+                        color: invoiceData.paid == invoiceData.total ? 'green' : 'red',
                         width: 100,
                       },
                     ],
@@ -140,7 +143,7 @@ export class InvoicesComponent implements OnInit {
               alignment: 'left',
             },
             {
-              text: 'Client Name',
+              text: invoiceData.billingAddress.name,
               bold: true,
               color: '#333333',
               alignment: 'left',
@@ -170,7 +173,7 @@ export class InvoicesComponent implements OnInit {
               style: 'invoiceBillingAddress',
             },
             {
-              text: '2831 Some Street, Unit 2,\nHalifax, Nova Scotia,\nB3K 4P2',
+              text: this.getBillingAddress(invoiceData.billingAddress),
               style: 'invoiceBillingAddress',
             },
           ],
@@ -179,7 +182,7 @@ export class InvoicesComponent implements OnInit {
         {
           width: '100%',
           alignment: 'center',
-          text: 'Invoice No. 1111',
+          text: 'Invoice No. ' + invoiceData._id.substr(-5).toUpperCase(),
           bold: true,
           margin: [0, 10, 0, 10],
           fontSize: 15,
@@ -227,55 +230,7 @@ export class InvoicesComponent implements OnInit {
           table: {
             headerRows: 1,
             widths: ['*', 80],
-            body: [
-              [
-                {
-                  text: 'ITEM DESCRIPTION',
-                  fillColor: '#eaf2f5',
-                  border: [false, true, false, true],
-                  margin: [0, 5, 0, 5],
-                  textTransform: 'uppercase',
-                },
-                {
-                  text: 'ITEM TOTAL',
-                  border: [false, true, false, true],
-                  alignment: 'right',
-                  fillColor: '#eaf2f5',
-                  margin: [0, 5, 0, 5],
-                  textTransform: 'uppercase',
-                },
-              ],
-              [
-                {
-                  text: 'Program: Badminton Court 3',
-                  border: [false, false, false, true],
-                  margin: [0, 5, 0, 5],
-                  alignment: 'left',
-                },
-                {
-                  border: [false, false, false, true],
-                  text: '0.00',
-                  fillColor: '#f5f5f5',
-                  alignment: 'right',
-                  margin: [0, 5, 0, 5],
-                },
-              ],
-              [
-                {
-                  text: 'Program: Badminton Court 2',
-                  border: [false, false, false, true],
-                  margin: [0, 5, 0, 5],
-                  alignment: 'left',
-                },
-                {
-                  text: '0.00',
-                  border: [false, false, false, true],
-                  fillColor: '#f5f5f5',
-                  alignment: 'right',
-                  margin: [0, 5, 0, 5],
-                },
-              ],
-            ],
+            body: this.getBookingdata(invoiceData.items),
           },
         },
         '\n',
@@ -330,7 +285,7 @@ export class InvoicesComponent implements OnInit {
                 },
                 {
                   border: [false, true, false, true],
-                  text: '$0.00',
+                  text: this.formatCurrency(invoiceData.subTotal),
                   alignment: 'right',
                   fillColor: '#f5f5f5',
                   margin: [0, 5, 0, 5],
@@ -338,13 +293,13 @@ export class InvoicesComponent implements OnInit {
               ],
               [
                 {
-                  text: 'Payment Processing Fee',
+                  text: 'HST 15.000 %',
                   border: [false, false, false, true],
                   alignment: 'right',
                   margin: [0, 5, 0, 5],
                 },
                 {
-                  text: '$0.00',
+                  text: this.formatCurrency(invoiceData.tax),
                   border: [false, false, false, true],
                   fillColor: '#f5f5f5',
                   alignment: 'right',
@@ -361,7 +316,7 @@ export class InvoicesComponent implements OnInit {
                   margin: [0, 5, 0, 5],
                 },
                 {
-                  text: 'USD $0.00',
+                  text: this.formatCurrency(parseFloat(invoiceData.total)),
                   bold: true,
                   fontSize: 20,
                   alignment: 'right',
@@ -401,6 +356,62 @@ export class InvoicesComponent implements OnInit {
     } else {
       pdfMake.createPdf(documentDefinition).open();
     }
+  }
+
+  getBookingDate(dateString: string) {
+    const date = new Date(dateString);
+    const bookingDate = `${date.toLocaleString('default', { month: 'short' })}-${date.getDate()}-${date.getFullYear()}`;
+    return bookingDate;
+  }
+
+  getBillingAddress(billingAddress: BillingAddress) {    
+    const formattedAddress = `${billingAddress.street}, ${billingAddress.apt},\n${billingAddress.city}, ${billingAddress.province},\n${billingAddress.postal}`;
+    return formattedAddress;
+  }
+
+  formatCurrency(amount: any) {
+    return parseFloat(amount).toLocaleString("en-US", { style: "currency", currency: "USD" });
+  }
+
+  getBookingdata(items: Items[]) {
+    let bookingData = [];
+    bookingData.push([
+      {
+        text: 'ITEM DESCRIPTION',
+        fillColor: '#eaf2f5',
+        border: [false, true, false, true],
+        margin: [0, 5, 0, 5],
+        textTransform: 'uppercase',
+      },
+      {
+        text: 'ITEM TOTAL',
+        border: [false, true, false, true],
+        alignment: 'right',
+        fillColor: '#eaf2f5',
+        margin: [0, 5, 0, 5],
+        textTransform: 'uppercase',
+      },
+    ]);
+
+    items.forEach((element: Items) => {
+      let item = [];
+      item.push({
+        text: element.program,
+        border: [false, false, false, true],
+        margin: [0, 5, 0, 5],
+        alignment: 'left',
+      });
+      item.push({
+        border: [false, false, false, true],
+        text: this.formatCurrency(parseFloat(element.price)),
+        fillColor: '#f5f5f5',
+        alignment: 'right',
+        margin: [0, 5, 0, 5],
+      });
+      bookingData.push(item);
+    });
+
+    return bookingData;
   }
 
 }

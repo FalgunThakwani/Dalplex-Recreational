@@ -22,19 +22,21 @@ export class HeaderComponent implements OnInit {
     this.coreService.getMenuItems().subscribe((data) => {
       this.menuItems = data;
     });
-    this.cartService.getItemsCount({"userid":localStorage.getItem('userid')}).subscribe((data)=>{
-      this.cartService.updateCount(data);
-    })
-    this.cartService.count$.subscribe(
-      (count) => {
-        this.count = count;
-      }
-    );
+    if(localStorage.getItem('userid')) {
+      this.cartService.getItemsCount({"userid":localStorage.getItem('userid')}).subscribe((data)=>{
+        this.cartService.updateCount(data);
+      })
+      this.cartService.count$.subscribe(
+        (count) => {
+          this.count = count;
+        }
+      );
+    }
   }
 
   logout() {
     this.userService.logout().subscribe((data) => {
-      localStorage.removeItem('token');
+      localStorage.removeItem('sessiontoken');
       localStorage.removeItem('userid');
       localStorage.removeItem('role');
       this.router.navigate(['/landing']);
