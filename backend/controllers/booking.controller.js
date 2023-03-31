@@ -25,7 +25,7 @@ const getBookings = async (request, response) => {
 const getBookingSlots = async (request, response) => {
     try {
         const bookings = await Booking.find();
-        const bookedSlots = bookings.filter((item) => item.status == 'booked');
+        const bookedSlots = bookings.filter((item) => item.status == 'confirmed');
         
         let timeIntervals = [];
         const today = new Date();
@@ -71,7 +71,7 @@ const getBookingSlotsByDate = async (request, response) => {
     const { date } = request.params;
     try {
         const bookings = await Booking.find();
-        const bookedSlots = bookings.filter((item) => item.status == 'booked');
+        const bookedSlots = bookings.filter((item) => item.status == 'confirmed');
         
         let timeIntervals = [];
         const today = new Date();

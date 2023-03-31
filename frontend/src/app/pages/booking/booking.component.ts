@@ -32,7 +32,6 @@ export class BookingComponent implements OnInit {
   }
 
   onBookingDateChange(event: any) {
-    console.log(event.value);
     this.selectedDate = event.value;
     this.selectedTimeInterval = '';
     this.allSlotsByDate$ = this.bookingService.getAllSlotsByDate(this.selectedDate);
