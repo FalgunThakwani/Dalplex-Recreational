@@ -1,11 +1,10 @@
 <!--Author: Falgun Jairaj Thakwani B009302083-->
 <app-header></app-header>
 <div class="container mat-elevation-z8">
-  <mat-spinner *ngIf="!isLoading"></mat-spinner>
-
-  
+  <div *ngIf="isLoading" class="spinner-container">
+    <mat-spinner ></mat-spinner>
+  </div>
   <ng-container *ngIf="data.items.length>0;else noItems">
-
 <div class="cartTable">
   <table mat-table [dataSource]="data.items">
 
