@@ -4,8 +4,11 @@
     <mat-form-field appearance="fill" class="filter">
       <mat-label>Sports</mat-label>
       <mat-select [(ngModel)]="selectedSport" name="sport" (selectionChange) = "applyfilter()">
-        <mat-option *ngFor="let sport of sports" [value]="sport.value">
-          {{sport.viewValue}}
+        <mat-option value="">
+          Select
+        </mat-option>
+        <mat-option *ngFor="let sport of sportsCategoryDetails" [value]="sport._id">
+          {{sport.categoryname}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -14,6 +17,9 @@
     <!-- 6 -->
     <div class="grid-container">
     <mat-grid-list #grid [cols]="cols" gutterSize="20px" rowHeight="250">
+      <div *ngIf="dataSource.length==0">
+        No Teams available for selected category
+      </div>
         <mat-grid-tile *ngFor="let card of dataSource">
             <!-- 7 -->
             <mat-card class="card">

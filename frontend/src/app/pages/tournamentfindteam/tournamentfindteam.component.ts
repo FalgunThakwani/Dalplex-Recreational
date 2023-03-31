@@ -2,26 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { TournamentFindTeam } from 'src/app/interfaces/TournamentFindTeam';
 import { TournamentfindteamService } from 'src/app/services/tournamentfindteam.service';
-
-let cards1 = [
-  {"title":"Team 1", "subtitle":"Sport 1", "id":"1", 
-  "desc" : 'Team has 8 members in total. We are looking for 4 more memebers. We usually play every day', 
-  "reqState" : 'Request', "sport":"s1"},
-  {"title":"Team 2", "subtitle":"Sport 2", "id":"2", 
-  "desc" : 'Team has 5 members in total. We are looking for 5 more memebers. We usually play every Sunday', 
-   "reqState" : 'Request', "sport":"s2"},
-  {"title":"Team 3", "subtitle":"Sport 3", "id":"3", 
-  "desc" : 'Team has 4 members in total. We are looking for 2 more memebers. We usually play every Weekend', 
-   "reqState" : 'Request', "sport":"s3"},
-  {"title":"Team 4", "subtitle":"Sport 1", "id":"4", 
-  "desc" : 'Team has 2 members in total. We are looking for 4 more memebers. We are actually new to halifax', 
-   "reqState" : 'Request', "sport":"s2"},
-  {"title":"Team 5", "subtitle":"Sport 4", "id":"5", 
-  "desc" : 'Team has 4 members in total. We are looking for 2 more memebers. We usually play every Weekend', 
-   "reqState" : 'Request', "sport":"s1"},
-  {"title":"Team 6", "subtitle":"Sport 2", "id":"6", 
-  "desc" : 'Team has 4 members in total. We are looking for 2 more memebers. We usually play every Weekend', 
-   "reqState" : 'Request', "sport":"s3"},];
+import { SportsCategory } from 'src/app/interfaces/SportsCategory';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-tournamentfindteam',
@@ -31,6 +13,7 @@ let cards1 = [
 export class TournamentfindteamComponent implements OnInit {
 
   cards!: TournamentFindTeam[];
+  sportsCategoryDetails!: SportsCategory[];
 
   cols! : number;
 
@@ -44,7 +27,9 @@ export class TournamentfindteamComponent implements OnInit {
 
 
   constructor(private breakpointObserver: BreakpointObserver,
-    private tournamentfindteamService: TournamentfindteamService) {
+    private tournamentfindteamService: TournamentfindteamService,
+    private categoryService: CategoryService) {
+
     this.breakpointObserver.observe([
       Breakpoints.XSmall,
       Breakpoints.Small,
@@ -75,6 +60,7 @@ export class TournamentfindteamComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAlltournamentfindteamData();
+    this.getSports();
   }
 
   getAlltournamentfindteamData() {
@@ -84,14 +70,13 @@ export class TournamentfindteamComponent implements OnInit {
     });
   }
 
+  getSports(){
+    this.categoryService.getAllSportsCategory().subscribe((data) => {
+      this.sportsCategoryDetails = data;
+    });
+  }
+
   selectedSport!: string;
-  
-  sports = [
-    {value: '', viewValue: 'Select'},
-    {value: 's1', viewValue: 'Sports1'},
-    {value: 's2', viewValue: 'Sports2'},
-    {value: 's3', viewValue: 'Sports3'},
-  ];
 
   dataSource = this.cards;
 

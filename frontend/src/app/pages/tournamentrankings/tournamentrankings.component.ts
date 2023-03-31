@@ -1,7 +1,11 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { SportsCategory } from 'src/app/interfaces/SportsCategory';
+import { Tournament } from 'src/app/interfaces/Tournament';
 import { TournamentRanking } from 'src/app/interfaces/TournamentRanking';
+import { CategoryService } from 'src/app/services/category.service';
 import { TournamentRankingsService } from 'src/app/services/tournament-rankings.service';
+import { TournamentService } from 'src/app/services/tournament.service';
 
 @Component({
   selector: 'app-tournamentrankings',
@@ -18,10 +22,18 @@ import { TournamentRankingsService } from 'src/app/services/tournament-rankings.
 export class TournamentrankingsComponent implements OnInit {
 
   RANKING_DATA!: TournamentRanking[];
-  constructor(private tournamentRankingService: TournamentRankingsService) { }
+  sportsCategoryDetails!: SportsCategory[];
+  tournaments!: Tournament[];
+  
+  constructor(private tournamentRankingService: TournamentRankingsService,
+    private categoryService: CategoryService,
+    private tournamentService: TournamentService) { }
 
   ngOnInit(): void {
     this.getAlltournamentRankingsData();
+    this.getSports();
+    this.getTournaments();
+    this.applyfilter();
   }
 
   getAlltournamentRankingsData() {
@@ -30,30 +42,20 @@ export class TournamentrankingsComponent implements OnInit {
     });
   }
 
+  getSports(){
+    this.categoryService.getAllSportsCategory().subscribe((data) => {
+      this.sportsCategoryDetails = data;
+    });
+  }
+
+  getTournaments(){
+    this.tournamentService.getAlltournament().subscribe((data) => {
+      this.tournaments = data;
+    });
+  }
+
   selectedTournament!: string ;
   selectedSport!: string ;
-  // selectedMatch!: string ;
-
-  tournaments = [
-    {value: '', viewValue: 'Select'},
-    {value: 't1', viewValue: 'Tournaments1'},
-    {value: 't2', viewValue: 'Tournaments2'},
-    {value: 't3', viewValue: 'Tournaments3'},
-  ];
-
-  sports = [
-    {value: '', viewValue: 'Select'},
-    {value: 's1', viewValue: 'Sports1'},
-    {value: 's2', viewValue: 'Sports2'},
-    {value: 's3', viewValue: 'Sports3'},
-  ];
-
-  // matches = [
-  //   {value: '', viewValue: 'Select'},
-  //   {value: 'm1', viewValue: 'Match1'},
-  //   {value: 'm2', viewValue: 'Match2'},
-  //   {value: 'm3', viewValue: 'Match3'},
-  // ];
   
   // 5
   columns = [
@@ -102,44 +104,3 @@ export class TournamentrankingsComponent implements OnInit {
 
 }
 
-
-
-const RANKING_DATA1 = [
- 
-  {
-    tournament:"t1",
-    sport:"s1",
-    match:"m2",
-    position: 2,
-    name: 'Team 2',
-    winrate: 90,
-    score: '0-1-4-4'
-  },
-  {
-    tournament:"t1",
-    sport:"s3",
-    match:"m1",
-    position: 3,
-    name: 'Team 5',
-    winrate: 85,
-    score: '1-0-0-1'
-  },
-  {
-    tournament:"t2",
-    sport:"s1",
-    match:"m1",
-    position: 4,
-    name: 'Team 6',
-    winrate: 80,
-    score: '1-0-2-0'
-  },
-  {
-    tournament:"t2",
-    sport:"s2",
-    match:"m2",
-    position: 5,
-    name: 'Team 4',
-    winrate: 50,
-    score: '0-0-1-0'
-  }
-];

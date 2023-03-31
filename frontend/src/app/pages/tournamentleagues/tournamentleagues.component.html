@@ -4,8 +4,11 @@
     <mat-form-field appearance="fill" class="filter">
       <mat-label>Sport</mat-label>
       <mat-select [(ngModel)]="selectedSport" name="sport" (selectionChange) = "applyfilter()">
-        <mat-option *ngFor="let sport of sports" [value]="sport.value">
-          {{sport.viewValue}}
+        <mat-option value="">
+          Select
+        </mat-option>
+        <mat-option *ngFor="let sport of sportsCategoryDetails" [value]="sport._id">
+          {{sport.categoryname}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -13,7 +16,6 @@
     
 <!-- 5 -->
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  
       <!-- Id Column -->
       <!-- <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> No. </th>
@@ -47,5 +49,8 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    <div class="error" *ngIf="dataSource.length==0">
+      No data available for selected category
+    </div>
   <!-- 5 -->
   <app-footer></app-footer>

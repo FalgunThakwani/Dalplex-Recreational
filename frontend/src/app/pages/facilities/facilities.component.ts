@@ -4,37 +4,6 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { FacilitiesService } from 'src/app/services/facilities.service';
 import { Facility } from 'src/app/interfaces/Facilities';
 
-let facilities1 = [
-  {    "title":"Cardio 1", "subtitle":"Fitness", "id":"1", "occ":"10", "state" : 'hours', "desc" : 'hours',   
-      "foot": "100", "w":["", "10:00 to 15:00", "10:00 to 15:00", "10:00 to 15:00"
-      , "10:00 to 15:00", "10:00 to 15:00", "10:00 to 15:00"],"img":"assets/cardio1.png"},
-  // {    "title":"Cardio 1", "subtitle":"Fitness", "id":"1", "occ":"10", "state" : 'hours', "desc" : 'hours',   
-      // "foot": "100", "w1":"", "w2":"10:00 to 15:00", "w3":"10:00 to 15:00", "w4":"10:00 to 15:00"
-      // , "w5":"10:00 to 15:00", "w6":"10:00 to 15:00", "w7":"10:00 to 15:00","img":"assets/cardio1.png"},
-  // {    "title":"Pool 1", "subtitle":"Adults Pool", "id":"2", "occ":"20", "state" : 'hours', "desc" : 'hours',   
-  //     "foot": "50", "w1":"10:00 to 15:00", "w2":"", "w3":"10:00 to 15:00", "w4":"10:00 to 15:00"
-  //     , "w5":"10:00 to 15:00", "w6":"10:00 to 15:00", "w7":"10:00 to 15:00","img":"assets/pool.png"},
-  // {    "title":"Weight Room 1", "subtitle":"Gymnasium", "id":"3", "occ":"30", "state" : 'hours', "desc" : 'hours',   
-  //     "foot": "200", "w1":"10:00 to 15:00", "w2":"10:00 to 15:00", "w3":"", "w4":"10:00 to 15:00"
-  //     , "w5":"10:00 to 15:00", "w6":"10:00 to 15:00", "w7":"10:00 to 15:00","img":"assets/weights.png"},
-  // {    "title":"Main Court 1", "subtitle":"Field House", "id":"4", "occ":"25", "state" : 'hours', "desc" : 'hours',   
-  //     "foot": "150", "w1":"", "w2":"10:00 to 15:00", "w3":"10:00 to 15:00", "w4":"10:00 to 15:00"
-  //     , "w5":"10:00 to 15:00", "w6":"10:00 to 15:00", "w7":"10:00 to 15:00","img":"assets/court1.png"},
-  // {    "title":"Track", "subtitle":"Running", "id":"5", "occ":"10", "state" : 'hours', "desc" : 'hours',   
-  //     "foot": "100", "w1":"", "w2":"10:00 to 15:00", "w3":"10:00 to 15:00", "w4":"10:00 to 15:00"
-  //     , "w5":"10:00 to 15:00", "w6":"10:00 to 15:00", "w7":"10:00 to 15:00","img":"assets/track1.png"},
-  // {    "title":"Main Court 2", "subtitle":"Field House", "id":"6", "occ":"20", "state" : 'hours', "desc" : 'hours',   
-  //     "foot": "50", "w1":"10:00 to 15:00", "w2":"", "w3":"10:00 to 15:00", "w4":"10:00 to 15:00"
-  //     , "w5":"10:00 to 15:00", "w6":"10:00 to 15:00", "w7":"10:00 to 15:00","img":"assets/court1.png"},
-  // {    "title":"Pool 2", "subtitle":"Kids Pool", "id":"7", "occ":"30", "state" : 'hours', "desc" : 'hours',   
-  //     "foot": "200", "w1":"10:00 to 15:00", "w2":"10:00 to 15:00", "w3":"", "w4":"10:00 to 15:00"
-  //     , "w5":"10:00 to 15:00", "w6":"10:00 to 15:00", "w7":"10:00 to 15:00","img":"assets/pool1.png"},
-  // {    "title":"Dance Studio", "subtitle":"Studio", "id":"8", "occ":"25", "state" : 'hours', "desc" : 'hours',   
-  //     "foot": "150", "w1":"", "w2":"10:00 to 15:00", "w3":"10:00 to 15:00", "w4":"10:00 to 15:00"
-  //     , "w5":"10:00 to 15:00", "w6":"10:00 to 15:00", "w7":"10:00 to 15:00","img":"assets/dance.png"},
-  ]
-
-
 @Component({
   selector: 'app-facilities',
   templateUrl: './facilities.component.html',
@@ -71,7 +40,6 @@ export class FacilitiesComponent implements OnInit {
     sm: 2,
     xs: 1
   }
-
 
   constructor(private breakpointObserver: BreakpointObserver, private facilitiesService: FacilitiesService) {
     this.breakpointObserver.observe([
@@ -112,17 +80,11 @@ export class FacilitiesComponent implements OnInit {
     });
   }
 
-  
-
-
   toggle(index:number): void {  
  
-    
     this.facilities.find(item => item._id == index)!.state = 
     this.facilities.find(item => item._id == index)!.state === 'hours' ? 'details' : 'hours';
-    
-    
-
+  
     this.facilities.find(item => item._id == index)!.desc = 
     this.facilities.find(item => item._id == index)!.desc === 'hours' ? 'details' : 'hours';
 

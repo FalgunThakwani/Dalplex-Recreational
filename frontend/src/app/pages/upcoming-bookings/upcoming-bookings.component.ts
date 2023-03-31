@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UpcomingBookingsDetails } from 'src/app/interfaces/UpcomingBookings';
+import { UserService } from 'src/app/services/user.service';
+import { BookingDetails } from 'src/app/interfaces/BookingDetails';
+import { BookingService } from 'src/app/services/booking.service';
 
 @Component({
   selector: 'app-upcoming-bookings',
@@ -9,14 +12,16 @@ import { UpcomingBookingsDetails } from 'src/app/interfaces/UpcomingBookings';
 export class UpcomingBookingsComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'program', 'date', 'registeredOn', 'status'];
-  dataSource: UpcomingBookingsDetails[] = [
-    {id: '1', program: 'Badminton Court 3', date: 'Fri, Mar 10 2023', registeredOn: 'Sat, Feb 25 2023 11:04 PM', status: 'Booked'},
-    {id: '2', program: 'Badminton Court 1', date: 'Sat, Mar 21 2023', registeredOn: 'Fri, Feb 25 2023 5:41 PM', status: 'Booked'}
-  ];
+  dataSource: BookingDetails[]=[]
 
-  constructor() { }
+  constructor(private bookingService: BookingService) { }
 
   ngOnInit(): void {
+    const userid=localStorage.getItem('userid')
+    console.log(userid)
+    this.bookingService.getUpcomingBookings(userid).subscribe((data: any)=>{
+      this.dataSource=data
+    })
   }
 
 }

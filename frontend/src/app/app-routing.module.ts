@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'booking/:id', component: BookingComponent, canActivate: [AuthGuard] },
   { path: 'login', component: UserLoginComponent },
   { path: 'register', component: UserRegistrationComponent },
-  { path: 'upcomingbookings', component: UpcomingBookingsComponent, canActivate: [AuthGuard] },
+  { path: 'upComingBookings', component: UpcomingBookingsComponent, canActivate: [AuthGuard] },
   { path: 'landing', component: UserLandingPageComponent },
   { path: 'facilities', component: FacilitiesComponent, canActivate: [AuthGuard] },
   { path: 'trank', component: TournamentrankingsComponent, canActivate: [AuthGuard] },

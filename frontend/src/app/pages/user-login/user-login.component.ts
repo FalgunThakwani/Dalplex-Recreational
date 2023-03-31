@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CoreService } from 'src/app/services/core.service';
 
 @Component({
   selector: 'app-user-login',
@@ -14,7 +15,7 @@ export class UserLoginComponent implements OnInit {
   loginForm!: FormGroup;
   hide: boolean = true;
 
-  constructor(private router: Router, private userService: UserService) {
+  constructor(private router: Router, private userService: UserService,private snackBar: CoreService) {
   }
 
   ngOnInit(): void {
@@ -34,7 +35,10 @@ export class UserLoginComponent implements OnInit {
         localStorage.setItem('role', data.role);
         this.router.navigate(['/categories']);
       }
-    }, (err: HttpErrorResponse) => {console.log(err);});
+    }, (err: HttpErrorResponse) => {
+      this.snackBar.showSnackBar("Enter the right credentials");
+      console.log(err);
+    });
   }
 
 }
