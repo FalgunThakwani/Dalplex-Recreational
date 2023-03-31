@@ -51,7 +51,6 @@ export class ListViewDataSource extends DataSource<ListViewItem> {
 
   loadDataSource(){
     this.cartService.getCart(localStorage.getItem('userid')).subscribe((data)=>{
-      console.log(data);
       this.data.userid=data.userid;
       this.data.username=data.username;
       this.data.items=data.items;

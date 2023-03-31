@@ -13,7 +13,6 @@ export class ListViewComponent implements OnInit {
   constructor(private cartService:CartService) {}
   ngOnInit(): void {
     this.cartService.getCart(localStorage.getItem('userid')).subscribe((data)=>{
-      console.log(data);
       this.data=data;
     })
   }

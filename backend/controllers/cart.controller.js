@@ -44,20 +44,16 @@ const getItemsCount = async (request,response)=>{
 
 
 const addToCart = async (request, response) => {
-    const { userid, program,court_id,price, interval,status,bookingdate } = request.body;
-    const court_img = program.substring(0,program.indexOf(" ")).toLowerCase();
-    console.log(court_img);
-    console.log(program);
-    console.log(program.indexOf(" "));
+    const { userid, program, court_id, court_img, categoryid, price, interval, status, bookingdate } = request.body;
     const currentDate = new Date().toISOString()
-    const bookingstatus=status;
+    const bookingstatus = status;
     try {
         let user = await User.findOne({_id: userid})
         let cart = await Cart.findOne({ userid: userid});
         if (!cart) {
             cart = new Cart({
                 userid: userid,
-                username:user.firstname+user.lastname,
+                username:user.firstname + user.lastname,
                 items:[],
                 status: 'pending',
                 price:price,
@@ -70,8 +66,9 @@ const addToCart = async (request, response) => {
             });
         }
         const item = {
-            court_id:court_id,
-            court_img:court_img,
+            court_id: court_id,
+            court_img: court_img,
+            categoryid: categoryid,
             program:program,
             interval:interval,
             price:price,

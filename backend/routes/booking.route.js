@@ -7,8 +7,8 @@ const Auth = require('../middleware/auth');
 router.post('/', BookingController.createBooking);
 router.get('/', Auth.verifyToken, BookingController.getBookings);
 //router.get('/:id', Auth.verifyToken, BookingController.getBookingById);
-router.get('/slot', Auth.verifyToken, BookingController.getBookingSlots);
-router.get('/slot/:date', Auth.verifyToken, BookingController.getBookingSlotsByDate);
+router.get('/slot/:id/:courtid', Auth.verifyToken, BookingController.getBookingSlots);
+router.get('/slot/:id/:courtid/:date', Auth.verifyToken, BookingController.getBookingSlotsByDate);
 router.patch('/:id', Auth.verifyToken, BookingController.updateBooking);
 router.delete('/', Auth.verifyToken, BookingController.deleteBooking);
 router.get('/:id',BookingController.upComingBookings)

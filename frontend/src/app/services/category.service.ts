@@ -30,6 +30,10 @@ export class CategoryService {
     return this.http.post(this.categoryApiUrl, data, this.getHeader());
   }
 
+  getCategoryById(id: string) : Observable<any> {
+    return this.http.get(this.categoryApiUrl + '/' + id, this.getHeader());
+  }
+
   getAllCourts() : Observable<any> {
     return this.http.get(this.categoryCourtApiurl, this.getHeader());
   }

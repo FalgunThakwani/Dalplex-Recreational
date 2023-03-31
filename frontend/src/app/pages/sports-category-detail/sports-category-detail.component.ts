@@ -44,7 +44,6 @@ export class SportsCategoryDetailComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result) {
-        console.log(result);
         const data = { categoryid: this.categoryID, court: result.courtnumber, name: result.name, description: result.description, price: result.price };
         this.categoryService.addNewCourt(data).subscribe((data: any) => {
           this.coreService.showSnackBar('New court detail added successfully');

@@ -16,9 +16,9 @@ const makePayment = async (request, response) => {
         const bookings = [];
         for (let i = 0; i < cart.items.length; i++) {
             let item=cart.items[i];
-            let bookingExists = await Booking.findOne({ userid: cart.userid, interval: item.interval, program: item.program, registeredon: item.bookingdate, status: "confirmed", semester: "NA" });
+            let bookingExists = await Booking.findOne({ userid: cart.userid, categoryid: item.categoryid, courtid: item.court_id, interval: item.interval, program: item.program, registeredon: item.bookingdate, status: "confirmed", semester: "NA" });
             if (!bookingExists) {
-                const booking = new Booking({ userid: cart.userid, interval: item.interval, program: item.program, registeredon: item.bookingdate, status: "confirmed", semester: "NA" });
+                const booking = new Booking({ userid: cart.userid, categoryid: item.categoryid, courtid: item.court_id, interval: item.interval, program: item.program, registeredon: item.bookingdate, status: "confirmed", semester: "NA" });
                 bookings.push(booking);
             }
         }
@@ -33,14 +33,10 @@ const makePayment = async (request, response) => {
         cart.status = "Complete";
         
 
-        let message="Your booking is confirmed for ";
+        let message="<p><strong>Your booking is confirmed for:</strong></p>";
         let subject="Booking Confirmed";
         cart.items.forEach((item)=>{
-            message+=item.program;
-            message+=" ";
-            message+=item.interval;
-            message+=" ";
-            message+=format(item.bookingdate, 'EEE, MMM d, y');
+            message += '<p>' + item.program + ' ' + item.interval + ' ' + format(item.bookingdate, 'EEE, MMM d, y') + '</p>';
         });
 
         let invoice = new Invoice({

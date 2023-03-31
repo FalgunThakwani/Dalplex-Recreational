@@ -13,7 +13,7 @@ const sendEmailNotification = (email, subject, body) => {
     from: process.env.EMAIL,
     to: email,
     subject: subject,
-    text: body,
+    html: body
   };
 
   transporter.sendMail(mailOptions, (err, info) => {

@@ -2,9 +2,9 @@ const Booking = require('../models/bookings.model');
 require("dotenv").config();
 
 const createBooking = async (request, response) => {
-    const { userid, program, interval, semester, registeredon, status } = request.body;
+    const { userid, categoryid, courtid, program, interval, semester, registeredon, status } = request.body;
 
-    const booking = new Booking({ userid, program, interval, semester, registeredon, status });
+    const booking = new Booking({ userid, categoryid, courtid, program, interval, semester, registeredon, status });
     try {
         await booking.save();
         response.status(201).json(booking);
@@ -23,9 +23,10 @@ const getBookings = async (request, response) => {
 };
 
 const getBookingSlots = async (request, response) => {
+    const { id, courtid } = request.params;
     try {
         const bookings = await Booking.find();
-        const bookedSlots = bookings.filter((item) => item.status == 'confirmed');
+        const bookedSlots = bookings.filter((item) => item.status == 'confirmed' && item.categoryid == id && item.courtid == courtid);
         
         let timeIntervals = [];
         const today = new Date();
@@ -68,10 +69,10 @@ const getBookingSlots = async (request, response) => {
 };
 
 const getBookingSlotsByDate = async (request, response) => {
-    const { date } = request.params;
+    const { id, date, courtid } = request.params;
     try {
         const bookings = await Booking.find();
-        const bookedSlots = bookings.filter((item) => item.status == 'confirmed');
+        const bookedSlots = bookings.filter((item) => item.status == 'confirmed' && item.categoryid == id && item.courtid == courtid);
         
         let timeIntervals = [];
         const today = new Date();
@@ -145,6 +146,8 @@ const updateBooking = async (request, response) => {
   const { id } = request.params;
   const updates = {
     userid: request.body.userid, 
+    categoryid: request.body.categoryid,
+    courtid: request.body.courtid,
     program: request.body.program, 
     interval: request.body.interval, 
     semester: request.body.semester, 
@@ -164,13 +167,10 @@ const updateBooking = async (request, response) => {
 };
 const upComingBookings = async (request, response) => {
     try {
-        const userid = request.params
-        console.log(userid)
-        const bookings = Booking.find({userid: userid.id})
-        console.log(bookings)
+        const userid = request.params;
+        const bookings = Booking.find({userid: userid.id});
         const currentDate=new Date()
-        const upComingBookings= (await bookings).filter(item=> new Date(item.registeredon)>=currentDate)
-        console.log(upComingBookings)
+        const upComingBookings= (await bookings).filter(item=> new Date(item.registeredon)>=currentDate);
         response.json(upComingBookings);
     } catch (err) {
         response.status(500).json({ message: err.message });

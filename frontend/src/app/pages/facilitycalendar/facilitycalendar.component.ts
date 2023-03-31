@@ -24,16 +24,13 @@ export class FacilitycalendarComponent implements OnInit {
   ngOnInit(): void {
     this.id=this._Activatedroute.snapshot.paramMap.get("id");
     this.selectedFacility =this.id;
-    this.getAllFacilitiesData();  
-    console.log("mow1");
-    console.log(new Date().toISOString().split('T')[0])
+    this.getAllFacilitiesData();
   }
 
   getAllFacilitiesData() {
     this.facilitiesService.getAllFacilities().subscribe((data: Facility[]) => {
       this.facilities = data;
       this.applyfilter();
-      console.log("mow2");
     });
   }
 
@@ -52,7 +49,6 @@ export class FacilitycalendarComponent implements OnInit {
     } else {
       this.dataSource = this.facilities;
     }
-    console.log(this.dataSource)
    }
 
 }

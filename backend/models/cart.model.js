@@ -6,6 +6,7 @@ const cartSchema = new mongoose.Schema({
   items:[{
     court_id:{ type: String, required: true },
     court_img:{ type: String, required: true },
+    categoryid: { type: String, required: true },
     program:{ type: String, required: true },
     interval: { type: String, required: true },
     price: { type: String, required: true },
