@@ -1,3 +1,4 @@
+// Author:Falgun Jairaj Thakwani B00932083
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -25,11 +26,11 @@ export class CartService {
   }
 
   getCart(data:any): Observable<any> {
-    return this.http.post(this.cartApiUrl+"/getCart", data, this.getHeader());
+    return this.http.get(this.cartApiUrl+"/getCart", this.getHeader());
   }
 
   getItemsCount(data:any): Observable<any> {
-    return this.http.post(this.cartApiUrl+"/getItemsCount", data, this.getHeader());
+    return this.http.get(this.cartApiUrl+"/getItemsCount", this.getHeader());
   }
 
   addToCart(data: any) : Observable<any> {
@@ -37,7 +38,7 @@ export class CartService {
   }
 
   deleteFromCart(data:any): Observable<any> {
-    return this.http.delete(this.cartApiUrl+"/deleteFromCart/"+ data.id+"/"+data.userid, this.getHeader());
+    return this.http.delete(this.cartApiUrl+"/deleteFromCart/"+ data.id, this.getHeader());
   }
 
   updateCount(newCount: number) {

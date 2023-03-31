@@ -63,8 +63,8 @@ export class BookingComponent implements OnInit {
       bookingdate:this.bookingForm.get('bookingdate')?.value,
       price:this.courtDetails.price
     };
-    this.cartService.addToCart(data).subscribe((data:any)=>{
-      this.cartService.updateCount(data.items.length);
+    this.cartService.addToCart(data).subscribe((response:any)=>{
+      this.cartService.updateCount(response);
     });
 
     this.coreService.showSnackBar("Added to cart", "ok");

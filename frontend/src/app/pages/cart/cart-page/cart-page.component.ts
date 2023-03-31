@@ -1,3 +1,4 @@
+//Author: Falgun Jairaj Thakwani B009302083
 import { CoreService } from './../../../services/core.service';
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';

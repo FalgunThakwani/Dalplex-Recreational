@@ -6,10 +6,11 @@
     <h2 class="success" style="color:green">Payment Successfull</h2>
   </div>
   <div class="middle-message">
-    <h3>Hello {{username}},</h3>
+    <!-- <h3>Hello {{username}},</h3> -->
   </div>
   <div class="sub-message">
-    <h4>Thank you for your payment of $0.0 on Feb 25, 2023 using card XXX33.</h4>
+    <br>
+    <h4>Thank you for your payment of $0.0 on {{date|date:"MMM d YYYY"}}.</h4>
   </div>
   <div class="booking-card">
   <mat-grid-list #grid [cols]="3" rowHeight="200px" gutterSize="40px"  >
@@ -19,10 +20,9 @@
       <mat-card-title>Booking details</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <p>Name: {{booking.name }}</p>
-      <p>Date: {{booking.date}}</p>
-      <p>Time: {{booking.time}}</p>
-      <p>Sport: {{booking.sport}}t</p>
+      <p>Court: {{booking.program }}</p>
+      <p>Time: {{booking.interval}}</p>
+      <p>Date: {{booking.bookingdate|date:"MMM d YYYY"}}</p>
     </mat-card-content>
   </mat-card>
   </mat-grid-tile>

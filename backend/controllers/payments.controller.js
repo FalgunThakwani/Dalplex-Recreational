@@ -2,14 +2,17 @@ const Cart = require('../models/cart.model');
 const Booking = require('../models/bookings.model');
 const Notification = require('../utils/EmailHelper');
 const User = require('../models/user.model')
+const Invoice = require('../models/invoice.model')
 const { format } = require('date-fns');
 require("dotenv").config();
 
 const makePayment = async (request, response) => {
-    const { userid } = request.body;
+    const { name,streetNumber,aptNumber,city,province,pincode,card } = request.body;
+    const email=request.user.email;
     try {
-        let cart = await Cart.findOne({ userid: userid });
-        let user = await User.findOne({ _id: userid })
+        let user = await User.findOne({email: email });
+        let cart = await Cart.findOne({ userid: user._id });
+
         const bookings = [];
         for (let i = 0; i < cart.items.length; i++) {
             let item=cart.items[i];
@@ -23,11 +26,13 @@ const makePayment = async (request, response) => {
             await booking.save();
         });
         await Promise.all(promises);
+
         cart.items.forEach((item) => {
             item.bookingstatus = "confirmed";
         });
         cart.status = "Complete";
-        await cart.save();
+        
+
         let message="Your booking is confirmed for ";
         let subject="Booking Confirmed";
         cart.items.forEach((item)=>{
@@ -37,9 +42,37 @@ const makePayment = async (request, response) => {
             message+=" ";
             message+=format(item.bookingdate, 'EEE, MMM d, y');
         });
-        console.log(message);
+
+        let invoice = new Invoice({
+            userid:cart.userid,
+            items:cart.items,
+            subTotal:cart.subTotal,
+            date:cart.createdat,
+            subTotal:cart.subTotal,
+            discount:cart.discount,
+            paid:cart.total,
+            owing:cart.total-cart.total,
+            createdat:cart.createdat,
+            tax:cart.tax,
+            total:cart.total,
+            billingAddress:{
+                name:name,
+                street:streetNumber,
+                apt:aptNumber,
+                city:city,
+                province:province,
+                postal:pincode,
+            },
+            card:card
+        });
+
+        cart.items=[];
+        await cart.save();
+        await invoice.save();
+
         Notification.sendEmailNotification(user.email,subject,message);
-        response.status(201).json(cart)
+
+        response.status(201).json(invoice);
     } catch (err) {
         response.status(400).json({ message: err.message });
     }

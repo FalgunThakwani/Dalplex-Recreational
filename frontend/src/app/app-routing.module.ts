@@ -42,7 +42,7 @@ const routes: Routes = [
   { path: 'facalendar/:id', component: FacilitycalendarComponent , canActivate: [AuthGuard]},
   { path: 'cart-page', component: CartPageComponent, canActivate: [AuthGuard] },
   { path: 'payment-page', component: PaymentPageComponent, canActivate: [AuthGuard] },
-  { path: 'payment-complete', component: PaymentCompleteComponent, canActivate: [AuthGuard] },
+  { path: 'payment-complete/:id', component: PaymentCompleteComponent, canActivate: [AuthGuard] },
   { path:'resetpassword', component:ForgotPasswordComponent },
   { path: 'about', component: AboutUsComponent }
 ];
