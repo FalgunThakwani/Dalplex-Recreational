@@ -1,6 +1,7 @@
 const nodemailer = require("nodemailer");
+const fs = require("fs");
 
-const sendEmailNotification = (email, subject, body) => {
+const sendEmailNotification = (email, subject, templateName, templateData) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -9,11 +10,18 @@ const sendEmailNotification = (email, subject, body) => {
     },
   });
 
+  const emailTemplate = fs.readFileSync(`templates/${templateName}.html`, "utf-8");
+  let emailBody = emailTemplate;
+
+  for (const [key, value] of Object.entries(templateData)) {
+    emailBody = emailBody.replace(`{${key}}`, value);
+  }
+
   const mailOptions = {
     from: process.env.EMAIL,
     to: email,
     subject: subject,
-    html: body
+    html: emailBody
   };
 
   transporter.sendMail(mailOptions, (err, info) => {

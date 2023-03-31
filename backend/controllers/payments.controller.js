@@ -32,12 +32,11 @@ const makePayment = async (request, response) => {
         });
         cart.status = "Complete";
         
-
-        let message="<p><strong>Your booking is confirmed for:</strong></p>";
-        let subject="Booking Confirmed";
+        let confirmedbookings = '<ul>';
         cart.items.forEach((item)=>{
-            message += '<p>' + item.program + ' ' + item.interval + ' ' + format(item.bookingdate, 'EEE, MMM d, y') + '</p>';
+            confirmedbookings += '<li><strong>' + item.program + '</strong>: ' + item.interval + ' on ' + format(item.bookingdate, 'EEE, MMM d, y') + '</li>';
         });
+        confirmedbookings += '</ul>';
 
         let invoice = new Invoice({
             userid:cart.userid,
@@ -66,7 +65,13 @@ const makePayment = async (request, response) => {
         await cart.save();
         await invoice.save();
 
-        Notification.sendEmailNotification(user.email,subject,message);
+        const emailData = {
+            username: cart.username,
+            bookings: confirmedbookings,
+            billingaddress: '<p>' + name + '<br>' + streetNumber + aptNumber + '<br>' + city + '<br>' + province + '<br>' + pincode + '</p>'
+        };
+
+        Notification.sendEmailNotification(user.email, "Booking Confirmed", "booking", emailData);
 
         response.status(201).json(invoice);
     } catch (err) {
