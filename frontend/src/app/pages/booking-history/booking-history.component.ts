@@ -17,7 +17,6 @@ export class BookingHistoryComponent implements OnInit {
   ngOnInit(): void {
     this.bookingService.getAllBooking().subscribe((data: any) => {
       const bookings = data.filter((item: any) => item.userid === localStorage.getItem('userid'));
-      console.log(bookings);
       this.dataSource = bookings;
     });
   }
