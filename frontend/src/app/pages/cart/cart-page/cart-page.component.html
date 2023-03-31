@@ -2,6 +2,7 @@
 <app-header></app-header>
 <div class="container mat-elevation-z8">
   <ng-container *ngIf="data.items.length>0;else noItems">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
 <div class="cartTable">
 
   <table mat-table [dataSource]="data.items">

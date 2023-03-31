@@ -12,7 +12,7 @@ import { ListViewItem } from '../components/list-view/list-view-datasource';
 })
 export class CartPageComponent implements OnInit {
 
-
+  isLoading: boolean = false;
   data!:ListViewItem;
 
   displayedColumns: string[] = ["delete","image","program","bookingDate","price"];
@@ -22,8 +22,12 @@ export class CartPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.coreService.updateMenuItems(["home", "facilities", "tournament", "aboutus"], false);
+    this.isLoading = true;
     this.cartService.getCart({"userid":localStorage.getItem('userid')}).subscribe((data)=>{
     this.data=data;
+    this.isLoading = false;
+    }, (error) => {
+      this.isLoading = false;
     });
 
   }
@@ -31,9 +35,12 @@ export class CartPageComponent implements OnInit {
 
 
   deleteItem(id:any): void{
-    console.log("dele");
+    this.isLoading = true;
     this.cartService.deleteFromCart({"id":id,"userid":localStorage.getItem('userid')}).subscribe((data) => {
       this.data=data;
+      this.isLoading = false;
+    }, (error) => {
+      this.isLoading = false;
     });
   }
 }
