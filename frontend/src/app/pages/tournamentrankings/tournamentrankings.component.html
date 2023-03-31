@@ -5,8 +5,11 @@
         <mat-form-field appearance="fill" class="filter">
           <mat-label>Tournament</mat-label>
           <mat-select [(ngModel)]="selectedTournament" name="tournament" (selectionChange) = "applyfilter()">
-            <mat-option *ngFor="let tournament of tournaments" [value]="tournament.value">
-              {{tournament.viewValue}}
+            <mat-option value="">
+              Select
+            </mat-option>
+            <mat-option *ngFor="let tournament of tournaments" [value]="tournament.tournamentname">
+              {{tournament.tournamentname}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -14,21 +17,15 @@
         <mat-form-field appearance="fill" class="filter">
             <mat-label>Sport</mat-label>
             <mat-select [(ngModel)]="selectedSport" name="sport" (selectionChange) = "applyfilter()">
-              <mat-option *ngFor="let sport of sports" [value]="sport.value">
-                {{sport.viewValue}}
+              <mat-option value="">
+                Select
+              </mat-option>
+              <mat-option *ngFor="let sport of sportsCategoryDetails" [value]="sport.categoryname">
+                {{sport.categoryname}}
               </mat-option>
             </mat-select>
           </mat-form-field>
 
-          <!-- <mat-form-field appearance="fill" class="filter">
-            <mat-label>Match</mat-label>
-            <mat-select [(ngModel)]="selectedMatch" name="match">
-              <mat-option *ngFor="let match of matches" [value]="match.value">
-                {{match.viewValue}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field> -->
-          <!-- <button mat-raised-button color="primary" style="height:40px; width:100px;" (click)="applyfilter()">Search</button> -->
       </form>
 
     <!-- 5 -->

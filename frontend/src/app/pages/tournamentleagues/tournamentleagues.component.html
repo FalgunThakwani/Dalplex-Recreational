@@ -4,8 +4,11 @@
     <mat-form-field appearance="fill" class="filter">
       <mat-label>Sport</mat-label>
       <mat-select [(ngModel)]="selectedSport" name="sport" (selectionChange) = "applyfilter()">
-        <mat-option *ngFor="let sport of sports" [value]="sport.value">
-          {{sport.viewValue}}
+        <mat-option value="">
+          Select
+        </mat-option>
+        <mat-option *ngFor="let sport of sportsCategoryDetails" [value]="sport.categoryname">
+          {{sport.categoryname}}
         </mat-option>
       </mat-select>
     </mat-form-field>

@@ -42,6 +42,7 @@ const tournamentrankingsRouter = require('./routes/tournamentrankings.route');
 const tournamentmatchesRouter = require('./routes/tournamentmatches.route');
 const tournamentfindteamRouter = require('./routes/tournamentfindteam.route');
 const tournamentleaguesRouter = require('./routes/tournamentleagues.route');
+const tournamentsRouter = require('./routes/tournament.route');
 
 app.use('/api', sessionRouter);
 app.use('/api/users', userRouter);
@@ -61,6 +62,7 @@ app.use('/api/trank', tournamentrankingsRouter);
 app.use('/api/tmatch', tournamentmatchesRouter);
 app.use('/api/tfiteam', tournamentfindteamRouter);
 app.use('/api/tleague', tournamentleaguesRouter);
+app.use('/api/tournament', tournamentsRouter);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
