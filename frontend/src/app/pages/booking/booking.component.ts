@@ -48,6 +48,9 @@ export class BookingComponent implements OnInit {
     this.bookingForm = this.formBuilder.group({
       bookingdate: ['', [Validators.required]]
     });
+    this.selectedDate = this.minDate;
+    this.bookingForm?.get('bookingdate')?.setValue(this.selectedDate);
+    this.allSlotsByDate$ = this.bookingService.getAllSlotsByDate(this.selectedDate);
   }
 
   onAddtoCart() {
