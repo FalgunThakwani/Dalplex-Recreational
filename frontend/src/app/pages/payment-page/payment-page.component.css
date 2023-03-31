@@ -20,7 +20,6 @@
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
-  /* width:150px; */
 }
 .pay-button{
   width:250px;
@@ -31,7 +30,6 @@
   border-radius: 15px;
   background-color: #fff;
   box-shadow: 0px 5px 10px rgba(10, 9, 9, 0.3);
-  /* position: relative; */
 }
 
 .card-main{
@@ -39,15 +37,8 @@
   margin-bottom:4%;
   display: flex;
 }
-.credit-card__number {
-  /* font-size: 24px;
-  font-weight: 600; */
+.card-number {
   letter-spacing: 1px;
-  /* padding: 30px 15px; */
-  /* background-image: linear-gradient(to right, #999999 25%, transparent 25%, transparent 75%, #999999 75%, #999999), linear-gradient(to bottom, #999999, #999999);
-  background-size: 15px 2px, 100% 1px;
-  background-position: left center, left bottom;
-  background-repeat: no-repeat; */
   color: black;
 }
 
@@ -59,7 +50,7 @@
   justify-content: space-between;
 }
 
-.credit-card__info {
+.card-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -69,14 +60,3 @@
 
 
 
-
-.credit-card__back {
-  background-color: #fff;
-  transform: rotateY(180deg);
-  border-radius: 15px;
-}
-
-.credit-card__magstripe {
-  background-image: linear-gradient(to right, #999999 25%, transparent 25%, transparent 75%, #999999 75%, #999999);
-  background-size: 10px 100
-}

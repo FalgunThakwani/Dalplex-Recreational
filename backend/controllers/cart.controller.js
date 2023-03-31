@@ -45,7 +45,10 @@ const getItemsCount = async (request,response)=>{
 
 const addToCart = async (request, response) => {
     const { userid, program,court_id,price, interval,status,bookingdate } = request.body;
-    const court_img = "/asas";
+    const court_img = program.substring(0,program.indexOf(" ")).toLowerCase();
+    console.log(court_img);
+    console.log(program);
+    console.log(program.indexOf(" "));
     const currentDate = new Date().toISOString()
     const bookingstatus=status;
     try {

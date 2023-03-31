@@ -61,12 +61,12 @@
           <mat-card>
             <mat-card-content>
               <h1>**** **** **** {{payment.cardnumber.substring(payment.cardnumber.length-4)}}</h1>
-              <div class="credit-card__info">
-                <div class="credit-card__name">{{ payment.name }}</div>
-                <div class="credit-card__expiry">{{ payment.expirydate | date :'MM' }}/{{ payment.expirydate | date :'YY' }}</div>
+              <div class="card-info">
+                <div class="card-name">{{ payment.name }}</div>
+                <div class="card-expiry">{{ payment.expirydate | date :'MM' }}/{{ payment.expirydate | date :'YY' }}</div>
               </div>
             </mat-card-content>
-            <mat-card-footer> <div class="card-footer"><div class="credit-card__cvv">CVV: {{payment.cvv}}</div><div> VISA</div></div> </mat-card-footer>
+            <mat-card-footer> <div class="card-footer"><div class="card-cvv">CVV: {{payment.cvv}}</div><div> VISA</div></div> </mat-card-footer>
           </mat-card>
         </mat-radio-button>
       </mat-radio-group>

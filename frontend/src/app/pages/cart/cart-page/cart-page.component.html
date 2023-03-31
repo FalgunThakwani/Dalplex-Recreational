@@ -1,11 +1,14 @@
 <!--Author: Falgun Jairaj Thakwani B009302083-->
 <app-header></app-header>
 <div class="container mat-elevation-z8">
-  <ng-container *ngIf="data.items.length>0;else noItems">
-    <mat-spinner *ngIf="isLoading"></mat-spinner>
-<div class="cartTable">
+  <mat-spinner *ngIf="!isLoading"></mat-spinner>
 
+  
+  <ng-container *ngIf="data.items.length>0;else noItems">
+
+<div class="cartTable">
   <table mat-table [dataSource]="data.items">
+
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef><h1>YOUR CART</h1></th>
       <td mat-cell *matCellDef="let element"> <button mat-icon-button color="black" (click)="deleteItem(element._id)">
@@ -14,7 +17,7 @@
     </ng-container>
     <ng-container matColumnDef="image">
       <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element"><img class="itemImage" src="./assets/badminton.png"
+      <td mat-cell *matCellDef="let element"><img class="itemImage" src="./assets/{{element.court_img}}.png"
         alt="{{data.username}}"></td>
     </ng-container>
 
