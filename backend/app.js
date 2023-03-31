@@ -36,6 +36,7 @@ const bookingRouter = require('./routes/booking.route');
 const cartRouter=require('./routes/cart.route');
 const facilitiesRouter = require('./routes/facilities.route');
 const otpRouter = require('./routes/otp.route');
+const paymentRouter=require('./routes/payment.route');
 const tournamentrankingsRouter = require('./routes/tournamentrankings.route');
 
 const tournamentmatchesRouter = require('./routes/tournamentmatches.route');
@@ -54,6 +55,7 @@ app.use('/api/booking', bookingRouter);
 app.use('/api/cart', cartRouter);
 app.use('/api/facilities', facilitiesRouter);
 app.use('/api/otp', otpRouter);
+app.use('/api/payment', paymentRouter);
 app.use('/api/trank', tournamentrankingsRouter);
 
 app.use('/api/tmatch', tournamentmatchesRouter);

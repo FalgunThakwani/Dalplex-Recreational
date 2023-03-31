@@ -15,7 +15,7 @@ const cartSchema = new mongoose.Schema({
   status:{ type: String, required: true },
   updatedat: { type: Date, default: Date.now },
   createdat: { type: Date, default: Date.now },
-  subTotal:{ type: Date, default: Date.now },
+  subTotal:{ type: Number, default:0 },
   tax:{ type: Number, default:0},
   discount:{ type: Number, default:0 },
   total:{ type: Number, default: 0 },
