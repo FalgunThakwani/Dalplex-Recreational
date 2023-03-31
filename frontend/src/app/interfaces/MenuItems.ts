@@ -3,7 +3,8 @@ export interface Menu {
     name: string;
     displayName: string;
     route: string;
-    show: boolean
+    show: boolean,
+    icon: string;
 }
 
 export interface MenuItems {

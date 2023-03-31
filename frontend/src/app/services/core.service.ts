@@ -10,12 +10,12 @@ export class CoreService {
   
   menuItems: MenuItems = {
     items: [
-      {id: 1, name: 'login', displayName: 'Log In', route: '/login', show: true},
-      {id: 2, name: 'signup', displayName: 'Sign Up', route: '/register', show: true},
-      {id: 2, name: 'home', displayName: 'Home', route: '/categories', show: true},
-      {id: 3, name: 'facilities', displayName: 'Facilities', route: '/facilities', show: true},
-      {id: 4, name: 'tournament', displayName: 'Tournament', route: '/tournaments', show: true},
-      {id: 5, name: 'aboutus', displayName: 'About us', route: '/about', show: true}
+      {id: 1, name: 'login', displayName: 'Log In', route: '/login', show: true, icon: 'login'},
+      {id: 2, name: 'signup', displayName: 'Sign Up', route: '/register', show: true, icon: 'person_add'},
+      {id: 2, name: 'home', displayName: 'Home', route: '/categories', show: true, icon: 'home'},
+      {id: 3, name: 'facilities', displayName: 'Facilities', route: '/facilities', show: true, icon: 'business'},
+      {id: 4, name: 'tournament', displayName: 'Tournament', route: '/tournaments', show: true, icon: 'emoji_events'},
+      {id: 5, name: 'aboutus', displayName: 'About us', route: '/about', show: true, icon: 'info'}
     ],
     showCart: true,
     showProfile: true
