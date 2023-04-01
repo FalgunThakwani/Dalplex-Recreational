@@ -536,6 +536,213 @@ content: [
 
 The code above was created by adapting the code in [Invoice](https://gist.github.com/tusharf5/034d3e0599ae87ec4033c53107965569)
 
+### cart-page.component.html
+*Lines 07 - 41*
+
+```
+<table mat-table [dataSource]="data.items">
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef><h1>YOUR CART</h1></th>
+      <td mat-cell *matCellDef="let element"> <button mat-icon-button color="black" (click)="deleteItem(element._id)">
+        <mat-icon>delete</mat-icon>
+      </button></td>
+    </ng-container>
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element"><img class="itemImage" src="./assets/badminton.png"
+        alt="{{data.username}}"></td>
+    </ng-container>
+
+    <ng-container matColumnDef="program">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td  mat-cell *matCellDef="let element"><h2>{{ element.program }}</h2>
+        Booking For<br>
+        {{data.username}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="bookingDate">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">{{ element.bookingdate | date: 'EEE, MMM d, y' }}<br>
+      {{element.interval}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">${{ element.price }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+```
+
+The code above was created by adapting the code in https://material.angular.io/components/table/overview because it is the official documentation of the framework and it relates to the displaying data in cart page. Accessed 29/03/2023 as shown below: 
+
+```
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="weight">
+    <th mat-header-cell *matHeaderCellDef> Weight </th>
+    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="symbol">
+    <th mat-header-cell *matHeaderCellDef> Symbol </th>
+    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+```
+
+## cart-page.component.css
+*Lines 54 - 69*
+
+```
+.container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.container::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+```
+The code above was created by adapting the code in https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_scrollbare. I dont know how to do this and i wanted this to be part of the feature. Accessed 29/03/2023 as shown below: 
+
+```
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+```
+## payment-page.component.html
+*Lines 13 - 45*
+
+```
+ <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" required>
+          <mat-error *ngIf="billingAddressForm.controls['name'].invalid">Please enter a name</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Street No.</mat-label>
+          <input matInput formControlName="streetNumber" required>
+          <mat-error *ngIf="billingAddressForm.controls['streetNumber'].invalid">Please enter a street number</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Apt No.</mat-label>
+          <input matInput formControlName="aptNumber">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>City</mat-label>
+          <input matInput formControlName="city" required>
+          <mat-error *ngIf="billingAddressForm.controls['city'].invalid">Please enter a city</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Province</mat-label>
+          <input matInput formControlName="province" required>
+          <mat-error *ngIf="billingAddressForm.controls['province'].invalid">Please enter a province</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Postal Code</mat-label>
+          <input matInput formControlName="pincode" required>
+          <mat-error *ngIf="billingAddressForm.controls['pincode'].invalid">Please enter a postal code</mat-error>
+        </mat-form-field>
+
+```
+The code above was created by adapting the code in https://material.angular.io/components/form-field/overview because its is the official documentation of the framework. Also I used my code from tutorial's to implement a form. Accessed 30/03/2023 as shown below: 
+```
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your email</mat-label>
+    <input matInput placeholder="pat@example.com" [formControl]="email" required>
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+```
+
+```
+<mat-radio-group [(ngModel)]="selectedOption" [ngModelOptions]="{standalone: true}" (change)="updateSelection($event.value)" >
+```
+The code above was created by adapting the advice in https://stackoverflow.com/a/56112269 by user https://stackoverflow.com/users/1122806/dimanoid. Reason being I was getting an error for ngModel and i searched google for this. Accessed 30/03/2023 
+
+## payment-complete.html
+*Lines 16 - 29*
+
+```
+ <mat-grid-list #grid [cols]="3" rowHeight="200px" gutterSize="40px"  >
+  <mat-grid-tile *ngFor="let booking of bookings">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>Booking details</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Court: {{booking.program }}</p>
+      <p>Time: {{booking.interval}}</p>
+      <p>Date: {{booking.bookingdate|date:"MMM d YYYY"}}</p>
+    </mat-card-content>
+  </mat-card>
+  </mat-grid-tile>
+  </mat-grid-list>
+```
+
+The code above was created by adapting the code in https://v5.material.angular.io/components/grid-list/overview because its is the official documentation of the framework and i dont know how to use material grid. Accessed 30/03/2023 as shown below:
+
+```
+<mat-grid-list cols="2" rowHeight="2:1">
+  <mat-grid-tile>1</mat-grid-tile>
+  <mat-grid-tile>2</mat-grid-tile>
+  <mat-grid-tile>3</mat-grid-tile>
+  <mat-grid-tile>4</mat-grid-tile>
+</mat-grid-list>
+```
+
 ## Built With
 
 * [Node Express](https://expressjs.com/) - The backend framework
