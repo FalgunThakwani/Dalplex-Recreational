@@ -743,6 +743,35 @@ The code above was created by adapting the code in https://v5.material.angular.i
 </mat-grid-list>
 ```
 
+### facilities.model.js
+
+* Lines 3 - 14 *
+
+```
+const facilitiesSchema = new mongoose.Schema({
+  title: { type: String, requird: true },
+  subtitle: { type: String, required: true },
+  occ: { type: String, required: true },
+  state: { type: String, required: true },
+  desc: { type: String, required: true },
+  foot: { type: String, required: true },
+  img: { type: String, required: true },
+  w: { type: Array, required: true },
+  slots: { type: Array, required: true },
+  updatedat: { type: Date, default: Date.now },
+  createdat: { type: Date, default: Date.now },
+});
+```
+
+The code above was created by adapting the code in [mongoose](https://mongoosejs.com/docs/models.html) as shown below:
+
+```
+const schema = new mongoose.Schema({ name: 'string', size: 'string' });
+const Tank = mongoose.model('Tank', schema);
+```
+
+[mongoose](https://mongoosejs.com/docs/models.html) code reference was used for declaring mongoose models.
+
 ## Built With
 
 * [Node Express](https://expressjs.com/) - The backend framework
