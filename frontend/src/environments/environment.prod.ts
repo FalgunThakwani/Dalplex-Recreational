@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiServer: "http://localhost/api"
+  apiServer: "https://dalplex-api.onrender.com/api"
 };
