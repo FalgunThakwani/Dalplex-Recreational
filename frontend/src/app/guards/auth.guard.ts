@@ -1,3 +1,4 @@
+/*Author: Sumit Kumar B00904097*/
 import { UserService } from './../services/user.service';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';

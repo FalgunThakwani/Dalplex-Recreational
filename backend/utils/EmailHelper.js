@@ -1,3 +1,4 @@
+/*Author: Sumit Kumar B00904097*/
 const nodemailer = require("nodemailer");
 const fs = require("fs");
 

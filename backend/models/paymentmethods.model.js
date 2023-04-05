@@ -1,3 +1,4 @@
+/*Author: Sumit Kumar B00904097*/
 const mongoose = require("mongoose");
 
 const paymentMethodsSchema = new mongoose.Schema({

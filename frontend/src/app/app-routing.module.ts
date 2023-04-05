@@ -1,3 +1,7 @@
+/*  
+  Author: Sumit Kumar B00904097
+  ModifiedBy: Other Team Members
+*/
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NgModule } from '@angular/core';

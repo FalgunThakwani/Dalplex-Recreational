@@ -1,3 +1,4 @@
+/*Author: Sumit Kumar B00904097*/
 const PaymentMethods = require('../models/paymentmethods.model');
 
 const createPaymentMethods = async (request, response) => {

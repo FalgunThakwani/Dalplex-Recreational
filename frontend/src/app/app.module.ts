@@ -1,3 +1,7 @@
+/*  
+  Author: Sumit Kumar B00904097
+  ModifiedBy: Other Team Members
+*/
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
