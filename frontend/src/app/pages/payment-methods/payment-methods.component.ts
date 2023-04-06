@@ -26,7 +26,7 @@ export class PaymentMethodsComponent implements OnInit {
 
   getPaymentMethods() {
     this.paymentService.getPaymentMethodDetails().subscribe((data) => {
-      this.dataSource = data;
+      this.dataSource = data.filter((item: any) => item.userid == localStorage.getItem('userid'));
     });
   }
 
@@ -37,7 +37,7 @@ export class PaymentMethodsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        const data = {userid: '', name: result.name, cardnumber: result.cardNumber, expirydate: result.expiryDate, cvv: result.securityCode, postalcode: result.postalCode};
+        const data = {userid: localStorage.getItem('userid'), name: result.name, cardnumber: result.cardNumber, expirydate: result.expiryDate, cvv: result.securityCode, postalcode: result.postalCode};
         this.paymentService.addNewPaymentMethod(data).subscribe((data: any) => {
           this.coreService.showSnackBar("Payment method added successfully");
           this.getPaymentMethods();
