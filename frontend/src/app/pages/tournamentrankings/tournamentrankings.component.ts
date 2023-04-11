@@ -1,3 +1,4 @@
+// Author : Venkata Vijaya Rama Raju Mandapati
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { SportsCategory } from 'src/app/interfaces/SportsCategory';
