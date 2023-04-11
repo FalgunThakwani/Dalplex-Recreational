@@ -1,3 +1,4 @@
+/*Author: Sumit Kumar B00904097*/
 const Invoice = require('../models/invoice.model');
 
 const generateUniqueNumber = () => {

@@ -1,3 +1,4 @@
+/*Author: Sumit Kumar B00904097*/
 import { MenuItems } from './../../interfaces/MenuItems';
 import { CoreService } from './../../services/core.service';
 import { UserService } from './../../services/user.service';

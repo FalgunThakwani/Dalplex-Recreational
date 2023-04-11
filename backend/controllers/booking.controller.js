@@ -1,3 +1,4 @@
+/*Author: Sumit Kumar B00904097*/
 const Booking = require('../models/bookings.model');
 require("dotenv").config();
 

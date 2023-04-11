@@ -1,3 +1,4 @@
+/*Author: Sumit Kumar B00904097*/
 const Membership = require('../models/membership.model');
 
 const createMembership = async (request, response) => {
