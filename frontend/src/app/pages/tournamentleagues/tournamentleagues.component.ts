@@ -1,3 +1,4 @@
+// Author : Venkata Vijaya Rama Raju Mandapati
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SportsCategory } from 'src/app/interfaces/SportsCategory';

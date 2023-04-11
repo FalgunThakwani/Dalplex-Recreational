@@ -1,3 +1,4 @@
+// Author : Venkata Vijaya Rama Raju Mandapati
 const Tournaments = require('../models/tournament.model');
 
 const createTournament = async (request, response) => {
