@@ -1,3 +1,4 @@
+/*Author: Sumit Kumar B00904097*/
 const jwt = require('jsonwebtoken');
 
 const verifyToken = (req, res, next) => {

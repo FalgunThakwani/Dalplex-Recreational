@@ -1,3 +1,4 @@
+/*Author: Sumit Kumar B00904097*/
 import { BookingService } from 'src/app/services/booking.service';
 import { Component, OnInit } from '@angular/core';
 import { BookingDetails } from 'src/app/interfaces/BookingDetails';

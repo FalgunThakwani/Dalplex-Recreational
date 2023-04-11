@@ -1,3 +1,4 @@
+/*Author: Sumit Kumar B00904097*/
 import { ProfileService } from './../../services/profile.service';
 import { CoreService } from './../../services/core.service';
 import { Component, OnInit } from '@angular/core';

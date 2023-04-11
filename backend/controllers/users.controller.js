@@ -1,3 +1,4 @@
+/*Author: Sumit Kumar B00904097*/
 const bcrypt = require('bcryptjs');
 const User = require('../models/user.model');
 

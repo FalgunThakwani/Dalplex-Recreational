@@ -1,3 +1,5 @@
+/*Author: Sumit Kumar B00904097*/
+
 const generateOTP = () => {
     const digits = '0123456789';
     let otp = '';

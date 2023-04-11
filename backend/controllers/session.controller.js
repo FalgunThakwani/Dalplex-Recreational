@@ -1,3 +1,4 @@
+/*Author: Sumit Kumar B00904097*/
 const User = require('../models/user.model');
 const jwt = require('jsonwebtoken');
 const Verification=require('../models/otp.model')

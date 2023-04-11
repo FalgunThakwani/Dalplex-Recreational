@@ -60,6 +60,33 @@ ng test
 
 The node express application is deployed on Render, mongodb is deployed on https://www.mongodb.com/atlas/database and angular application is deployed on Netlify.
 
+
+### user-registration.component.html
+
+                    <div class="email-input">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input formControlName="email" matInput required/>
+                            <mat-error *ngIf="'registrationForm.get(email).errors?.required'">
+                                email required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="password-input">
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input type="{{hide ? 'password' : 'text'}}" formControlName="password" matInput required/>
+                        <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="hide ? 'Hide Password' : 'Show Password'">
+                            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="'registrationForm.get(password).errors?.required'">
+                            minimum 8 characters required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+The above form was created using angular material forms.
+
 ### facilities.component.ts
 *Lines 69 - 95*
 

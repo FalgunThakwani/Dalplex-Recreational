@@ -36,14 +36,12 @@ export class PaymentPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.coreService.updateMenuItems(["home", "facilities", "tournament", "aboutus"], false);
-    this.paymentService.getPaymentMethodDetails().subscribe((data) => {
-      this.availablePayments = data;
-    });
+    this.getPaymentMethods();
   }
 
   getPaymentMethods() {
     this.paymentService.getPaymentMethodDetails().subscribe((data) => {
-      this.availablePayments = data;
+      this.availablePayments = data.filter((item: any) => item.userid == localStorage.getItem('userid'));
     });
   }
 
